@@ -1,0 +1,36 @@
+# =========================
+# Quarto Brand Configuration
+# =========================
+
+color:
+  background: "#ffffff"
+  foreground: "#1f2933"
+  primary: "#0f766e"     # giełdowa zieleń
+  secondary: "#6b7280"
+  success: "#16a34a"
+  danger: "#b91c1c"
+  info: "#2563eb"
+  light: "#f3f4f6"
+  dark: "#111827"
+
+typography:
+  fonts:
+    - family: Inter
+      source: google
+    - family: Roboto Mono
+      source: google
+
+  base:
+    family: Inter
+    size: 1rem
+    weight: 400
+    line-height: 1.65
+
+  headings:
+    family: Inter
+    weight: 600
+    color: "#111827"
+
+  monospace:
+    family: Roboto Mono
+    size: 0.95rem
