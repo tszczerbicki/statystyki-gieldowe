@@ -1,0 +1,9 @@
+---
+title: "Pierwszy post"
+author: "Tomasz Szczerbicki"
+date: "2026-01-10"
+categories: [news, code, analysis]
+image: "image.jpg"
+---
+
+To jest mój pierwszy post. 
