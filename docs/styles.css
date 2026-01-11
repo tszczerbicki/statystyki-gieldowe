@@ -1,46 +1,30 @@
-/* ================================================== */
-/* GLOBALNE USTAWIENIA TEKSTU                        */
-/* ================================================== */
-body {
-  text-align: justify;       /* justowanie całego tekstu */
-  line-height: 1.6;          /* poprawa czytelności */
-  margin: 0 auto;            /* centrowanie zawartości strony */
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+/* Wyjustowanie tekstu w postach */
+article, .post-content, p {
+  text-align: justify;
 }
 
-p,
-li,
-blockquote,
-.listing-description {
-  text-align: justify;        /* justowanie akapitów i opisów w listingach */
-  hyphens: auto;              /* dzielenie wyrazów */
-  margin-bottom: 1em;
+/* Wyjustowanie tekstu w listingu / blokach kodu */
+pre, code {
+  text-align: justify;
 }
 
-/* ------------------------- */
-/* WYŚRODKOWANIE ELEMENTÓW BLOKOWYCH */
-/* ------------------------- */
-img,
-figure,
-table,
-div.figure {
+/* Wycentrowanie obrazów */
+img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Wykresy wewnątrz figure */
-figure img {
+/* Wycentrowanie tabel */
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse; /* opcjonalne, ale estetyczne */
+}
+
+/* Wycentrowanie innych obiektów (np. grafiki, wykresy) */
+figure, iframe, embed, object {
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
-/* Wyśrodkowanie podpisów pod obrazami */
-figcaption {
-  text-align: center;
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 0.5em;
-}
-
-/* ----------*

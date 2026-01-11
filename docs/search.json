@@ -11,14 +11,14 @@
     "href": "posts/python_w_analizie/python_w_analizie.html",
     "title": "Analiza danych w Pythonie 2",
     "section": "",
-    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n-0.862467\n\n\n1\n1\n-1.854456\n\n\n2\n2\n0.503272\n\n\n3\n3\n0.889814\n\n\n4\n4\n-0.489597\n\n\n5\n5\n2.191100\n\n\n6\n6\n-0.204894\n\n\n7\n7\n0.727371\n\n\n8\n8\n1.354736\n\n\n9\n9\n1.142412\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.339729\n\n\nstd\n3.02765\n1.193773\n\n\nmin\n0.00000\n-1.854456\n\n\n25%\n2.25000\n-0.418421\n\n\n50%\n4.50000\n0.615321\n\n\n75%\n6.75000\n1.079263\n\n\nmax\n9.00000\n2.191100\n\n\n\n\n\n\n\nKoniec wpisu."
+    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n-0.214687\n\n\n1\n1\n-1.024286\n\n\n2\n2\n1.360264\n\n\n3\n3\n-0.462567\n\n\n4\n4\n-0.430234\n\n\n5\n5\n-0.382155\n\n\n6\n6\n0.358764\n\n\n7\n7\n-0.457891\n\n\n8\n8\n1.348764\n\n\n9\n9\n1.427035\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.152300\n\n\nstd\n3.02765\n0.909988\n\n\nmin\n0.00000\n-1.024286\n\n\n25%\n2.25000\n-0.450977\n\n\n50%\n4.50000\n-0.298421\n\n\n75%\n6.75000\n1.101264\n\n\nmax\n9.00000\n1.427035\n\n\n\n\n\n\n\nKoniec wpisu."
   },
   {
     "objectID": "posts/python_w_analizie/python_w_analizie.html#wprowadzenie",
     "href": "posts/python_w_analizie/python_w_analizie.html#wprowadzenie",
     "title": "Analiza danych w Pythonie 2",
     "section": "",
-    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n-0.862467\n\n\n1\n1\n-1.854456\n\n\n2\n2\n0.503272\n\n\n3\n3\n0.889814\n\n\n4\n4\n-0.489597\n\n\n5\n5\n2.191100\n\n\n6\n6\n-0.204894\n\n\n7\n7\n0.727371\n\n\n8\n8\n1.354736\n\n\n9\n9\n1.142412\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.339729\n\n\nstd\n3.02765\n1.193773\n\n\nmin\n0.00000\n-1.854456\n\n\n25%\n2.25000\n-0.418421\n\n\n50%\n4.50000\n0.615321\n\n\n75%\n6.75000\n1.079263\n\n\nmax\n9.00000\n2.191100\n\n\n\n\n\n\n\nKoniec wpisu."
+    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n-0.214687\n\n\n1\n1\n-1.024286\n\n\n2\n2\n1.360264\n\n\n3\n3\n-0.462567\n\n\n4\n4\n-0.430234\n\n\n5\n5\n-0.382155\n\n\n6\n6\n0.358764\n\n\n7\n7\n-0.457891\n\n\n8\n8\n1.348764\n\n\n9\n9\n1.427035\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.152300\n\n\nstd\n3.02765\n0.909988\n\n\nmin\n0.00000\n-1.024286\n\n\n25%\n2.25000\n-0.450977\n\n\n50%\n4.50000\n-0.298421\n\n\n75%\n6.75000\n1.101264\n\n\nmax\n9.00000\n1.427035\n\n\n\n\n\n\n\nKoniec wpisu."
   },
   {
     "objectID": "posts/welcome/index.html",
