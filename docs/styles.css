@@ -1,10 +1,69 @@
-/* css styles */
-/* Justowanie tekstu w całej stronie */
+/* ================================================== */
+/* GLOBALNE USTAWIENIA TEKSTU                        */
+/* ================================================== */
 body {
-  text-align: justify;
+  text-align: justify;       /* justowanie całego tekstu */
+  line-height: 1.6;          /* poprawa czytelności */
+  max-width: 800px;           /* ograniczenie szerokości dla wygody czytania */
+  margin: 0 auto;             /* centrowanie całej zawartości strony */
+  padding: 1em;               /* trochę oddechu od krawędzi */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* Poprawa czytelności justowania */
-p {
-  hyphens: auto;
+p,
+li,
+blockquote,
+.listing-description {
+  text-align: justify;        /* justowanie akapitów i opisów w listingach */
+  hyphens: auto;              /* dzielenie wyrazów */
+  margin-bottom: 1em;
+}
+
+/* ------------------------- */
+/* WYŚRODKOWANIE ELEMENTÓW BLOKOWYCH */
+/* ------------------------- */
+img,
+figure,
+table,
+div.figure {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wykresy wewnątrz figure */
+figure img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wyśrodkowanie podpisów pod obrazami */
+figcaption {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 0.5em;
+}
+
+/* ------------------------- */
+/* DODATKOWE ULEPSZENIA CZYTELNOŚCI */
+/* ------------------------- */
+ul, ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+code, pre {
+  text-align: left;           /* kod nie jest justowany */
+  overflow-x: auto;
+}
+
+/* Linki */
+a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
