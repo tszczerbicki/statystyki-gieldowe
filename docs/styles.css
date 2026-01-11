@@ -1,1 +1,10 @@
 /* css styles */
+/* Justowanie tekstu w całej stronie */
+body {
+  text-align: justify;
+}
+
+/* Poprawa czytelności justowania */
+p {
+  hyphens: auto;
+}
