@@ -4,9 +4,7 @@
 body {
   text-align: justify;       /* justowanie całego tekstu */
   line-height: 1.6;          /* poprawa czytelności */
-  max-width: 800px;           /* ograniczenie szerokości dla wygody czytania */
-  margin: 0 auto;             /* centrowanie całej zawartości strony */
-  padding: 1em;               /* trochę oddechu od krawędzi */
+  margin: 0 auto;            /* centrowanie zawartości strony */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -45,25 +43,4 @@ figcaption {
   margin-top: 0.5em;
 }
 
-/* ------------------------- */
-/* DODATKOWE ULEPSZENIA CZYTELNOŚCI */
-/* ------------------------- */
-ul, ol {
-  margin-left: 1.5em;
-  margin-bottom: 1em;
-}
-
-code, pre {
-  text-align: left;           /* kod nie jest justowany */
-  overflow-x: auto;
-}
-
-/* Linki */
-a {
-  color: #1a73e8;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
+/* ----------*
