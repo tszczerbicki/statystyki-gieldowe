@@ -1,0 +1,43 @@
+---
+title: "Analiza danych w Pythonie"
+date: 2026-01-11
+categories: [Python, Data Science]
+format:
+  html:
+    code-fold: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Wprowadzenie
+
+W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    "x": np.arange(10),
+    "y": np.random.randn(10)
+})
+
+df
+```
+
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.plot(df["x"], df["y"])
+plt.title("Losowy wykres")
+plt.show()
+```
+
+```{python}
+df.describe()
+```
+
+Koniec wpisu. 

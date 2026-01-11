@@ -10,7 +10,221 @@
 <atom:link href="https://tszczerbicki.github.io/quarto-site/index.xml" rel="self" type="application/rss+xml"/>
 <description>O giełdzie i danych w przystępny sposób</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 09 Jan 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 10 Jan 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Analiza danych w Pythonie</title>
+  <link>https://tszczerbicki.github.io/quarto-site/posts/python_w_analizie/python_w_analizie.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="wprowadzenie" class="level2">
+<h2 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h2>
+<p>W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie.</p>
+<div id="fb5d4cc7" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-3"></span>
+<span id="cb1-4">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame({</span>
+<span id="cb1-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>: np.arange(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb1-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>: np.random.randn(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb1-7">})</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">df</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">x</th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0</td>
+<td>0.624522</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>0.375746</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2</td>
+<td>0.912210</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>3</td>
+<td>-1.299865</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>4</td>
+<td>0.400213</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>5</td>
+<td>0.755351</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>6</td>
+<td>0.510390</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>7</td>
+<td>0.254633</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>8</td>
+<td>-0.196508</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>9</td>
+<td>0.117643</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="76413547" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">plt.plot(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>])</span>
+<span id="cb2-4">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Losowy wykres"</span>)</span>
+<span id="cb2-5">plt.show()</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/python_w_analizie/python_w_analizie_files/figure-html/cell-3-output-1.png" width="582" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="8c965388" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">df.describe()</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">x</th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>10.00000</td>
+<td>10.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>4.50000</td>
+<td>0.245434</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>3.02765</td>
+<td>0.628855</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>0.00000</td>
+<td>-1.299865</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>2.25000</td>
+<td>0.151890</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>4.50000</td>
+<td>0.387980</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>6.75000</td>
+<td>0.595989</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>9.00000</td>
+<td>0.912210</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Koniec wpisu.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <category>Data Science</category>
+  <guid>https://tszczerbicki.github.io/quarto-site/posts/python_w_analizie/python_w_analizie.html</guid>
+  <pubDate>Sat, 10 Jan 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Pierwszy post</title>
   <dc:creator>Tomasz Szczerbicki</dc:creator>
