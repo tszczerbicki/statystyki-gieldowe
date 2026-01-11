@@ -25,8 +25,6 @@
 <h2 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h2>
 <p>W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie.</p>
 <div id="fb5d4cc7" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -54,7 +52,6 @@ font-style: inherit;">10</span>)</span>
 <span id="cb1-7">})</span>
 <span id="cb1-8"></span>
 <span id="cb1-9">df</span></code></pre></div></div>
-</details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -125,8 +122,6 @@ font-style: inherit;">10</span>)</span>
 </div>
 </div>
 <div id="76413547" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -142,7 +137,6 @@ font-style: inherit;">"y"</span>])</span>
 background-color: null;
 font-style: inherit;">"Losowy wykres"</span>)</span>
 <span id="cb2-5">plt.show()</span></code></pre></div></div>
-</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -152,10 +146,7 @@ font-style: inherit;">"Losowy wykres"</span>)</span>
 </div>
 </div>
 <div id="8c965388" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">df.describe()</span></code></pre></div></div>
-</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
