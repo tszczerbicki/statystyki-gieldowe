@@ -4,21 +4,21 @@
     "href": "about.html",
     "title": "Tomasz Szczerbicki",
     "section": "",
-    "text": "Jestem absolwentem Uniwersytetu Ekonomicznego w Poznaniu, Maklerem Papierów Wartościowych, analitykiem z doświadczeniem w branżach e-commerce i energetyce, a przede wszystkim miłośnikiem rynków kapitałowych.\nW swoim podejściu staram się łączyć perspektywę biznesową z wartościami liczbowymi, a wszystko to wspieram zapleczem technicznym. Na blogu pojawiać się będą treści związane zarówno z analizą techniczną - przede wszystkim cykliczne podsumowania wyników i weryfikacje hipotez rynkowych; jak i z analizą fundamentalną - przekrojowe analizy spółek z GPW i NewConnect. Finalnie, chciałbym również zaprezentować zastosowanie machine learning w analizach giełdowych."
+    "text": "Jestem absolwentem Uniwersytetu Ekonomicznego w Poznaniu, Maklerem Papierów Wartościowych (nr wpisu 3800), analitykiem z doświadczeniem w branżach e-commerce i energetyce, a przede wszystkim miłośnikiem rynków kapitałowych.\nW swoim podejściu staram się łączyć perspektywę biznesową z wartościami liczbowymi, a wszystko to wspieram zapleczem technicznym. Na blogu pojawiać się będą treści związane zarówno z analizą techniczną - przede wszystkim cykliczne podsumowania wyników i weryfikacje hipotez rynkowych; jak i z analizą fundamentalną - przekrojowe analizy spółek z GPW i NewConnect. Finalnie, chciałbym również zaprezentować zastosowanie machine learning w analizach giełdowych."
   },
   {
     "objectID": "posts/python_w_analizie/python_w_analizie.html",
     "href": "posts/python_w_analizie/python_w_analizie.html",
     "title": "Analiza danych w Pythonie 2",
     "section": "",
-    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n0.109548\n\n\n1\n1\n0.028681\n\n\n2\n2\n0.234561\n\n\n3\n3\n0.261448\n\n\n4\n4\n2.474391\n\n\n5\n5\n-0.630069\n\n\n6\n6\n1.266308\n\n\n7\n7\n-0.405072\n\n\n8\n8\n-0.404429\n\n\n9\n9\n-0.087712\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.284766\n\n\nstd\n3.02765\n0.929980\n\n\nmin\n0.00000\n-0.630069\n\n\n25%\n2.25000\n-0.325250\n\n\n50%\n4.50000\n0.069114\n\n\n75%\n6.75000\n0.254727\n\n\nmax\n9.00000\n2.474391\n\n\n\n\n\n\n\nKoniec wpisu."
+    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n1.023569\n\n\n1\n1\n0.969806\n\n\n2\n2\n1.334030\n\n\n3\n3\n0.557078\n\n\n4\n4\n0.763745\n\n\n5\n5\n1.226594\n\n\n6\n6\n-0.977648\n\n\n7\n7\n0.237027\n\n\n8\n8\n1.073087\n\n\n9\n9\n-1.075348\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.513194\n\n\nstd\n3.02765\n0.872558\n\n\nmin\n0.00000\n-1.075348\n\n\n25%\n2.25000\n0.317040\n\n\n50%\n4.50000\n0.866776\n\n\n75%\n6.75000\n1.060707\n\n\nmax\n9.00000\n1.334030\n\n\n\n\n\n\n\nKoniec wpisu."
   },
   {
     "objectID": "posts/python_w_analizie/python_w_analizie.html#wprowadzenie",
     "href": "posts/python_w_analizie/python_w_analizie.html#wprowadzenie",
     "title": "Analiza danych w Pythonie 2",
     "section": "",
-    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n0.109548\n\n\n1\n1\n0.028681\n\n\n2\n2\n0.234561\n\n\n3\n3\n0.261448\n\n\n4\n4\n2.474391\n\n\n5\n5\n-0.630069\n\n\n6\n6\n1.266308\n\n\n7\n7\n-0.405072\n\n\n8\n8\n-0.404429\n\n\n9\n9\n-0.087712\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.284766\n\n\nstd\n3.02765\n0.929980\n\n\nmin\n0.00000\n-0.630069\n\n\n25%\n2.25000\n-0.325250\n\n\n50%\n4.50000\n0.069114\n\n\n75%\n6.75000\n0.254727\n\n\nmax\n9.00000\n2.474391\n\n\n\n\n\n\n\nKoniec wpisu."
+    "text": "W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\n0\n0\n1.023569\n\n\n1\n1\n0.969806\n\n\n2\n2\n1.334030\n\n\n3\n3\n0.557078\n\n\n4\n4\n0.763745\n\n\n5\n5\n1.226594\n\n\n6\n6\n-0.977648\n\n\n7\n7\n0.237027\n\n\n8\n8\n1.073087\n\n\n9\n9\n-1.075348\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nx\ny\n\n\n\n\ncount\n10.00000\n10.000000\n\n\nmean\n4.50000\n0.513194\n\n\nstd\n3.02765\n0.872558\n\n\nmin\n0.00000\n-1.075348\n\n\n25%\n2.25000\n0.317040\n\n\n50%\n4.50000\n0.866776\n\n\n75%\n6.75000\n1.060707\n\n\nmax\n9.00000\n1.334030\n\n\n\n\n\n\n\nKoniec wpisu."
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -46,6 +46,6 @@
     "href": "index.html",
     "title": "O giełdzie i danych w przystępny sposób",
     "section": "",
-    "text": "Analiza danych w Pythonie 2\n\n\n\nPython\n\nData Science\n\n\n\n\n\n\n\n\n\n11 sty 2026\n\n\nTomasz Szczerbicki\n\n\n\n\n\n\n\n\n\n\n\n\nPierwszy post\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n10 sty 2026\n\n\nTomasz Szczerbicki\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n7 sty 2026\n\n\nTristan O’Malley\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n5 sty 2026\n\n\nHarlow Malloc\n\n\n\n\n\nBrak pasujących"
+    "text": "Analiza danych w Pythonie 2\n\n\n\nPython\n\nData Science\n\n\n\n\n\n\n\n\n\n2026-01-11\n\n\nTomasz Szczerbicki\n\n\n\n\n\n\n\n\n\n\n\n\nPierwszy post\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n2026-01-10\n\n\nTomasz Szczerbicki\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n2026-01-07\n\n\nTristan O’Malley\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n2026-01-05\n\n\nHarlow Malloc\n\n\n\n\n\nBrak pasujących"
   }
 ]

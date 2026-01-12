@@ -80,6 +80,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Analiza danych w Pythonie 2 – Tomasz Szczerbicki - analizy giełdowe">
+<meta name="twitter:description" content="O giełdzie i danych w przystępny sposób">
+<meta name="twitter:image" content="https://tszczerbicki.github.io/quarto-site/posts/python_w_analizie/python_w_analizie_files/figure-html/cell-3-output-1.png">
+<meta name="twitter:creator" content="@Shcherbytsky">
+<meta name="twitter:site" content="@Shcherbytsky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="862">
+<meta name="twitter:image-width" content="1163">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -174,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="wprowadzenie" class="level2">
 <h2 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h2>
 <p>W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów.</p>
-<div id="2008d699" class="cell" data-execution_count="1">
+<div id="740ead55" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -191,52 +199,52 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>0</td>
-<td>0.109548</td>
+<td>1.023569</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>1</td>
-<td>0.028681</td>
+<td>0.969806</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>2</td>
-<td>0.234561</td>
+<td>1.334030</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>3</td>
-<td>0.261448</td>
+<td>0.557078</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>4</td>
-<td>2.474391</td>
+<td>0.763745</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>5</td>
-<td>-0.630069</td>
+<td>1.226594</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>6</td>
-<td>1.266308</td>
+<td>-0.977648</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
 <td>7</td>
-<td>-0.405072</td>
+<td>0.237027</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
 <td>8</td>
-<td>-0.404429</td>
+<td>1.073087</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>9</td>
-<td>-0.087712</td>
+<td>-1.075348</td>
 </tr>
 </tbody>
 </table>
@@ -244,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="a2d58d78" class="cell" data-execution_count="2">
+<div id="5964f480" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -253,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="34801a21" class="cell" data-execution_count="3">
+<div id="d210afdb" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -275,37 +283,37 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <th data-quarto-table-cell-role="th">mean</th>
 <td>4.50000</td>
-<td>0.284766</td>
+<td>0.513194</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">std</th>
 <td>3.02765</td>
-<td>0.929980</td>
+<td>0.872558</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">min</th>
 <td>0.00000</td>
-<td>-0.630069</td>
+<td>-1.075348</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">25%</th>
 <td>2.25000</td>
-<td>-0.325250</td>
+<td>0.317040</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">50%</th>
 <td>4.50000</td>
-<td>0.069114</td>
+<td>0.866776</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">75%</th>
 <td>6.75000</td>
-<td>0.254727</td>
+<td>1.060707</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">max</th>
 <td>9.00000</td>
-<td>2.474391</td>
+<td>1.334030</td>
 </tr>
 </tbody>
 </table>
@@ -720,6 +728,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Tomasz Szczerbicki</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
