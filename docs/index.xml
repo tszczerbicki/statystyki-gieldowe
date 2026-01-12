@@ -24,7 +24,7 @@
 <section id="wprowadzenie" class="level2">
 <h2 class="anchored" data-anchor-id="wprowadzenie">Wprowadzenie</h2>
 <p>W tym poście pokażę, jak wygenerować dane w Pythonie i automatycznie przedstawić je na wykresie. Na koniec wygeneruję kilka standardowych kodów. <strong>Update2</strong>. D.</p>
-<div id="413e691d" class="cell" data-execution_count="1">
+<div id="ba29eafc" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -41,52 +41,52 @@
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>0</td>
-<td>1.359942</td>
+<td>-0.106298</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>1</td>
-<td>-0.134359</td>
+<td>1.207461</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>2</td>
-<td>1.182540</td>
+<td>0.256992</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>3</td>
-<td>1.007542</td>
+<td>-0.440923</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>4</td>
-<td>1.062895</td>
+<td>-0.836309</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>5</td>
-<td>1.364492</td>
+<td>0.892875</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>6</td>
-<td>0.849473</td>
+<td>0.414908</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
 <td>7</td>
-<td>-0.704385</td>
+<td>0.978630</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
 <td>8</td>
-<td>0.549193</td>
+<td>-1.015189</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>9</td>
-<td>0.332239</td>
+<td>-0.561726</td>
 </tr>
 </tbody>
 </table>
@@ -94,7 +94,7 @@
 </div>
 </div>
 </div>
-<div id="ec9f221f" class="cell" data-execution_count="2">
+<div id="2d8a3e24" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -103,7 +103,7 @@
 </div>
 </div>
 </div>
-<div id="c5fe0546" class="cell" data-execution_count="3">
+<div id="b43a60dc" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -125,37 +125,37 @@
 <tr class="even">
 <th data-quarto-table-cell-role="th">mean</th>
 <td>4.50000</td>
-<td>0.686957</td>
+<td>0.079042</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">std</th>
 <td>3.02765</td>
-<td>0.681769</td>
+<td>0.791615</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">min</th>
 <td>0.00000</td>
-<td>-0.704385</td>
+<td>-1.015189</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">25%</th>
 <td>2.25000</td>
-<td>0.386478</td>
+<td>-0.531525</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">50%</th>
 <td>4.50000</td>
-<td>0.928508</td>
+<td>0.075347</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">75%</th>
 <td>6.75000</td>
-<td>1.152629</td>
+<td>0.773383</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">max</th>
 <td>9.00000</td>
-<td>1.364492</td>
+<td>1.207461</td>
 </tr>
 </tbody>
 </table>
