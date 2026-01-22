@@ -379,3 +379,5 @@ flop
 # sWIG80
 
 # WIG rest
+
+Rozdział dotyczy spółek zaliczanych do WIG,z wyłączeniem WIG140.
