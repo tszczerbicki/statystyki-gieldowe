@@ -373,3 +373,9 @@ flop
 ```
 
 :::
+
+# mWIG40
+
+# sWIG80
+
+# WIG rest
