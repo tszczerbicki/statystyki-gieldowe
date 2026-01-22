@@ -1,0 +1,144 @@
+#################################################
+# BLOG ANALYTICS – matplotlib style
+# Based on brand.yaml
+#################################################
+
+####################
+# FIGURE
+####################
+figure.figsize: 8, 5
+figure.dpi: 120
+figure.facecolor: #ffffff
+figure.edgecolor: #ffffff
+figure.autolayout: True
+
+savefig.dpi: 300
+savefig.facecolor: #ffffff
+savefig.edgecolor: #ffffff
+savefig.bbox: tight
+savefig.pad_inches: 0.02
+
+####################
+# FONTS
+####################
+font.family: sans-serif
+font.sans-serif: Inter, DejaVu Sans
+font.size: 12
+font.weight: regular
+
+text.color: #1f2933
+
+####################
+# TITLES & LABELS
+####################
+axes.titlesize: 16
+axes.titleweight: semibold
+axes.titlecolor: #111827
+axes.titlepad: 14
+
+axes.labelsize: 13
+axes.labelweight: regular
+axes.labelcolor: #1f2933
+axes.labelpad: 10
+
+####################
+# AXES
+####################
+axes.facecolor: #ffffff
+axes.edgecolor: #6b7280
+axes.linewidth: 1.0
+
+axes.spines.top: False
+axes.spines.right: False
+
+axes.grid: True
+axes.axisbelow: True
+
+####################
+# GRID
+####################
+grid.color: #e5e7eb
+grid.linestyle: --
+grid.linewidth: 0.8
+grid.alpha: 0.8
+
+####################
+# TICKS
+####################
+xtick.color: #374151
+ytick.color: #374151
+
+xtick.labelsize: 11
+ytick.labelsize: 11
+
+xtick.direction: out
+ytick.direction: out
+
+xtick.major.size: 4
+ytick.major.size: 4
+
+xtick.minor.size: 2
+ytick.minor.size: 2
+
+####################
+# COLOR CYCLE (brand)
+####################
+axes.prop_cycle: cycler(color: [
+    "#0f766e",  # primary – giełdowa zieleń
+    "#2563eb",  # info – niebieski
+    "#16a34a",  # success
+    "#b91c1c",  # danger
+    "#6b7280"   # secondary
+])
+
+####################
+# LINES & MARKERS
+####################
+lines.linewidth: 2.4
+lines.solid_capstyle: round
+lines.marker: None
+lines.markersize: 7
+
+####################
+# PATCHES (bar, hist)
+####################
+patch.facecolor: #0f766e
+patch.edgecolor: #ffffff
+patch.linewidth: 0.8
+
+####################
+# HISTOGRAM
+####################
+hist.bins: auto
+
+####################
+# LEGEND
+####################
+legend.frameon: False
+legend.fontsize: 11
+legend.loc: best
+legend.handlelength: 2.2
+legend.labelcolor: #1f2933
+
+####################
+# ERRORBARS
+####################
+errorbar.capsize: 3
+
+####################
+# IMAGES / HEATMAPS
+####################
+image.cmap: viridis
+
+####################
+# BOX / VIOLIN
+####################
+boxplot.flierprops.marker: o
+boxplot.flierprops.markerfacecolor: #6b7280
+boxplot.flierprops.markeredgecolor: #6b7280
+boxplot.flierprops.markersize: 4
+
+####################
+# MONOSPACE (annotations)
+####################
+text.latex.preamble: \usepackage{roboto-mono}
