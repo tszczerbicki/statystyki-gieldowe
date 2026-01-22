@@ -1,19 +1,21 @@
 ---
-title: "About"
+title: "Tomasz Szczerbicki"
 image: profile.jpg
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
+    - icon: envelope
+      text: e-mail
+      href: mailto:szczerbicki.tomasz@gmail.com
+    - icon: twitter-x
+      text: X
+      href: https://x.com/Shcherbytsky
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/tszczerbicki
 
 ---
 
-About this blog
+Jestem absolwentem Uniwersytetu Ekonomicznego w Poznaniu, Maklerem Papierów Wartościowych (nr wpisu 3800), analitykiem z doświadczeniem w branżach e-commerce i energetyce, a przede wszystkim miłośnikiem rynków kapitałowych. 
+
+W swoim podejściu staram się łączyć perspektywę biznesową z wartościami liczbowymi, a wszystko to wspieram zapleczem technicznym. Na blogu pojawiać się będą treści związane zarówno z analizą techniczną - przede wszystkim cykliczne podsumowania wyników i weryfikacje hipotez rynkowych; jak i z analizą fundamentalną - przekrojowe analizy spółek z GPW i NewConnect. Finalnie, chciałbym również zaprezentować zastosowanie machine learning w analizach giełdowych. 

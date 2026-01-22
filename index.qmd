@@ -1,10 +1,12 @@
 ---
-title: "quarto2"
+title: "O giełdzie i danych w przystępny sposób"
 listing:
   contents: posts
   feed: true
   sort: "date desc"
   type: default
+  page-size: 5
+  date-format: YYYY-MM-DD
   categories: true
   sort-ui: false
   filter-ui: false

@@ -1,17 +1,23 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  description: "A blog built with Quarto"
-  site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
-  title: "quarto2"
+  description: "O giełdzie i danych w przystępny sposób"
+  site-url: https://tszczerbicki.github.io/quarto-site/
+  title: "Tomasz Szczerbicki - analizy giełdowe"
+  favicon: "favicon_cropped.png"
+  page-footer: "Copyright 2026, Tomasz Szczerbicki"
   navbar:
     right:
-      - about.qmd
+      - text: O mnie 
+        href: about.qmd
+      - icon: envelope
+        href: mailto:szczerbicki.tomasz@gmail.com
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/tszczerbicki
+      - icon: twitter-x
+        href: https://x.com/Shcherbytsky
 format:
   html:
     theme:
@@ -19,5 +25,10 @@ format:
       - brand
     css: styles.css
 
+lang: pl 
 
+twitter-card: 
+  card-style: summary
+  site: "@Shcherbytsky"
+  creator: "@Shcherbytsky"
 

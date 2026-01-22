@@ -1,0 +1,375 @@
+---
+title: "Podsumowanie 2025 roku na GPW"
+subtitle: "Duże wzrosty, lecz nie dla każdego"
+author: "Tomasz Szczerbicki"
+date: 2026-01-22
+categories: [Analiza techniczna, GPW, WIG, WIG20, mWIG40, sWIG80, podsumowanie roczne]
+execute:
+  echo: false
+  warning: false
+  message: false
+toc: True
+---
+
+Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe. 
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import talib
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+
+# funkcje
+def wtd(df: pd.DataFrame):
+    d1 = df.copy()
+    weekly_close = d1['Close'].resample('W-FRI').last().shift()
+    d1['weekly_close'] = weekly_close.reindex(d1.index, method = 'bfill')
+    d1['WTD_%'] = (d1['Close'] / d1['weekly_close'] - 1) * 100
+    return d1['WTD_%'].astype(float).round(4)
+
+def mtd(df: pd.DataFrame):
+    d1 = df.copy()
+    month_map = dict(d1['Close'].groupby([d1.index.year, d1.index.month]).last())
+    d1['prev_month_close'] = [month_map.get((d.year if d.month > 1 else d.year - 1,12 if d.month == 1 else d.month - 1), np.nan) for d in d1.index]
+    d1['MTD_%'] = (d1['Close'] / d1['prev_month_close'] - 1) * 100
+    return d1['MTD_%'].astype(float).round(4)
+
+def ytd(df: pd.DataFrame):
+    d1 = df.copy()
+    year_map = dict(d1['Close'].groupby([d1.index.year]).last())
+    d1['prev_year_close'] = [year_map.get(d.year -1 , np.nan) for d in d1.index]
+    d1['YTD_%'] = (d1['Close'] / d1['prev_year_close'] - 1) * 100
+    return d1['YTD_%'].astype(float).round(4)
+
+def ATR(df: pd.DataFrame, n = 14):
+    d1 = df.copy()
+    d1['H-L'] = d1['High'] - d1['Low']
+    d1['H-PC'] = d1['High'] - d1['Close'].shift(1)
+    d1['L-PC'] = d1['Low'] - d1['Close'].shift(1)
+    d1['TR'] = d1[['H-L', 'H-PC', 'L-PC']].max(axis = 1)
+    d1['ATR'] = d1['TR'].ewm(span = n, min_periods = n).mean()
+    return d1['ATR']
+
+def supertrend(df: pd.DataFrame, atr_multiplier=3, atr_length = 15):
+    d1 = df.copy()
+    current_average_high_low = (d1['High']+d1['Low'])/2
+    d1['atr'] = talib.ATR(d1['High'], d1['Low'], d1['Close'], timeperiod= atr_length)
+    d1.dropna(inplace=True)
+
+    d1['basicUpperband'] = current_average_high_low + (atr_multiplier * d1['atr'])
+    d1['basicLowerband'] = current_average_high_low - (atr_multiplier * d1['atr'])
+    first_upperBand_value = d1['basicUpperband'].iloc[0]
+    first_lowerBand_value = d1['basicLowerband'].iloc[0]
+    upperBand = [first_upperBand_value]
+    lowerBand = [first_lowerBand_value]
+
+    for i in range(1, len(d1)):
+        if d1['basicUpperband'].iloc[i] < upperBand[i-1] or d1['Close'].iloc[i-1] > upperBand[i-1]:
+            upperBand.append(d1['basicUpperband'].iloc[i])
+        else:
+            upperBand.append(upperBand[i-1])
+
+        if d1['basicLowerband'].iloc[i] > lowerBand[i-1] or d1['Close'].iloc[i-1] < lowerBand[i-1]:
+            lowerBand.append(d1['basicLowerband'].iloc[i])
+        else:
+            lowerBand.append(lowerBand[i-1])
+
+    d1['upperband'] = upperBand
+    d1['lowerband'] = lowerBand
+
+    d1['has_crossed_upper'] = np.where((d1['Close'].shift(1) < d1['upperband'].shift(1)) & (d1['Close'] >= d1['upperband']), 1,0)
+    d1['has_crossed_lower'] = np.where((d1['Close'].shift(1) > d1['lowerband'].shift(1)) & (d1['Close'] <= d1['lowerband']), 1,0)
+    
+    supertrend = ['upperband']
+    for i in range(1, len(d1)):
+        if d1['has_crossed_upper'].iloc[i] == 1:
+            supertrend.append('lowerband')
+        elif d1['has_crossed_lower'].iloc[i] == 1:
+            supertrend.append('upperband')
+        else:
+            supertrend.append(supertrend[i-1])  # poprzednia wartość
+
+    d1['supertrend_label'] = supertrend
+    d1['supertrend'] = np.where(d1['supertrend_label'] == 'upperband', d1['upperband'], d1['lowerband'])
+    d1.drop(['basicUpperband', 'basicLowerband'], axis=1, inplace=True)
+    return d1[['supertrend_label', 'supertrend']]
+
+def drawdown(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_max'] = d1['cum_return'].groupby(d1.index.year).cummax()
+    d1['drawdown'] = d1['cum_roll_max'] - d1['cum_return']
+    d1['drawdown_pct'] = d1['drawdown'] / d1['cum_roll_max'] * 100
+    return d1['drawdown_pct'].astype(float).round(4)
+
+def run_up(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_min'] = d1['cum_return'].groupby(d1.index.year).cummin()
+    d1['run_up'] = d1['cum_return'] - d1['cum_roll_min']
+    d1['run_up_pct'] = d1['run_up'] / d1['cum_roll_min'] * 100
+    return d1['run_up_pct'].astype(float).round(4)
+
+# wgranie słownika
+
+dictionary_stocks = pd.read_excel('spolki.xlsx', index_col = 0)
+```
+
+
+```{python}
+# starter code
+stocks = dictionary_stocks[dictionary_stocks['in_WIG'] == True].ticker_yf.to_list()
+ohlcv_data = {}
+
+for ticker in stocks:
+    temp = yf.download(ticker, start = '2024-01-01', interval = '1d')
+    temp.dropna(how = 'any', inplace = True)
+
+    ohlcv_data[ticker] = temp
+    ohlcv_data[ticker].columns = ['Close', 'High', 'Low', 'Open', 'Volume']
+    ohlcv_data[ticker]['ticker'] = ticker
+
+    #yahoo finance ma błąd w danych dla MOL za okres 30.12.2024 - 10.06.2025. W to miejsce wstawiam dane stooq
+    if ticker == 'MOL.WA':
+        l1 = pd.read_csv('t1.csv')['Close'].to_list()
+        ohlcv_data['MOL.WA'].loc[ '2024-12-30':'2025-06-10', 'Close'] = l1
+    
+    # podobnie błąd dla Dadelo w jednym dniu
+    if ticker == 'DAD.WA':
+        ohlcv_data['DAD.WA'].loc['2025-04-25', 'Close'] = 28.30
+
+    ohlcv_data[ticker]['pct_change'] = round(ohlcv_data[ticker]['Close'].pct_change() * 100,4)
+    ohlcv_data[ticker]['WTD_pct'] = wtd(ohlcv_data[ticker])
+    ohlcv_data[ticker]['MTD_pct'] = mtd(ohlcv_data[ticker])
+    ohlcv_data[ticker]['YTD_pct'] = ytd(ohlcv_data[ticker])
+
+    ohlcv_data[ticker]['yearly_drawdown_pct'] = drawdown(ohlcv_data[ticker])
+    ohlcv_data[ticker]['yearly_run_up_pct'] = run_up(ohlcv_data[ticker])
+
+    for i in [50,100,200,300]:
+        l1 = ohlcv_data[ticker]['Close'].rolling(i).max()
+        ohlcv_data[ticker][f'is_{i}_max'] = ohlcv_data[ticker]['Close'] == l1
+        ohlcv_data[ticker][f'max_{i}_pct_distance'] = (ohlcv_data[ticker]['Close'] /  l1 - 1) * 100
+
+    for i in [10, 20, 50,100,200]:
+        ohlcv_data[ticker][f'SMA_{i}'] = ohlcv_data[ticker]['Close'].rolling(i).mean()
+        ohlcv_data[ticker][f'is_above_SMA_{i}'] = ohlcv_data[ticker]['Close'] > ohlcv_data[ticker][f'SMA_{i}']
+        ohlcv_data[ticker][f'has_crossed_SMA_{i}'] = np.where((ohlcv_data[ticker][f'is_above_SMA_{i}'] == True) & (ohlcv_data[ticker][f'is_above_SMA_{i}'].shift() == False), 'up',
+                                                            np.where((ohlcv_data[ticker][f'is_above_SMA_{i}'] == False) & (ohlcv_data[ticker][f'is_above_SMA_{i}'].shift() == True), 'down', 'no change' ))
+
+    ohlcv_data[ticker][['supertrend_label', 'supertrend']] = supertrend(ohlcv_data[ticker])
+    ohlcv_data[ticker]['supertrend_change'] = np.where((ohlcv_data[ticker]['supertrend'] == 'upperband') & (ohlcv_data[ticker]['supertrend'].shift() == 'lowerband'), 'negative',
+                                np.where((ohlcv_data[ticker]['supertrend'] == 'lowerband') & (ohlcv_data[ticker]['supertrend'].shift() == 'upperband'), 'positive', 'no change'))
+```
+
+```{python}
+stocks_results = pd.DataFrame()
+
+for i in (stocks):
+
+    aggs = ohlcv_data[i].groupby(ohlcv_data[i].index.year).agg(Close_std = ('Close', 'std'),
+                                                                  Close_mean = ('Close', 'mean'),
+                                                                  Close_last = ('Close', 'last'),
+                                                                  YTD_pct = ('YTD_pct', 'last'),
+                                                                  max_drawdown = ('yearly_drawdown_pct', 'max'),
+                                                                  max_run_up = ('yearly_run_up_pct', 'max'),
+                                                                  mean_volume = ('Volume', 'mean')
+                                                                  )
+
+    aggs['ticker_yf'] = i
+
+    aggs['variability'] = (aggs['Close_std'] / aggs['Close_mean']).round(4) * 100
+
+    aggs['volume_yoy_pct_change'] = ((aggs['mean_volume'] / aggs['mean_volume'].shift(1) - 1) * 100).round(3)
+
+    aggs_filtered = aggs.loc[[2025]]
+
+    stocks_results = pd.concat([stocks_results, aggs_filtered])
+
+
+# stworzenie końcowej tabeli (dołączam parametry ze słownika)
+df = stocks_results.merge(dictionary_stocks, how = 'left', on = 'ticker_yf')
+
+df['index_name'] = np.where(df['in_WIG20'], 'WIG20',
+                            np.where(df['in_mWIG40'], 'mWIG40',
+                                     np.where(df['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+df['market_cap_mln'] = round(df.stocks_number * df.Close_last / 1000000,4)
+
+
+# dodatkowe kolumny potrzebne w dalszych kalkulacjach
+# kosztyki dla stóp zwrotu 
+
+bins = [-np.inf,-30,-15,0,20,60,np.inf]
+
+labels = [
+    'Bardzo duży spadek (<= 30%)',
+    'Duży spadek (-30% - -15%)',
+    'Spadek (-15% - 0%)',
+    'Neutralnie / lekki wzrost (0% - 20%)',
+    'Duży wzrost (20% - 60%)',
+    'Ekstremalny wzrost (> 60%)'
+]
+
+df['YTD_group'] = pd.cut(
+    df['YTD_pct'],
+    bins=bins,
+    labels=labels,
+    right=True,        
+    include_lowest=True)
+
+# obsunięcia: Niewielkie (<= 20%); Umiarkowane (20% - 25%); Duże (25% - 40%); Bardzo duże (> 40%)
+
+bins = [-np.inf,20,25,40,np.inf]
+
+labels = [
+    'Niewielkie (<= 20%)',
+    'Umiarkowane (20% - 25%)',
+    'Duże (25% - 40%)',
+    'Bardzo duże (> 40%)',]
+
+df['Drawdown_group'] = pd.cut(
+    df['max_drawdown'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True
+)
+
+# volume: Znaczny spadek (< -20%); # Umiarkowany spadek (-20% - 0%) # Umiarkowany wzrost (0% - 20%); Znaczny wzrost (20% - 75%); #Ekstremalny wzrost (> 75%)
+
+bins = [-np.inf,-20,0,20,75,np.inf]
+
+labels = ['Znaczny spadek (<= -20%)','Umiarkowany spadek (-20% - 0%)','Umiarkowany wzrost (0% - 20%)',
+    'Znaczny wzrost (20% - 75%)','Ekstremalny wzrost (> 75%)']
+
+df['Volume_change_group'] = pd.cut(
+    df['volume_yoy_pct_change'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True)
+
+# market cap
+bins = [-np.inf,30,70,300,1500,10000, np.inf]
+
+labels = ['Bardzo małe (<= 30 mln PLN)', 'Małe (30-70 mln PLN', 'Średnie (70-300 mln PLN)', 'Duże (300 mln - 1.5 mld PLN)',
+          'Bardzo duże (1.5 - 10 mld PLN)', 'Największe (> 10 mld PLN)']
+
+df['Market_cap_group'] = pd.cut(
+    df['market_cap_mln'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True)
+```
+
+```{python}
+d_1 = df[df['in_WIG20'] == True]['YTD_pct']
+d_2 = df[df['in_mWIG40'] == True]['YTD_pct'].dropna()
+d_3 = df[df['in_sWIG80'] == True]['YTD_pct'].dropna()
+d_4 = df[(df['in_WIG'] == True) & (df['in_WIG140'] == False) ]['YTD_pct'].dropna()
+d = [ d_1, d_2, d_3, d_4]
+
+fig = plt.figure(figsize =(10, 5))
+ax = fig.add_axes([0, 0, 1, 1])
+ax.set_ylabel('Stopa zwrotu za 2025 rok (%)')
+bp = ax.boxplot(d, labels=['WIG20', 'mWIG40', 'sWIG80', 'WIG pozostałe'], patch_artist=True)
+plt.title("Stopy zwrotu na GPW w podziale na indeksy")
+ax.axhline(0, linestyle='--', linewidth=1, color = 'red')
+
+colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+for patch, color in zip(bp['boxes'], colors):
+    patch.set_facecolor(color)
+    patch.set_alpha(0.7)
+
+
+# === DODANIE WARTOŚCI MEDIANY NA WYKRES ===
+for i, median in enumerate(bp['medians'], start=1):
+    y = median.get_ydata()[0]  # wartość mediany
+    ax.text(
+        i, y,
+        f'ME: {y:.2f}%',
+        ha='center',
+        va='bottom',
+        fontsize=9,
+        fontweight='bold'
+    )
+
+plt.show()
+```
+
+Spoglądajac na rozkład stóp zwrotu względem indeksu widać, że mediana stóp zwrotu w każdym przypadku znajduje się powyżej zera. Niemniej, niekwestionowanymi zwycięzcami zostają blue-chips - mediana stóp zwrotu dla indeksu WIG20 wyniosła 42.70% i tylko jedna spółka (CCC) zakończyła rok na czerwono. Na im mniejsze spółki spoglądamy, tym mniejsza jest mediana i mniejsza koncentracja wyników wokół niej. Co warte podkreślenia, rezultaty osiągnięte przez mWIG40 i sWIG80 (mediany kolejno 21.24% i 14.54%) również należy postrzegać pozytywnie. 
+
+# WIG20 
+
+::: {.panel-tabset}
+
+## Stopy zwrotu
+
+``` {python}
+# Podsumowanie odstawowe 
+
+g = df.loc[df['in_WIG20']].groupby('YTD_group')['ticker']
+
+summary = g.count().to_frame('count')
+summary['pct_of_total'] = round(g.count() / g.count().sum() * 100,2)
+
+summary
+```
+
+## Kapitalizacje
+
+``` {python}
+# struktura wielkościowa
+
+g = df.loc[df['in_WIG20']].groupby('Market_cap_group')['ticker']
+
+summary = g.count().to_frame('count')
+summary['pct_of_total'] = round(g.count() / g.count().sum() * 100,2)
+
+summary
+```
+
+## Wolumeny
+
+``` {python}
+df.loc[df['in_WIG20']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+```
+
+## Maks Obsunięcie
+
+```{python}
+df.loc[df['in_WIG20']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+```
+
+## Top 5
+
+```{python}
+top = df.loc[df['in_WIG20']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= False).head(5)
+
+top.columns = ['nazwa', 'sektor', 'stopa zwrotu 2025', 'maks obsuniecie', 'zmiana wolumenu R:R']
+
+top.set_index(['nazwa','sektor'], inplace= True)
+
+top
+```
+## Flop 5
+
+```{python}
+flop = df.loc[df['in_WIG20']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= True).head(5)
+
+flop.columns = ['nazwa', 'sektor', 'stopa zwrotu 2025', 'maks obsuniecie', 'zmiana wolumenu R:R']
+
+flop
+```
+
+:::
