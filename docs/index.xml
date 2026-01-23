@@ -22,7 +22,7 @@
 
 
 <p>Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe.</p>
-<div id="6c53760d" class="cell" data-execution_count="4">
+<div id="6bbef4c0" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -35,10 +35,10 @@
 <section id="wig20" class="level1">
 <h1>WIG20</h1>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Kapitalizacje</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Flop 5</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="24e44273" class="cell" data-execution_count="5">
+<div id="3135bbf6" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -48,10 +48,10 @@
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">count</th>
-<th data-quarto-table-cell-role="th">pct_of_total</th>
+<th data-quarto-table-cell-role="th">Udział w całości (%)</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">YTD_group</th>
+<th data-quarto-table-cell-role="th">Stopy zwrotu (%)</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 </tr>
@@ -95,7 +95,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="ddb780c9" class="cell" data-execution_count="6">
+<div id="bfa3cdb9" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -104,45 +104,54 @@
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">count</th>
-<th data-quarto-table-cell-role="th">pct_of_total</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">stopa zwrotu 2025</th>
+<th data-quarto-table-cell-role="th">maks obsuniecie</th>
+<th data-quarto-table-cell-role="th">zmiana wolumenu R:R</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">Market_cap_group</th>
+<th data-quarto-table-cell-role="th">nazwa</th>
+<th data-quarto-table-cell-role="th">sektor</th>
+<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">Bardzo małe (&lt;= 30 mln PLN)</th>
-<td>0</td>
-<td>0.0</td>
+<th data-quarto-table-cell-role="th">KGHM</th>
+<th data-quarto-table-cell-role="th">Chemia i surowce</th>
+<td>144.1739</td>
+<td>24.3339</td>
+<td>22.580</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">Małe (30-70 mln PLN</th>
-<td>0</td>
-<td>0.0</td>
+<th data-quarto-table-cell-role="th">PKNORLEN</th>
+<th data-quarto-table-cell-role="th">Paliwa i energia</th>
+<td>119.0372</td>
+<td>11.9519</td>
+<td>28.214</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">Średnie (70-300 mln PLN)</th>
-<td>0</td>
-<td>0.0</td>
+<th data-quarto-table-cell-role="th">MBANK</th>
+<th data-quarto-table-cell-role="th">Finanse</th>
+<td>93.9876</td>
+<td>18.8614</td>
+<td>6.282</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">Duże (300 mln - 1.5 mld PLN)</th>
-<td>0</td>
-<td>0.0</td>
+<th data-quarto-table-cell-role="th">PEPCO</th>
+<th data-quarto-table-cell-role="th">Handel i usługi</th>
+<td>83.3654</td>
+<td>20.3634</td>
+<td>18.861</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">Bardzo duże (1.5 - 10 mld PLN)</th>
-<td>3</td>
-<td>15.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">Największe (&gt; 10 mld PLN)</th>
-<td>17</td>
-<td>85.0</td>
+<th data-quarto-table-cell-role="th">PEKAO</th>
+<th data-quarto-table-cell-role="th">Finanse</th>
+<td>64.7384</td>
+<td>22.5574</td>
+<td>23.380</td>
 </tr>
 </tbody>
 </table>
@@ -152,7 +161,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="2ee5148a" class="cell" data-execution_count="7">
+<div id="61d166c8" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -160,7 +169,73 @@
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">Volume_change_group</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">stopa zwrotu 2025</th>
+<th data-quarto-table-cell-role="th">maks obsuniecie</th>
+<th data-quarto-table-cell-role="th">zmiana wolumenu R:R</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">nazwa</th>
+<th data-quarto-table-cell-role="th">sektor</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">CCC</th>
+<th data-quarto-table-cell-role="th">Dobra konsumpcyjne</th>
+<td>-34.9293</td>
+<td>53.0266</td>
+<td>83.601</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">DINOPL</th>
+<th data-quarto-table-cell-role="th">Handel i usługi</th>
+<td>6.0800</td>
+<td>31.4275</td>
+<td>-10.977</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ALLEGRO</th>
+<th data-quarto-table-cell-role="th">Handel i usługi</th>
+<td>14.5495</td>
+<td>20.9221</td>
+<td>32.456</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ZABKA</th>
+<th data-quarto-table-cell-role="th">Handel i usługi</th>
+<td>18.9610</td>
+<td>19.8020</td>
+<td>-43.190</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">KRUK</th>
+<th data-quarto-table-cell-role="th">Finanse</th>
+<td>24.1802</td>
+<td>22.4328</td>
+<td>16.512</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
+<div id="5204eeca" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Zmiana śr. wolumenu R:R (%)</th>
 <th data-quarto-table-cell-role="th">Znaczny spadek (&lt;= -20%)</th>
 <th data-quarto-table-cell-role="th">Umiarkowany spadek (-20% - 0%)</th>
 <th data-quarto-table-cell-role="th">Umiarkowany wzrost (0% - 20%)</th>
@@ -169,7 +244,7 @@
 <th data-quarto-table-cell-role="th">Razem</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">YTD_group</th>
+<th data-quarto-table-cell-role="th">Stopy zwrotu (%)</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -249,16 +324,16 @@
 </div>
 </div>
 </div>
-<div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
-<div id="8d900215" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
+<div id="8eb1688c" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">Drawdown_group</th>
+<th data-quarto-table-cell-role="th">Maksymalne obsunięcie kursu (%)</th>
 <th data-quarto-table-cell-role="th">Niewielkie (&lt;= 20%)</th>
 <th data-quarto-table-cell-role="th">Umiarkowane (20% - 25%)</th>
 <th data-quarto-table-cell-role="th">Duże (25% - 40%)</th>
@@ -266,7 +341,7 @@
 <th data-quarto-table-cell-role="th">Razem</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">YTD_group</th>
+<th data-quarto-table-cell-role="th">Stopy zwrotu (%)</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -338,74 +413,8 @@
 </div>
 </div>
 </div>
-<div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
-<div id="75c6cd86" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">stopa zwrotu 2025</th>
-<th data-quarto-table-cell-role="th">maks obsuniecie</th>
-<th data-quarto-table-cell-role="th">zmiana wolumenu R:R</th>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">nazwa</th>
-<th data-quarto-table-cell-role="th">sektor</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">KGHM</th>
-<th data-quarto-table-cell-role="th">Chemia i surowce</th>
-<td>144.1739</td>
-<td>24.3339</td>
-<td>22.580</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">PKNORLEN</th>
-<th data-quarto-table-cell-role="th">Paliwa i energia</th>
-<td>119.0372</td>
-<td>11.9519</td>
-<td>28.214</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">MBANK</th>
-<th data-quarto-table-cell-role="th">Finanse</th>
-<td>93.9876</td>
-<td>18.8614</td>
-<td>6.282</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">PEPCO</th>
-<th data-quarto-table-cell-role="th">Handel i usługi</th>
-<td>83.3654</td>
-<td>20.3634</td>
-<td>18.861</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">PEKAO</th>
-<th data-quarto-table-cell-role="th">Finanse</th>
-<td>64.7384</td>
-<td>22.5574</td>
-<td>23.380</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div>
 <div id="tabset-1-6" class="tab-pane" aria-labelledby="tabset-1-6-tab">
-<div id="8a246d3e" class="cell" data-execution_count="10">
+<div id="ddf300e4" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -414,53 +423,45 @@
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">nazwa</th>
-<th data-quarto-table-cell-role="th">sektor</th>
-<th data-quarto-table-cell-role="th">stopa zwrotu 2025</th>
-<th data-quarto-table-cell-role="th">maks obsuniecie</th>
-<th data-quarto-table-cell-role="th">zmiana wolumenu R:R</th>
+<th data-quarto-table-cell-role="th">Liczba</th>
+<th data-quarto-table-cell-role="th">Udział w całości (%)</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kapitalizacja na koniec 2025r</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">62</th>
-<td>CCC</td>
-<td>Dobra konsumpcyjne</td>
-<td>-34.9293</td>
-<td>53.0266</td>
-<td>83.601</td>
+<th data-quarto-table-cell-role="th">Bardzo małe (&lt;= 30 mln PLN)</th>
+<td>0</td>
+<td>0.0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">93</th>
-<td>DINOPL</td>
-<td>Handel i usługi</td>
-<td>6.0800</td>
-<td>31.4275</td>
-<td>-10.977</td>
+<th data-quarto-table-cell-role="th">Małe (30-70 mln PLN)</th>
+<td>0</td>
+<td>0.0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">11</th>
-<td>ALLEGRO</td>
-<td>Handel i usługi</td>
-<td>14.5495</td>
-<td>20.9221</td>
-<td>32.456</td>
+<th data-quarto-table-cell-role="th">Średnie (70-300 mln PLN)</th>
+<td>0</td>
+<td>0.0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">316</th>
-<td>ZABKA</td>
-<td>Handel i usługi</td>
-<td>18.9610</td>
-<td>19.8020</td>
-<td>-43.190</td>
+<th data-quarto-table-cell-role="th">Duże (300 mln - 1.5 mld PLN)</th>
+<td>0</td>
+<td>0.0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">157</th>
-<td>KRUK</td>
-<td>Finanse</td>
-<td>24.1802</td>
-<td>22.4328</td>
-<td>16.512</td>
+<th data-quarto-table-cell-role="th">Bardzo duże (1.5 - 10 mld PLN)</th>
+<td>3</td>
+<td>15.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Największe (&gt; 10 mld PLN)</th>
+<td>17</td>
+<td>85.0</td>
 </tr>
 </tbody>
 </table>
