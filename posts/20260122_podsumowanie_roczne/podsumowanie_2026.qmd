@@ -317,7 +317,7 @@ Spoglądajac na rozkład stóp zwrotu względem indeksu widać, że mediana stó
 ``` {python}
 g = df.loc[df['in_WIG20']].groupby('YTD_group')['ticker']
 
-summary = g.count().to_frame('count')
+summary = g.count().to_frame('Liczba')
 summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
 
 summary.index.name = 'Stopy zwrotu (%)'
@@ -331,9 +331,9 @@ summary
 ```{python}
 top = df.loc[df['in_WIG20']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= False).head(5)
 
-top.columns = ['nazwa', 'sektor', 'stopa zwrotu 2025', 'maks obsuniecie', 'zmiana wolumenu R:R']
+top.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
 
-top.set_index(['nazwa','sektor'], inplace= True)
+top.set_index(['Nazwa','Sektor'], inplace= True)
 
 top
 ```
@@ -342,9 +342,9 @@ top
 ```{python}
 flop = df.loc[df['in_WIG20']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= True).head(5)
 
-flop.columns = ['nazwa', 'sektor', 'stopa zwrotu 2025', 'maks obsuniecie', 'zmiana wolumenu R:R']
+flop.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
 
-flop.set_index(['nazwa','sektor'], inplace= True)
+flop.set_index(['Nazwa','Sektor'], inplace= True)
 
 flop
 ```
@@ -388,9 +388,239 @@ summary
 :::
 
 # mWIG40
+::: {.panel-tabset}
+
+## Stopy zwrotu
+
+``` {python}
+g = df.loc[df['in_mWIG40']].groupby('YTD_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Stopy zwrotu (%)'
+
+summary
+```
+
+
+## Top 5
+
+```{python}
+top = df.loc[df['in_mWIG40']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= False).head(5)
+
+top.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+top.set_index(['Nazwa','Sektor'], inplace= True)
+
+top
+```
+## Flop 5
+
+```{python}
+flop = df.loc[df['in_mWIG40']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= True).head(5)
+
+flop.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+flop.set_index(['Nazwa','Sektor'], inplace= True)
+
+flop
+```
+
+## Wolumeny
+
+``` {python}
+volumes = df.loc[df['in_mWIG40']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+volumes.index.name = 'Stopy zwrotu (%)'
+volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
+
+volumes
+```
+
+## Maks Obsunięcie
+
+```{python}
+ytd_groups = df.loc[df['in_mWIG40']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+ytd_groups.index.name = 'Stopy zwrotu (%)'
+ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
+
+ytd_groups
+```
+
+## Kapitalizacje
+
+``` {python}
+g = df.loc[df['in_mWIG40']].groupby('Market_cap_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Kapitalizacja na koniec 2025r'
+
+summary
+```
+:::
+
 
 # sWIG80
+::: {.panel-tabset}
+
+## Stopy zwrotu
+
+``` {python}
+g = df.loc[df['in_sWIG80']].groupby('YTD_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Stopy zwrotu (%)'
+
+summary
+```
+
+
+## Top 5
+
+```{python}
+top = df.loc[df['in_sWIG80']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= False).head(5)
+
+top.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+top.set_index(['Nazwa','Sektor'], inplace= True)
+
+top
+```
+## Flop 5
+
+```{python}
+flop = df.loc[df['in_sWIG80']][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= True).head(5)
+
+flop.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+flop.set_index(['Nazwa','Sektor'], inplace= True)
+
+flop
+```
+
+## Wolumeny
+
+``` {python}
+volumes = df.loc[df['in_sWIG80']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+volumes.index.name = 'Stopy zwrotu (%)'
+volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
+
+volumes
+```
+
+## Maks Obsunięcie
+
+```{python}
+ytd_groups = df.loc[df['in_sWIG80']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+ytd_groups.index.name = 'Stopy zwrotu (%)'
+ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
+
+ytd_groups
+```
+
+## Kapitalizacje
+
+``` {python}
+g = df.loc[df['in_sWIG80']].groupby('Market_cap_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Kapitalizacja na koniec 2025r'
+
+summary
+```
+:::
+
 
 # WIG rest
 
-Rozdział dotyczy spółek zaliczanych do WIG,z wyłączeniem WIG140.
+::: {.panel-tabset}
+
+## Stopy zwrotu
+
+``` {python}
+g = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby('YTD_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Stopy zwrotu (%)'
+
+summary
+```
+
+
+## Top 5
+
+```{python}
+top = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= False).head(5)
+
+top.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+top.set_index(['Nazwa','Sektor'], inplace= True)
+
+top
+```
+## Flop 5
+
+```{python}
+flop = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)][['name', 'L1_nazwa', 'YTD_pct', 'max_drawdown', 'volume_yoy_pct_change']].sort_values(by = 'YTD_pct', ascending= True).head(5)
+
+flop.columns = ['Nazwa', 'Sektor', 'Stopa zwrotu 2025', 'Maks obsuniecie', 'Zmiana wolumenu R:R']
+
+flop.set_index(['Nazwa','Sektor'], inplace= True)
+
+flop
+```
+
+## Wolumeny
+
+``` {python}
+volumes = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+volumes.index.name = 'Stopy zwrotu (%)'
+volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
+
+volumes
+```
+
+## Maks Obsunięcie
+
+```{python}
+ytd_groups = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
+                                                                                         margins = True, margins_name = 'Razem')
+
+ytd_groups.index.name = 'Stopy zwrotu (%)'
+ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
+
+ytd_groups
+```
+
+## Kapitalizacje
+
+``` {python}
+g = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby('Market_cap_group')['ticker']
+
+summary = g.count().to_frame('Liczba')
+summary['Udział w całości (%)'] = round(g.count() / g.count().sum() * 100,2)
+
+summary.index.name = 'Kapitalizacja na koniec 2025r'
+
+summary
+```
+:::
+
