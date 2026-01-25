@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+execute:
+  python: /Users/tomasz/Desktop/quarto2/.venv/bin/python
+  
 website:
   description: "O giełdzie i danych w przystępny sposób"
   site-url: https://tszczerbicki.github.io/quarto-site/

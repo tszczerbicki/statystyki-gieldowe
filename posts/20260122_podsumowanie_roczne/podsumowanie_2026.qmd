@@ -385,6 +385,14 @@ summary
 ```
 :::
 
+Jeżeli mowa o indeksie WIG20, w minionym roku trzeba było mieć spore szczęście aby źle trafić. Z 20 spółek tylko **CCC** zakończyło rok pod kreską i to dość poważnie, bo na poziomie -35%, choć to i tak nie jest najmniejszy wymiar kary, bo w najgorszym wypadku obsunęło się aż o 53%. Pozostałe cztery spółki w zakładce "Flop 5" wygenerowały już dodatnią stopę zwrotu, a za dobrą kondycję indeksu niech świadczy fakt, że piąta najsłabsza spółka urosła o prawie 25%. W tym miejscu warto także zwrócić uwagę na **Zabka**. Choć stopa wzrostu zadowalająca, bo niemal 19%, to w oczy rzuca się niższy o 42% średni dzienny wolumen, co stanowi schłodzenie po debiutanckim roku 2024.
+
+Aż szesnaście spółek wygenerowało wzrost powyżej 20%, a królowały przede wszystkim dwa państwowe giganty: **KGHM** i **PKN Orlen** ze wzrostami kolejno 144 i 119%. W przypadku potentata z branży paliwowej trend wzrostowy można uznac za wzorowy, ponieważ w trakcie roku kurs najmnocniej obsunął się o niespełna 12%.
+
+Wyższym stopom zwrotu w minionym roku towarzyszył zwiększony wolumen w przypadku 13 spółek indeksu WIG20, jednakże tylko w przypadku dwóch ten wzrost przekroczył 75%. W kontekście zarządzania ryzykiem wyzwania były zdecydowanie ograniczone - tylko jedna spółka zaliczyła obsunięcie kursu o 40% lub więcej. Najczęściej mieliśmy do czynienia z niewielkim, maksymalnie 20% (9 przypadków) lub umiarkownaym, mieszczącym sie w granicach 25% (8 przypadków).
+
+W kwestii struktury wielkościowej spółek indeksu WIG20, rok 2025 kończymy w składzie 3 spółek o kapitalizacji pomiedzy 1.5 a 10 miliarda złotych oraz 17 spółek wycenianych przez rynek na ponad 10 miliardów złotych.
+
 # mWIG40
 
 ::: panel-tabset
@@ -462,6 +470,12 @@ summary.index.name = 'Kapitalizacja na koniec 2025r'
 summary
 ```
 :::
+
+Zerkając na notowania tzw. mid-capów zauważamy więcej czerwieni, niż miało to miejsce przy WIG20. Spadek kursu odnotowało 11 z 40 spółek. Najsłabiej z indeksu poradził sobie Text (spadek o 34%). Istotnie (o 20-28%) przecenione zostały także spółki takie jak Amrest, Polenergia i Wirtualna Polska. Co natomiast różni te podmioty od TEXT-u, to zdecydowany, 130-150 procentowy wzrost średniego dziennego wolumenu na każdym z tych walorów.  
+
+W kategorii wzrostów, o ponad 100% wzrosły trzy podmioty: Assecopol, Tauron i NEWAG. W top5 znalazły się także Millenium (kolejny z banków, po Mbank i Pekao z WIG20) oraz Lubawa. Tutaj wzrosty to kolejno 83 i 87%. 
+
+
 
 *\*w analizie spółek indeksu mWIG40 została pominięta spółka Arlen, która zaczęła być notowana na giełdzie w czerwcu 2025 roku.*
 
@@ -626,6 +640,10 @@ summary
 # Na zakończenie
 
 ```{python}
+#| fig-height: 19
+
+plt.figure(figsize=(10, 8)) 
+
 cnt = (
     df.loc[df['in_WIG']]
       .groupby(['YTD_group', 'L1_nazwa'], as_index=False)['ticker']
@@ -642,10 +660,11 @@ cnt.L1_nazwa.replace('Produkcja przemysłowa i budowlano-montażowa', 'Prod. prz
 
 ax = sns.heatmap(cnt[['YTD_group', 'L1_nazwa', 'pct_in_L1']].pivot(index = 'L1_nazwa',  columns = 'YTD_group', values = 'pct_in_L1'), fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
 
-plt.title('Rozkład stóp w obrębie sektorów*', loc = 'center')
+plt.title('Rozkład stóp zwrotu spółek WIG w obrębie sektorów*', loc = 'center')
 plt.xlabel('Stopa zwrotu w 2025 roku (%)')
 plt.ylabel(None)
 plt.text(x = 4, y = 9, s = "*wartości jako % spółek w danym sektorze")
 ax.xaxis.tick_top()
-ax.set_xticklabels(labels = ['<= -30%', '-30% - -15%', '-15% - 0', '0% - 20%', '20% - 60%', '>60%'], rotation=90, ha='right')
+ax.set_xticklabels(labels = ['<= -30%', '-30% - -15%', '-15% - 0', '0% - 20%', '20% - 60%', '>60%'], rotation=90, ha='right');
 ```
+
