@@ -350,8 +350,7 @@ flop
 ## Wolumeny
 
 ```{python}
-volumes = df.loc[df['in_WIG20']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+volumes = df.loc[df['in_WIG20']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum", fill_value = 0, margins = True, margins_name = 'Razem')
 
 volumes.index.name = 'Stopy zwrotu (%)'
 volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
@@ -362,8 +361,7 @@ volumes
 ## Maks Obsunięcie
 
 ```{python}
-ytd_groups = df.loc[df['in_WIG20']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+ytd_groups = df.loc[df['in_WIG20']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",fill_value = 0, margins = True, margins_name = 'Razem')
 
 ytd_groups.index.name = 'Stopy zwrotu (%)'
 ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
@@ -436,8 +434,7 @@ flop
 ## Wolumeny
 
 ```{python}
-volumes = df.loc[df['in_mWIG40']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+volumes = df.loc[df['in_mWIG40']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",fill_value = 0,margins = True, margins_name = 'Razem')
 
 volumes.index.name = 'Stopy zwrotu (%)'
 volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
@@ -448,8 +445,7 @@ volumes
 ## Maks Obsunięcie
 
 ```{python}
-ytd_groups = df.loc[df['in_mWIG40']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+ytd_groups = df.loc[df['in_mWIG40']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",fill_value = 0,margins = True, margins_name = 'Razem')
 
 ytd_groups.index.name = 'Stopy zwrotu (%)'
 ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
@@ -473,8 +469,13 @@ summary
 
 Zerkając na notowania tzw. mid-capów zauważamy więcej czerwieni, niż miało to miejsce przy WIG20. Spadek kursu odnotowało 11 z 40 spółek. Najsłabiej z indeksu poradził sobie Text (spadek o 34%). Istotnie (o 20-28%) przecenione zostały także spółki takie jak Amrest, Polenergia i Wirtualna Polska. Co natomiast różni te podmioty od TEXT-u, to zdecydowany, 130-150 procentowy wzrost średniego dziennego wolumenu na każdym z tych walorów.  
 
-W kategorii wzrostów, o ponad 100% wzrosły trzy podmioty: Assecopol, Tauron i NEWAG. W top5 znalazły się także Millenium (kolejny z banków, po Mbank i Pekao z WIG20) oraz Lubawa. Tutaj wzrosty to kolejno 83 i 87%. 
+W kategorii wzrostów, o ponad 100% wzrosły trzy podmioty: Asseco Poland, Tauron i NEWAG. W top5 znalazły się także Millenium (kolejny z banków, po Mbank i Pekao z WIG20) oraz Lubawa. Tutaj wzrosty to kolejno 83 i 87%. Jeżeli jednak mowa o ostatniej z wymienionych spółek, część inwestorów, która dołączyła w trakcie roku z pewnością będzie rozczarowana, bowiem maksymalnie obsunięcie kursu wyniosło aż 40%. 
 
+Podobne, lub większe obsunięcie kursu wystąpiło łącznie w przypadku 6 spółek analizowanego indeksu. Najcześciej, bo aż 18 razy odnotowywane były maksymalne przeceny mieszczące się w granicach 20%, więc proporcja spółek w tej grupie została zachowana względem rezultatu WIG20. 
+
+Pomimo tego, że spółki indeksu mWIG40 poradziły sobie gorzej niż spółki WIG20, to w ponad 70% przypadków widoczny jest wzrost średniego dziennego wolumenu (dla porównania WIG20 to 65%). Możliwe zatem, że inwestorzy po zrealizowaniu zadowalających zysków na blue-chipach kolejnych szans zaczęli szukać na walorach mid-cap. 
+
+Jeżeli chodzi o kapitalizacje spółek na koniec 2025 roku, zauważalna jest duży rozstrzał - z jednej strony 8 spółek o kapitalizacji w przedziale 300 mln - 1,5 mld zł, z drugiej zaś 8 spółek o kapitalizacji przekraczającej 10 mld zł. Najczęściej jednak w przypadku tego indeksu mamy do czynienia ze spółkami bardzo dużymi, o kapitalizacji w granicach 1,5 - 10 mld złotych. 
 
 
 *\*w analizie spółek indeksu mWIG40 została pominięta spółka Arlen, która zaczęła być notowana na giełdzie w czerwcu 2025 roku.*
@@ -522,8 +523,7 @@ flop
 ## Wolumeny
 
 ```{python}
-volumes = df.loc[df['in_sWIG80']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+volumes = df.loc[df['in_sWIG80']].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",fill_value = 0, margins = True, margins_name = 'Razem')
 
 volumes.index.name = 'Stopy zwrotu (%)'
 volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
@@ -534,8 +534,7 @@ volumes
 ## Maks Obsunięcie
 
 ```{python}
-ytd_groups = df.loc[df['in_sWIG80']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+ytd_groups = df.loc[df['in_sWIG80']].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",fill_value = 0,margins = True, margins_name = 'Razem')
 
 ytd_groups.index.name = 'Stopy zwrotu (%)'
 ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
@@ -556,6 +555,14 @@ summary.index.name = 'Kapitalizacja na koniec 2025r'
 summary
 ```
 :::
+
+Przechodząc do indeksu sWIG80 widoczny jest ponowny spadek przeciętnych wyników względem WIG20 i mWIG40. Zwiększa się natomiast rozstrzał osiągniętych rezultatów - przy odpowiedniej selekcji możliwe było osiągnięcie nieporównywalnie lepszych wyników. Choć ekstremalny wzrost powyżej 60% zaliczyło już "tylko" 20% spółek, to wciąż aż 60% kończyło rok nad kreską. Najbardziej imponujące wzrosty odnotował Polimex (292%), a w dalszej kolejności Dadelo (177%) i Bumech (171%). Po drugiej stronie, wśród największy outsiderów znajdują się Arctic (-48%), Pekabex (-35%) i Ryvu (-30%). 
+
+W przypadku Ryvu w oczy bardzo mocno rzuca się 750-procentowy wzrost średniego dziennego wolumenu w porównaniu do roku 2024. W zasadzie przez cały rok zauważalna była zwiększona aktywność inwestorów, zaś apogeum przypada na końcówke lutego i negatywne informacje związane z restrukturyzacją przedsiębiorstwa. 
+
+Analizując średnie dzienne wolumeny widocznym jest, że dynamika zmian nie jest na poziomie WIG20 czy mWIG40. Jakikolwiek wzrost w tej kategorii zanotowało 48% spółek, choć co istotne aż 19 dotyczy ekstremalny wzrost wolumenu. Co do zasady, im większa stopa zwrotu z danego waloru, tym większy wzrost wolumenu. Interesująco wygląda sytuacja po drugiej stronie, ponieważ na 19 spółek, których kurs osłabił się o 15-30 procent, w aż 6 średni wolumen dzienny spadł o ponad 20%. Możemy zatem przypuszczać, że brak dodatkowej podaży przy istotnych osunięciach kursu jest potwierdzeniem wiary w te walory w długim terminie. 
+
+Jeśli natomiast mowa o kapitalizacjach, sWIG80 zakończył rok posiadając w swoim portfelu przede wszystkim spółki wyceniane na 300 mln - 1.5 mld złotych (71.25% całego indeksu). Drugą w kolejności grupą są spółki bardzo duże o kapitalizacji od 1.5 do 10 mld, a najmniejsza grupę stanowią spółki z drugiej strony rozkładu - te o kapitalizacji 70-300 mln złotych. 
 
 *\*w analizie spółek indeksu sWIG80 została pominięta spółka Diagnostyka, która zaczęła być notowana na giełdzie w lutym 2025 roku.*
 
@@ -602,8 +609,7 @@ flop
 ## Wolumeny
 
 ```{python}
-volumes = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+volumes = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Volume_change_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Volume_change_group', values = 'ticker', aggfunc="sum",fill_value = 0,margins = True, margins_name = 'Razem')
 
 volumes.index.name = 'Stopy zwrotu (%)'
 volumes.columns.name = 'Zmiana śr. wolumenu R:R (%)'
@@ -614,8 +620,7 @@ volumes
 ## Maks Obsunięcie
 
 ```{python}
-ytd_groups = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",
-                                                                                         margins = True, margins_name = 'Razem')
+ytd_groups = df.loc[(df['in_WIG'] == True) & (df['in_WIG140'] == False)].groupby(['YTD_group','Drawdown_group'], as_index= False)['ticker'].count().pivot_table(index = 'YTD_group', columns = 'Drawdown_group', values = 'ticker', aggfunc="sum",fill_value = 0,margins = True, margins_name = 'Razem')
 
 ytd_groups.index.name = 'Stopy zwrotu (%)'
 ytd_groups.columns.name = 'Maksymalne obsunięcie kursu (%)'
@@ -637,7 +642,19 @@ summary
 ```
 :::
 
+Finalnie grupa spółek należących do indeksu WIG, z pominięciem walorów z WIG140 (a więc połączenia WIG20, mWIG40 i sWIG80). Tutaj wyznaczone przeze mnie przedziały stóp zwrotu reprezentowane są w sposób najbardziej równomierny - pośród 184 spółek znajdziemy zarówno te z zaliczonym spadkiem o ponad 30% (21 spółek), jak i te rosnące o ponad 60% (26 spółek). Spośród analizowanych w tej części spółek, wszystkie z TOP5 urosły w 2025 roku o ponad 200%. Liderem wzrostów został PASSUS (+257%). Warto tutaj także zwrócić uwagę jak różne drogi prowadziły do tych rezultatów. Z jednej strony spółki Passus i Atrem przez cały rok obsunęły się maksymalnie o 20 i 17%. Wolumen w przypadku pierwszego podmiotu uległ zwiększeniu o 361%, a drugiegoo 16%. Nieco mniejszą stopą zwrotu może pochwalić się Coalenergy (+241%), wynik ten osiągnięty stosunkowo dużym kosztem. O finalnym wyniku zdecydował mocny ruch w lutym, a w kolejnych okresach inwestorzy musieli liczyć się z istotnymi wahaniami kursu (obsunięcie maksymalne rzędu 67%), a to wszystko zostało potwierdzone wolumenem rosnącym o niemal 950% w stosunku do rezultatu z roku 2024.
+
+Jeśli chodzi o największe spadki, aż 3 z 5 wykazanych miejsc należą do spółek z sektora ochrony zdrowia. Niemal 80% spadek zanotowało Pure Biologics. Należy tu jednak zaznaczyć, że pojawia się pewna rozbieżność w danych, w zależności od źródła. Zgodnie z wartościami podawanymi m.in. przez stooq, ta zmiana procentowa to 52%, zaś dane yahoo finance na którym bazuje niniejszy wpis są spójne z wartościami dostępnymi na stronie GPW i jasno wskazują na przecenę o 80%. 
+
+Analizując średnie dzienne wolumeny i ich porównanie do poprzedniego roku, proporcje spółek z rosnącym i malejącym wyglądają podobnie jak w przypadku sWIG80. Jeśli jednak skupimy uwagę tylko na znacznych spadkach, o minimum 20%, wówczas WIG rest wypada gorzej - 28% analizowanych spółek versus 20% w sWIG80. Tendencja wygląda analogicznie w przypadku obsunięć kursów w trakcie roku. W przypadku aż 58% walorów inwestorzy musieli liczyć się nawet z 25-procentową lub większą przeceną. 
+
+Oczywiście omawiany fragment indeksu to zestaw najmniejszych spółek na GPW. Niemal 84% notowanych podmiotów zakończyło rok 2025 z kapitalizacją poniżej 300 mln złotych. 
+
 # Na zakończenie
+
+Imponujące wzrosty w 2025, jakimi indeksy WIG20 (+45%), mWIG40 (+33%) i sWIG80 (+25%) prowadzą z łatwością do wizji gigantycznych wzrostów dostępnych na wyciągnięcie ręki, choć finalnie okazuje się, że chociażby w przypadku spółek sWIG80 czy WIG rest aż 40% podmiotów zakończyła rok ze spadkiem kursu. W przypadku indeksów GPW za tę magię odpowiadają wagi poszczególnych spółek. Przykładowo w WIG20 drugą i trzecią spółką względem wagi są PKN Orlen (13,131 udziału w portfelu) i KGHM (10,665), a więc walory które w całym WIG20 rosły w ubiegłym roku najmocniej. Z drugiej strony, jedyny outsider - CCC, którego kurs stracił 35%, ma w tym portfelu wagę 1,445%. 
+
+Przyjmując zatem strategię selektywnego doboru spółek kosztem inwestycji w cały indeks, kluczem do osiągnięcia sukcesu było przede wszystkim zaangażowanie w spółki o jak największej skali działalności. Wydawać by się zatem mogło, że kwestia doboru branży w przypadku GPW zeszła nieco na drugi plan, jednak jest to błędne założenie, co wyjaśnia poniższy wykres:
 
 ```{python}
 #| fig-height: 19
@@ -668,3 +685,8 @@ ax.xaxis.tick_top()
 ax.set_xticklabels(labels = ['<= -30%', '-30% - -15%', '-15% - 0', '0% - 20%', '20% - 60%', '>60%'], rotation=90, ha='right');
 ```
 
+Stosując klasyfikację sektorową przyjętą przez GPW Benchmark i nakładając ją stopy zwrotu spółek z całego indeksu WIG, pogrupowane względem wielkości, doskonale widać, że istnieje spora grupa sektorów, których co najmniej 30% spółek wygenerowało wzrost 20-60% w ubiegłym roku. Są to: dobra konsumpcyjne, finanse, paliwa i energia, produkcja przemysłowa i budowlano montażowa oraz technologie. 
+
+W przypadku czterech pozostałych sektorów, sytuacja ma się nieco inaczej. Spółki chemiczne i surowcowe skoncentrowały się w okół stóp zwrotu na poziomie 0-20% -> 42% całego sektora, co wciąż negatywnym zjawiskiem nie jest. Połowiczny sukces osiągnęły także spółki z sektora Paliwa i energia (po 25% spółek rosnących 20-60% i spadających -30 - -15%), natomiast dystrybucję spółek handlowych i usługowych można uznać za względnie równomiernie rozłożoną pomiędzy grupy stóp zwrotu. Największym przegranym 2025 roku jest natomiast sektor ochrony zdrowia obejmujący m.in. spółki biotechnologiczne i med-tech. W tym przypadku aż 71% walorów tego sektora straciła w trakcie ubiegłego roku. 
+
+Pierwsze sesje 2026 roku napawają optymizmem dla całej GPW, niezależnie od wielkości spółek czy sektora. Predykcje co do bieżącego roku są przeważnie jednoznaczne i podkreśla się w nich większy potencjał u spółek małych oraz średnich. 

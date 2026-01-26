@@ -22,7 +22,7 @@
 
 
 <p>Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe.</p>
-<div id="c1f9dc75" class="cell" data-execution_count="4">
+<div id="ef864bea" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -38,7 +38,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="5a5953e7" class="cell" data-execution_count="5">
+<div id="13dd2482" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -85,7 +85,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="d88488a1" class="cell" data-execution_count="6">
+<div id="76f4b62d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -151,7 +151,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="6fa72a15" class="cell" data-execution_count="7">
+<div id="d33900dc" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -217,7 +217,7 @@
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
-<div id="f38bdda7" class="cell" data-execution_count="8">
+<div id="e9f0c5f1" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -246,47 +246,47 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>1.0</td>
-<td>1.0</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
 <td>3</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>2.0</td>
-<td>3.0</td>
-<td>4.0</td>
-<td>1.0</td>
-<td>1.0</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
 <td>11</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>2.0</td>
-<td>3.0</td>
-<td>NaN</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
 <td>5</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>3.0</td>
-<td>4.0</td>
-<td>6.0</td>
-<td>5.0</td>
-<td>2.0</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
 <td>20</td>
 </tr>
 </tbody>
@@ -297,7 +297,7 @@
 </div>
 </div>
 <div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
-<div id="bfaed67a" class="cell" data-execution_count="9">
+<div id="f9f51b64" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -324,42 +324,42 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>NaN</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
 <td>3</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>6.0</td>
-<td>4.0</td>
-<td>1.0</td>
-<td>NaN</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
 <td>11</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>2.0</td>
-<td>3.0</td>
-<td>NaN</td>
-<td>NaN</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
 <td>5</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>9.0</td>
-<td>8.0</td>
-<td>2.0</td>
-<td>1.0</td>
+<td>9</td>
+<td>8</td>
+<td>2</td>
+<td>1</td>
 <td>20</td>
 </tr>
 </tbody>
@@ -370,7 +370,7 @@
 </div>
 </div>
 <div id="tabset-1-6" class="tab-pane" aria-labelledby="tabset-1-6-tab">
-<div id="f231a413" class="cell" data-execution_count="10">
+<div id="cb8c9654" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -419,7 +419,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" aria-controls="tabset-2-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" aria-controls="tabset-2-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="6c69cf5d" class="cell" data-execution_count="11">
+<div id="1607eb45" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -476,7 +476,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="7ebb027c" class="cell" data-execution_count="12">
+<div id="270fa0d0" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -542,7 +542,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="ab1fab5f" class="cell" data-execution_count="13">
+<div id="7112d334" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -608,7 +608,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="3b0d393a" class="cell" data-execution_count="14">
+<div id="db11baa4" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -637,65 +637,65 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
-<td>NaN</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
-<td>2.0</td>
-<td>3.0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
 <td>6</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>2.0</td>
-<td>1.0</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
 <td>4</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>2.0</td>
-<td>3.0</td>
-<td>2.0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
 <td>7</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>1.0</td>
-<td>4.0</td>
-<td>3.0</td>
-<td>3.0</td>
-<td>1.0</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
 <td>12</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>5.0</td>
-<td>1.0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
 <td>9</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>4.0</td>
-<td>7.0</td>
-<td>7.0</td>
-<td>14.0</td>
-<td>7.0</td>
+<td>4</td>
+<td>7</td>
+<td>7</td>
+<td>14</td>
+<td>7</td>
 <td>39</td>
 </tr>
 </tbody>
@@ -706,7 +706,7 @@
 </div>
 </div>
 <div id="tabset-2-5" class="tab-pane" aria-labelledby="tabset-2-5-tab">
-<div id="42968777" class="cell" data-execution_count="15">
+<div id="dadff11c" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
@@ -733,58 +733,58 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>4.0</td>
-<td>2.0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
 <td>6</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>NaN</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>2.0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
 <td>4</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>3.0</td>
-<td>1.0</td>
-<td>3.0</td>
-<td>NaN</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
 <td>7</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>10.0</td>
-<td>NaN</td>
-<td>2.0</td>
-<td>NaN</td>
+<td>10</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
 <td>12</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>5.0</td>
-<td>3.0</td>
-<td>NaN</td>
-<td>1.0</td>
+<td>5</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
 <td>9</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>18.0</td>
-<td>5.0</td>
-<td>10.0</td>
-<td>6.0</td>
+<td>18</td>
+<td>5</td>
+<td>10</td>
+<td>6</td>
 <td>39</td>
 </tr>
 </tbody>
@@ -795,7 +795,7 @@
 </div>
 </div>
 <div id="tabset-2-6" class="tab-pane" aria-labelledby="tabset-2-6-tab">
-<div id="9d85c355" class="cell" data-execution_count="16">
+<div id="39a1f23e" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -839,7 +839,10 @@
 </div>
 </div>
 <p>Zerkając na notowania tzw. mid-capów zauważamy więcej czerwieni, niż miało to miejsce przy WIG20. Spadek kursu odnotowało 11 z 40 spółek. Najsłabiej z indeksu poradził sobie Text (spadek o 34%). Istotnie (o 20-28%) przecenione zostały także spółki takie jak Amrest, Polenergia i Wirtualna Polska. Co natomiast różni te podmioty od TEXT-u, to zdecydowany, 130-150 procentowy wzrost średniego dziennego wolumenu na każdym z tych walorów.</p>
-<p>W kategorii wzrostów, o ponad 100% wzrosły trzy podmioty: Assecopol, Tauron i NEWAG. W top5 znalazły się także Millenium (kolejny z banków, po Mbank i Pekao z WIG20) oraz Lubawa. Tutaj wzrosty to kolejno 83 i 87%.</p>
+<p>W kategorii wzrostów, o ponad 100% wzrosły trzy podmioty: Asseco Poland, Tauron i NEWAG. W top5 znalazły się także Millenium (kolejny z banków, po Mbank i Pekao z WIG20) oraz Lubawa. Tutaj wzrosty to kolejno 83 i 87%. Jeżeli jednak mowa o ostatniej z wymienionych spółek, część inwestorów, która dołączyła w trakcie roku z pewnością będzie rozczarowana, bowiem maksymalnie obsunięcie kursu wyniosło aż 40%.</p>
+<p>Podobne, lub większe obsunięcie kursu wystąpiło łącznie w przypadku 6 spółek analizowanego indeksu. Najcześciej, bo aż 18 razy odnotowywane były maksymalne przeceny mieszczące się w granicach 20%, więc proporcja spółek w tej grupie została zachowana względem rezultatu WIG20.</p>
+<p>Pomimo tego, że spółki indeksu mWIG40 poradziły sobie gorzej niż spółki WIG20, to w ponad 70% przypadków widoczny jest wzrost średniego dziennego wolumenu (dla porównania WIG20 to 65%). Możliwe zatem, że inwestorzy po zrealizowaniu zadowalających zysków na blue-chipach kolejnych szans zaczęli szukać na walorach mid-cap.</p>
+<p>Jeżeli chodzi o kapitalizacje spółek na koniec 2025 roku, zauważalna jest duży rozstrzał - z jednej strony 8 spółek o kapitalizacji w przedziale 300 mln - 1,5 mld zł, z drugiej zaś 8 spółek o kapitalizacji przekraczającej 10 mld zł. Najczęściej jednak w przypadku tego indeksu mamy do czynienia ze spółkami bardzo dużymi, o kapitalizacji w granicach 1,5 - 10 mld złotych.</p>
 <p><em>*w analizie spółek indeksu mWIG40 została pominięta spółka Arlen, która zaczęła być notowana na giełdzie w czerwcu 2025 roku.</em></p>
 </section>
 <section id="swig80" class="level1">
@@ -848,7 +851,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" aria-controls="tabset-3-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" aria-controls="tabset-3-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="4c4213bd" class="cell" data-execution_count="17">
+<div id="d5cd22f6" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
@@ -905,7 +908,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="40ecc279" class="cell" data-execution_count="18">
+<div id="fd6f290c" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
@@ -971,7 +974,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="bd186faf" class="cell" data-execution_count="19">
+<div id="212d1791" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
@@ -1037,7 +1040,7 @@
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
-<div id="6c3cb81f" class="cell" data-execution_count="20">
+<div id="3ce0f591" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
@@ -1066,65 +1069,65 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>NaN</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
 <td>2</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>6.0</td>
-<td>3.0</td>
-<td>1.0</td>
-<td>6.0</td>
-<td>3.0</td>
+<td>6</td>
+<td>3</td>
+<td>1</td>
+<td>6</td>
+<td>3</td>
 <td>19</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>NaN</td>
-<td>3.0</td>
-<td>4.0</td>
-<td>2.0</td>
-<td>2.0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
 <td>11</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>4.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>4.0</td>
-<td>1.0</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
 <td>11</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>4.0</td>
-<td>3.0</td>
-<td>5.0</td>
-<td>2.0</td>
-<td>6.0</td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+<td>2</td>
+<td>6</td>
 <td>20</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>2.0</td>
-<td>4.0</td>
-<td>NaN</td>
-<td>3.0</td>
-<td>7.0</td>
+<td>2</td>
+<td>4</td>
+<td>0</td>
+<td>3</td>
+<td>7</td>
 <td>16</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>16.0</td>
-<td>15.0</td>
-<td>11.0</td>
-<td>18.0</td>
-<td>19.0</td>
+<td>16</td>
+<td>15</td>
+<td>11</td>
+<td>18</td>
+<td>19</td>
 <td>79</td>
 </tr>
 </tbody>
@@ -1135,7 +1138,7 @@
 </div>
 </div>
 <div id="tabset-3-5" class="tab-pane" aria-labelledby="tabset-3-5-tab">
-<div id="416ca911" class="cell" data-execution_count="21">
+<div id="908b0d79" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
@@ -1162,58 +1165,58 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>2.0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
 <td>2</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>NaN</td>
-<td>1.0</td>
-<td>11.0</td>
-<td>7.0</td>
+<td>0</td>
+<td>1</td>
+<td>11</td>
+<td>7</td>
 <td>19</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>2.0</td>
-<td>4.0</td>
-<td>3.0</td>
-<td>2.0</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
 <td>11</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>7.0</td>
-<td>1.0</td>
-<td>3.0</td>
-<td>NaN</td>
+<td>7</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
 <td>11</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>11.0</td>
-<td>5.0</td>
-<td>3.0</td>
-<td>1.0</td>
+<td>11</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
 <td>20</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>8.0</td>
-<td>2.0</td>
-<td>4.0</td>
-<td>2.0</td>
+<td>8</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
 <td>16</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>28.0</td>
-<td>13.0</td>
-<td>24.0</td>
-<td>14.0</td>
+<td>28</td>
+<td>13</td>
+<td>24</td>
+<td>14</td>
 <td>79</td>
 </tr>
 </tbody>
@@ -1224,7 +1227,7 @@
 </div>
 </div>
 <div id="tabset-3-6" class="tab-pane" aria-labelledby="tabset-3-6-tab">
-<div id="3e5c60e8" class="cell" data-execution_count="22">
+<div id="43d893ba" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
@@ -1267,6 +1270,10 @@
 </div>
 </div>
 </div>
+<p>Przechodząc do indeksu sWIG80 widoczny jest ponowny spadek przeciętnych wyników względem WIG20 i mWIG40. Zwiększa się natomiast rozstrzał osiągniętych rezultatów - przy odpowiedniej selekcji możliwe było osiągnięcie nieporównywalnie lepszych wyników. Choć ekstremalny wzrost powyżej 60% zaliczyło już “tylko” 20% spółek, to wciąż aż 60% kończyło rok nad kreską. Najbardziej imponujące wzrosty odnotował Polimex (292%), a w dalszej kolejności Dadelo (177%) i Bumech (171%). Po drugiej stronie, wśród największy outsiderów znajdują się Arctic (-48%), Pekabex (-35%) i Ryvu (-30%).</p>
+<p>W przypadku Ryvu w oczy bardzo mocno rzuca się 750-procentowy wzrost średniego dziennego wolumenu w porównaniu do roku 2024. W zasadzie przez cały rok zauważalna była zwiększona aktywność inwestorów, zaś apogeum przypada na końcówke lutego i negatywne informacje związane z restrukturyzacją przedsiębiorstwa.</p>
+<p>Analizując średnie dzienne wolumeny widocznym jest, że dynamika zmian nie jest na poziomie WIG20 czy mWIG40. Jakikolwiek wzrost w tej kategorii zanotowało 48% spółek, choć co istotne aż 19 dotyczy ekstremalny wzrost wolumenu. Co do zasady, im większa stopa zwrotu z danego waloru, tym większy wzrost wolumenu. Interesująco wygląda sytuacja po drugiej stronie, ponieważ na 19 spółek, których kurs osłabił się o 15-30 procent, w aż 6 średni wolumen dzienny spadł o ponad 20%. Możemy zatem przypuszczać, że brak dodatkowej podaży przy istotnych osunięciach kursu jest potwierdzeniem wiary w te walory w długim terminie.</p>
+<p>Jeśli natomiast mowa o kapitalizacjach, sWIG80 zakończył rok posiadając w swoim portfelu przede wszystkim spółki wyceniane na 300 mln - 1.5 mld złotych (71.25% całego indeksu). Drugą w kolejności grupą są spółki bardzo duże o kapitalizacji od 1.5 do 10 mld, a najmniejsza grupę stanowią spółki z drugiej strony rozkładu - te o kapitalizacji 70-300 mln złotych.</p>
 <p><em>*w analizie spółek indeksu sWIG80 została pominięta spółka Diagnostyka, która zaczęła być notowana na giełdzie w lutym 2025 roku.</em></p>
 </section>
 <section id="wig-rest" class="level1">
@@ -1275,7 +1282,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" aria-controls="tabset-4-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" aria-controls="tabset-4-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="40fab833" class="cell" data-execution_count="23">
+<div id="787070ba" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
@@ -1332,7 +1339,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="3771ff67" class="cell" data-execution_count="24">
+<div id="c20d81df" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
@@ -1398,7 +1405,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="cd95d561" class="cell" data-execution_count="25">
+<div id="f4712b80" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
@@ -1464,7 +1471,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="a87513e3" class="cell" data-execution_count="26">
+<div id="eaf36729" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
@@ -1493,65 +1500,65 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>9.0</td>
-<td>2.0</td>
-<td>1.0</td>
-<td>2.0</td>
-<td>7.0</td>
+<td>9</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>7</td>
 <td>21</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>11.0</td>
-<td>1.0</td>
-<td>4.0</td>
-<td>1.0</td>
-<td>4.0</td>
+<td>11</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
 <td>21</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>12.0</td>
-<td>3.0</td>
-<td>4.0</td>
-<td>6.0</td>
-<td>8.0</td>
+<td>12</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td>8</td>
 <td>33</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>12.0</td>
-<td>7.0</td>
-<td>8.0</td>
-<td>11.0</td>
-<td>4.0</td>
+<td>12</td>
+<td>7</td>
+<td>8</td>
+<td>11</td>
+<td>4</td>
 <td>42</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>8.0</td>
-<td>4.0</td>
-<td>3.0</td>
-<td>8.0</td>
-<td>18.0</td>
+<td>8</td>
+<td>4</td>
+<td>3</td>
+<td>8</td>
+<td>18</td>
 <td>41</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>NaN</td>
-<td>3.0</td>
-<td>6.0</td>
-<td>3.0</td>
-<td>14.0</td>
+<td>0</td>
+<td>3</td>
+<td>6</td>
+<td>3</td>
+<td>14</td>
 <td>26</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>52.0</td>
-<td>20.0</td>
-<td>26.0</td>
-<td>31.0</td>
-<td>55.0</td>
+<td>52</td>
+<td>20</td>
+<td>26</td>
+<td>31</td>
+<td>55</td>
 <td>184</td>
 </tr>
 </tbody>
@@ -1562,7 +1569,7 @@
 </div>
 </div>
 <div id="tabset-4-5" class="tab-pane" aria-labelledby="tabset-4-5-tab">
-<div id="695cc82f" class="cell" data-execution_count="27">
+<div id="eccbd4b5" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
@@ -1589,58 +1596,58 @@
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Bardzo duży spadek (&lt;= 30%)</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.0</td>
-<td>20.0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>20</td>
 <td>21</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
-<td>NaN</td>
-<td>2.0</td>
-<td>9.0</td>
-<td>10.0</td>
+<td>0</td>
+<td>2</td>
+<td>9</td>
+<td>10</td>
 <td>21</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
-<td>3.0</td>
-<td>8.0</td>
-<td>17.0</td>
-<td>5.0</td>
+<td>3</td>
+<td>8</td>
+<td>17</td>
+<td>5</td>
 <td>33</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
-<td>16.0</td>
-<td>7.0</td>
-<td>15.0</td>
-<td>4.0</td>
+<td>16</td>
+<td>7</td>
+<td>15</td>
+<td>4</td>
 <td>42</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
-<td>18.0</td>
-<td>7.0</td>
-<td>9.0</td>
-<td>7.0</td>
+<td>18</td>
+<td>7</td>
+<td>9</td>
+<td>7</td>
 <td>41</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
-<td>5.0</td>
-<td>11.0</td>
-<td>7.0</td>
-<td>3.0</td>
+<td>5</td>
+<td>11</td>
+<td>7</td>
+<td>3</td>
 <td>26</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Razem</th>
-<td>42.0</td>
-<td>35.0</td>
-<td>58.0</td>
-<td>49.0</td>
+<td>42</td>
+<td>35</td>
+<td>58</td>
+<td>49</td>
 <td>184</td>
 </tr>
 </tbody>
@@ -1651,7 +1658,7 @@
 </div>
 </div>
 <div id="tabset-4-6" class="tab-pane" aria-labelledby="tabset-4-6-tab">
-<div id="90f02923" class="cell" data-execution_count="28">
+<div id="0973f164" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
@@ -1709,10 +1716,16 @@
 </div>
 </div>
 </div>
+<p>Finalnie grupa spółek należących do indeksu WIG, z pominięciem walorów z WIG140 (a więc połączenia WIG20, mWIG40 i sWIG80). Tutaj wyznaczone przeze mnie przedziały stóp zwrotu reprezentowane są w sposób najbardziej równomierny - pośród 184 spółek znajdziemy zarówno te z zaliczonym spadkiem o ponad 30% (21 spółek), jak i te rosnące o ponad 60% (26 spółek). Spośród analizowanych w tej części spółek, wszystkie z TOP5 urosły w 2025 roku o ponad 200%. Liderem wzrostów został PASSUS (+257%). Warto tutaj także zwrócić uwagę jak różne drogi prowadziły do tych rezultatów. Z jednej strony spółki Passus i Atrem przez cały rok obsunęły się maksymalnie o 20 i 17%. Wolumen w przypadku pierwszego podmiotu uległ zwiększeniu o 361%, a drugiegoo 16%. Nieco mniejszą stopą zwrotu może pochwalić się Coalenergy (+241%), wynik ten osiągnięty stosunkowo dużym kosztem. O finalnym wyniku zdecydował mocny ruch w lutym, a w kolejnych okresach inwestorzy musieli liczyć się z istotnymi wahaniami kursu (obsunięcie maksymalne rzędu 67%), a to wszystko zostało potwierdzone wolumenem rosnącym o niemal 950% w stosunku do rezultatu z roku 2024.</p>
+<p>Jeśli chodzi o największe spadki, aż 3 z 5 wykazanych miejsc należą do spółek z sektora ochrony zdrowia. Niemal 80% spadek zanotowało Pure Biologics. Należy tu jednak zaznaczyć, że pojawia się pewna rozbieżność w danych, w zależności od źródła. Zgodnie z wartościami podawanymi m.in. przez stooq, ta zmiana procentowa to 52%, zaś dane yahoo finance na którym bazuje niniejszy wpis są spójne z wartościami dostępnymi na stronie GPW i jasno wskazują na przecenę o 80%.</p>
+<p>Analizując średnie dzienne wolumeny i ich porównanie do poprzedniego roku, proporcje spółek z rosnącym i malejącym wyglądają podobnie jak w przypadku sWIG80. Jeśli jednak skupimy uwagę tylko na znacznych spadkach, o minimum 20%, wówczas WIG rest wypada gorzej - 28% analizowanych spółek versus 20% w sWIG80. Tendencja wygląda analogicznie w przypadku obsunięć kursów w trakcie roku. W przypadku aż 58% walorów inwestorzy musieli liczyć się nawet z 25-procentową lub większą przeceną.</p>
+<p>Oczywiście omawiany fragment indeksu to zestaw najmniejszych spółek na GPW. Niemal 84% notowanych podmiotów zakończyło rok 2025 z kapitalizacją poniżej 300 mln złotych.</p>
 </section>
 <section id="na-zakończenie" class="level1">
 <h1>Na zakończenie</h1>
-<div id="e258762c" class="cell" data-fig-height="19" data-execution_count="29">
+<p>Imponujące wzrosty w 2025, jakimi indeksy WIG20 (+45%), mWIG40 (+33%) i sWIG80 (+25%) prowadzą z łatwością do wizji gigantycznych wzrostów dostępnych na wyciągnięcie ręki, choć finalnie okazuje się, że chociażby w przypadku spółek sWIG80 czy WIG rest aż 40% podmiotów zakończyła rok ze spadkiem kursu. W przypadku indeksów GPW za tę magię odpowiadają wagi poszczególnych spółek. Przykładowo w WIG20 drugą i trzecią spółką względem wagi są PKN Orlen (13,131 udziału w portfelu) i KGHM (10,665), a więc walory które w całym WIG20 rosły w ubiegłym roku najmocniej. Z drugiej strony, jedyny outsider - CCC, którego kurs stracił 35%, ma w tym portfelu wagę 1,445%.</p>
+<p>Przyjmując zatem strategię selektywnego doboru spółek kosztem inwestycji w cały indeks, kluczem do osiągnięcia sukcesu było przede wszystkim zaangażowanie w spółki o jak największej skali działalności. Wydawać by się zatem mogło, że kwestia doboru branży w przypadku GPW zeszła nieco na drugi plan, jednak jest to błędne założenie, co wyjaśnia poniższy wykres:</p>
+<div id="1e177d9e" class="cell" data-fig-height="19" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1721,6 +1734,9 @@
 </div>
 </div>
 </div>
+<p>Stosując klasyfikację sektorową przyjętą przez GPW Benchmark i nakładając ją stopy zwrotu spółek z całego indeksu WIG, pogrupowane względem wielkości, doskonale widać, że istnieje spora grupa sektorów, których co najmniej 30% spółek wygenerowało wzrost 20-60% w ubiegłym roku. Są to: dobra konsumpcyjne, finanse, paliwa i energia, produkcja przemysłowa i budowlano montażowa oraz technologie.</p>
+<p>W przypadku czterech pozostałych sektorów, sytuacja ma się nieco inaczej. Spółki chemiczne i surowcowe skoncentrowały się w okół stóp zwrotu na poziomie 0-20% -&gt; 42% całego sektora, co wciąż negatywnym zjawiskiem nie jest. Połowiczny sukces osiągnęły także spółki z sektora Paliwa i energia (po 25% spółek rosnących 20-60% i spadających -30 - -15%), natomiast dystrybucję spółek handlowych i usługowych można uznać za względnie równomiernie rozłożoną pomiędzy grupy stóp zwrotu. Największym przegranym 2025 roku jest natomiast sektor ochrony zdrowia obejmujący m.in. spółki biotechnologiczne i med-tech. W tym przypadku aż 71% walorów tego sektora straciła w trakcie ubiegłego roku.</p>
+<p>Pierwsze sesje 2026 roku napawają optymizmem dla całej GPW, niezależnie od wielkości spółek czy sektora. Predykcje co do bieżącego roku są przeważnie jednoznaczne i podkreśla się w nich większy potencjał u spółek małych oraz średnich.</p>
 
 
 </section>
