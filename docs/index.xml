@@ -22,7 +22,7 @@
 
 
 <p>Rok 2025 rozbudził apetyty inwestorów na GPW. Za nami pierwszy miesiąc nowego roku, a w nim wciąż spora dynamika niezależnie od segmentu, giełdowi ulubieńcy spoza głównych indeksów, ale jednocześnie osłabione wskaźniki wolumenu i trendu.</p>
-<div id="9984b9af" class="cell" data-execution_count="4">
+<div id="58d781ea" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -37,7 +37,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Wolumeny</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="b2d490bf" class="cell" data-execution_count="5">
+<div id="16b2ee4a" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -170,7 +170,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="2d5dac15" class="cell" data-execution_count="6">
+<div id="cd9ca58a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -291,7 +291,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="3a58748a" class="cell" data-execution_count="7">
+<div id="09e8e64f" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -422,7 +422,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Wzrosty sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Spadki sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Wzrosty miesięczne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Spadki miesięczne</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="29be97d6" class="cell" data-execution_count="8">
+<div id="ed41b685" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -535,7 +535,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="c3648fe9" class="cell" data-execution_count="9">
+<div id="261b1327" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -648,7 +648,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="3811ee5f" class="cell" data-execution_count="10">
+<div id="6c2b1d5f" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -761,7 +761,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="1f2ced27" class="cell" data-execution_count="11">
+<div id="aff9eed1" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -885,7 +885,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Średnie kroczące</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">ATH200 dist.</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Supertrend</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="40321b7d" class="cell" data-execution_count="12">
+<div id="b548f6cf" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -896,7 +896,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="7dee36fa" class="cell" data-execution_count="13">
+<div id="bff7ba69" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -969,7 +969,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="1956ead3" class="cell" data-execution_count="14">
+<div id="23ea4a2b" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -1025,7 +1025,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">SMA</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="9ef838c8" class="cell" data-execution_count="15">
+<div id="9b64669a" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1036,7 +1036,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="e43bf6a2" class="cell" data-execution_count="16">
+<div id="59fa5713" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1047,7 +1047,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="483acd25" class="cell" data-execution_count="17">
+<div id="c3b1a19a" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1058,7 +1058,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="c2bc6ea2" class="cell" data-execution_count="18">
+<div id="375171ad" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1102,7 +1102,7 @@
 
 
 <p>Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe.</p>
-<div id="2032d5b1" class="cell" data-execution_count="4">
+<div id="40a3245c" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1118,7 +1118,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="0c53a660" class="cell" data-execution_count="5">
+<div id="e212941c" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -1165,7 +1165,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="8b257b86" class="cell" data-execution_count="6">
+<div id="392f858a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -1231,7 +1231,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="3f10d7d1" class="cell" data-execution_count="7">
+<div id="2ec64100" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -1297,7 +1297,7 @@
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
-<div id="133d5306" class="cell" data-execution_count="8">
+<div id="f31cda0f" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -1377,7 +1377,7 @@
 </div>
 </div>
 <div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
-<div id="cb880612" class="cell" data-execution_count="9">
+<div id="fa4305a4" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -1450,7 +1450,7 @@
 </div>
 </div>
 <div id="tabset-1-6" class="tab-pane" aria-labelledby="tabset-1-6-tab">
-<div id="fa86744b" class="cell" data-execution_count="10">
+<div id="e07091ea" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1499,7 +1499,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" aria-controls="tabset-2-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" aria-controls="tabset-2-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="91900ff1" class="cell" data-execution_count="11">
+<div id="32de1826" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1556,7 +1556,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="670ff327" class="cell" data-execution_count="12">
+<div id="2c94e56a" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -1622,7 +1622,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="416a7083" class="cell" data-execution_count="13">
+<div id="7d738214" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -1688,7 +1688,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="46ca0fbf" class="cell" data-execution_count="14">
+<div id="9b14a558" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -1786,7 +1786,7 @@
 </div>
 </div>
 <div id="tabset-2-5" class="tab-pane" aria-labelledby="tabset-2-5-tab">
-<div id="8ee729f1" class="cell" data-execution_count="15">
+<div id="deeb3b68" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
@@ -1875,7 +1875,7 @@
 </div>
 </div>
 <div id="tabset-2-6" class="tab-pane" aria-labelledby="tabset-2-6-tab">
-<div id="36fe5df4" class="cell" data-execution_count="16">
+<div id="97f81354" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -1931,7 +1931,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" aria-controls="tabset-3-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" aria-controls="tabset-3-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="45587cf4" class="cell" data-execution_count="17">
+<div id="1052fafb" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
@@ -1988,7 +1988,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="5662bb07" class="cell" data-execution_count="18">
+<div id="73b1c0e8" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
@@ -2054,7 +2054,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="2382c2b0" class="cell" data-execution_count="19">
+<div id="2fb0e4e0" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
@@ -2120,7 +2120,7 @@
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
-<div id="3d2cdffd" class="cell" data-execution_count="20">
+<div id="0dc52a48" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
@@ -2218,7 +2218,7 @@
 </div>
 </div>
 <div id="tabset-3-5" class="tab-pane" aria-labelledby="tabset-3-5-tab">
-<div id="a4222ebc" class="cell" data-execution_count="21">
+<div id="cef4aa93" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
@@ -2307,7 +2307,7 @@
 </div>
 </div>
 <div id="tabset-3-6" class="tab-pane" aria-labelledby="tabset-3-6-tab">
-<div id="e7a08362" class="cell" data-execution_count="22">
+<div id="cd69bef4" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
@@ -2362,7 +2362,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" aria-controls="tabset-4-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" aria-controls="tabset-4-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="da7a763a" class="cell" data-execution_count="23">
+<div id="ef16f570" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
@@ -2419,7 +2419,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="27b85f2d" class="cell" data-execution_count="24">
+<div id="889c5683" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
@@ -2485,7 +2485,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="8db0ec0b" class="cell" data-execution_count="25">
+<div id="aee102b8" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
@@ -2551,7 +2551,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="4f4890af" class="cell" data-execution_count="26">
+<div id="d7a46e76" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
@@ -2649,7 +2649,7 @@
 </div>
 </div>
 <div id="tabset-4-5" class="tab-pane" aria-labelledby="tabset-4-5-tab">
-<div id="5285b841" class="cell" data-execution_count="27">
+<div id="396d7ef9" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
@@ -2738,7 +2738,7 @@
 </div>
 </div>
 <div id="tabset-4-6" class="tab-pane" aria-labelledby="tabset-4-6-tab">
-<div id="8ab430ab" class="cell" data-execution_count="28">
+<div id="5051fa11" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
@@ -2805,7 +2805,7 @@
 <h1>Na zakończenie</h1>
 <p>Imponujące wzrosty w 2025, jakimi indeksy WIG20 (+45%), mWIG40 (+33%) i sWIG80 (+25%) prowadzą z łatwością do wizji gigantycznych wzrostów dostępnych na wyciągnięcie ręki, choć finalnie okazuje się, że chociażby w przypadku spółek sWIG80 czy WIG rest aż 40% podmiotów zakończyła rok ze spadkiem kursu. W przypadku indeksów GPW za tę magię odpowiadają wagi poszczególnych spółek. Przykładowo w WIG20 drugą i trzecią spółką względem wagi są PKN Orlen (13,131 udziału w portfelu) i KGHM (10,665), a więc walory które w całym WIG20 rosły w ubiegłym roku najmocniej. Z drugiej strony, jedyny outsider - CCC, którego kurs stracił 35%, ma w tym portfelu wagę 1,445%.</p>
 <p>Przyjmując zatem strategię selektywnego doboru spółek kosztem inwestycji w cały indeks, kluczem do osiągnięcia sukcesu było przede wszystkim zaangażowanie w spółki o jak największej skali działalności. Wydawać by się zatem mogło, że kwestia doboru branży w przypadku GPW zeszła nieco na drugi plan, jednak jest to błędne założenie, co wyjaśnia poniższy wykres:</p>
-<div id="dd442b24" class="cell" data-fig-height="19" data-execution_count="29">
+<div id="3c17cb95" class="cell" data-fig-height="19" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

@@ -10,6 +10,7 @@ website:
   site-url: https://tszczerbicki.github.io/quarto-site/
   title: "Tomasz Szczerbicki - analizy giełdowe"
   favicon: "favicon_cropped.png"
+  google-analytics: "G-8QZEZDT35R"
   page-footer: "Copyright 2026, Tomasz Szczerbicki"
   navbar:
     right:
