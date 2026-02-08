@@ -10,7 +10,1087 @@
 <atom:link href="https://tszczerbicki.github.io/quarto-site/index.xml" rel="self" type="application/rss+xml"/>
 <description>O giełdzie i danych w przystępny sposób</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Wed, 21 Jan 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 30 Jan 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Techniczne podsumowanie stycznia</title>
+  <dc:creator>Tomasz Szczerbicki</dc:creator>
+  <link>https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Rok 2025 rozbudził apetyty inwestorów na GPW. Za nami pierwszy miesiąc nowego roku, a w nim wciąż spora dynamika niezależnie od segmentu, giełdowi ulubieńcy spoza głównych indeksów, ale jednocześnie osłabione wskaźniki wolumenu i trendu.</p>
+<div id="9984b9af" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-5-output-1.png" width="799" height="477" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="stopy-zwrotu-i-wolumen" class="level1">
+<h1>Stopy zwrotu i wolumen</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Wolumeny</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div id="b2d490bf" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Indeks</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG20</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">mWIG40</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">sWIG80</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG rest</th>
+<th data-quarto-table-cell-role="th">Razem</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Stopa zwrotu</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Duży spadek (&lt;= 10%)</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>2.5</td>
+<td>3.0</td>
+<td>3.75</td>
+<td>3.0</td>
+<td>1.62</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Spadek (-10% - -5%)</th>
+<td>4.0</td>
+<td>20.0</td>
+<td>2.0</td>
+<td>5.0</td>
+<td>2.0</td>
+<td>2.50</td>
+<td>15.0</td>
+<td>8.10</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Lekki spadek (-5% - 0%)</th>
+<td>4.0</td>
+<td>20.0</td>
+<td>2.0</td>
+<td>5.0</td>
+<td>13.0</td>
+<td>16.25</td>
+<td>29.0</td>
+<td>15.66</td>
+<td>48</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Lekki wzrost (0% - 5%)</th>
+<td>1.0</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>20.0</td>
+<td>24.0</td>
+<td>30.00</td>
+<td>46.0</td>
+<td>24.84</td>
+<td>79</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Wzrost (5% - 10%)</th>
+<td>6.0</td>
+<td>30.0</td>
+<td>10.0</td>
+<td>25.0</td>
+<td>18.0</td>
+<td>22.50</td>
+<td>36.0</td>
+<td>19.44</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Duży wzrost (&gt; 10%)</th>
+<td>5.0</td>
+<td>25.0</td>
+<td>17.0</td>
+<td>42.5</td>
+<td>20.0</td>
+<td>25.00</td>
+<td>56.0</td>
+<td>30.24</td>
+<td>98</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Razem</th>
+<td>20.0</td>
+<td>100.0</td>
+<td>40.0</td>
+<td>100.0</td>
+<td>80.0</td>
+<td>100.00</td>
+<td>185.0</td>
+<td>99.90</td>
+<td>325</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div id="2d5dac15" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Indeks</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG20</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">mWIG40</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">sWIG80</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG rest</th>
+<th data-quarto-table-cell-role="th">Razem</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Stopa zwrotu</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Duży spadek (-30% - -15%)</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.54</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Spadek (-15% - 0%)</th>
+<td>8.0</td>
+<td>40.0</td>
+<td>5.0</td>
+<td>12.5</td>
+<td>18.0</td>
+<td>22.5</td>
+<td>46.0</td>
+<td>24.84</td>
+<td>77</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Neutralnie / lekki wzrost (0% - 20%)</th>
+<td>12.0</td>
+<td>60.0</td>
+<td>31.0</td>
+<td>77.5</td>
+<td>54.0</td>
+<td>67.5</td>
+<td>112.0</td>
+<td>60.48</td>
+<td>209</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Duży wzrost (20% - 60%)</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.0</td>
+<td>10.0</td>
+<td>6.0</td>
+<td>7.5</td>
+<td>23.0</td>
+<td>12.42</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 60%)</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>2.5</td>
+<td>3.0</td>
+<td>1.62</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Razem</th>
+<td>20.0</td>
+<td>100.0</td>
+<td>40.0</td>
+<td>100.0</td>
+<td>80.0</td>
+<td>100.0</td>
+<td>185.0</td>
+<td>99.90</td>
+<td>325</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
+<div id="3a58748a" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Indeks</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG20</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">mWIG40</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">sWIG80</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">WIG rest</th>
+<th data-quarto-table-cell-role="th">Razem</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+<th data-quarto-table-cell-role="th">%</th>
+<th data-quarto-table-cell-role="th">liczba</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Zmiana % wolumenu M:M</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Znaczny spadek (&lt;= -20%)</th>
+<td>4.0</td>
+<td>20.0</td>
+<td>12.0</td>
+<td>30.0</td>
+<td>28.0</td>
+<td>35.00</td>
+<td>74.0</td>
+<td>39.96</td>
+<td>118</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Umiarkowany spadek (-20% - 0%)</th>
+<td>6.0</td>
+<td>30.0</td>
+<td>5.0</td>
+<td>12.5</td>
+<td>7.0</td>
+<td>8.75</td>
+<td>20.0</td>
+<td>10.80</td>
+<td>38</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Umiarkowany wzrost (0% - 20%)</th>
+<td>2.0</td>
+<td>10.0</td>
+<td>10.0</td>
+<td>25.0</td>
+<td>16.0</td>
+<td>20.00</td>
+<td>18.0</td>
+<td>9.72</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Znaczny wzrost (20% - 75%)</th>
+<td>7.0</td>
+<td>35.0</td>
+<td>7.0</td>
+<td>17.5</td>
+<td>14.0</td>
+<td>17.50</td>
+<td>32.0</td>
+<td>17.28</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Ekstremalny wzrost (&gt; 75%)</th>
+<td>1.0</td>
+<td>5.0</td>
+<td>6.0</td>
+<td>15.0</td>
+<td>15.0</td>
+<td>18.75</td>
+<td>41.0</td>
+<td>22.14</td>
+<td>63</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Razem</th>
+<td>20.0</td>
+<td>100.0</td>
+<td>40.0</td>
+<td>100.0</td>
+<td>80.0</td>
+<td>100.00</td>
+<td>185.0</td>
+<td>99.90</td>
+<td>325</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Z 325 analizowanych spółek 78 zakończyło styczeń ze spadkiem, z czego tylko 7 z wynikiem niższym niż -10%. Spośród indeksów najlepiej wypadają spółki z mWIG40 - aż 42,5% wzrosło o ponad 10%. Na drugim miejscu w tej materii znajdują się spółki WIG spoza trzech głównych indeksów. Tutaj nieco ponad 30% podmiotów znalazło się w grupie najwiekszych wzrostów.</p>
+<p>Nieco inaczej, niekiedy niejednoznacznie prezentują się rozkłady wolumenów w ujęciu miesiąc do miesiąca. W przypadku WIG20, obroty na połowie spółek rosły, a połowie spadały. Spółki mid-cap to z kolei dużo bardziej przekonujący wynik: aż 87,5% z wyższym średnim dziennym wolumenem (a 42,5% ze wzrostem powyżej 10%). Nieco słabiej miała się sytuacja w sWIG80 i WIG rest, przy czym wciaż wolumen rósł w przypadku ponad 70% spółek.</p>
+</section>
+<section id="najlepsze-i-najgorsze-spółki-i-sesje" class="level1">
+<h1>Najlepsze i najgorsze spółki i sesje</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Wzrosty sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Spadki sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Wzrosty miesięczne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Spadki miesięczne</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div id="29be97d6" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Nazwa</th>
+<th data-quarto-table-cell-role="th">Zmiana %</th>
+<th data-quarto-table-cell-role="th">Wol do Wol SMA10</th>
+<th data-quarto-table-cell-role="th">Sektor</th>
+<th data-quarto-table-cell-role="th">Indeks</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Data</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-15</th>
+<td>WOODPCKR</td>
+<td>37.8571</td>
+<td>410.81</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-07</th>
+<td>CREEPYJAR</td>
+<td>37.7672</td>
+<td>581.09</td>
+<td>Handel i usługi</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-23</th>
+<td>MEDINICE</td>
+<td>32.1429</td>
+<td>115.28</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-21</th>
+<td>PURE</td>
+<td>31.8002</td>
+<td>613.36</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-19</th>
+<td>WASKO</td>
+<td>27.5510</td>
+<td>93.21</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-02</th>
+<td>BUMECH</td>
+<td>26.9663</td>
+<td>262.70</td>
+<td>Prod. przem. i bud-montaż.</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-09</th>
+<td>ASMGROUP</td>
+<td>26.4368</td>
+<td>480.16</td>
+<td>Handel i usługi</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-16</th>
+<td>WOODPCKR</td>
+<td>26.4249</td>
+<td>356.30</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-02</th>
+<td>PASSUS</td>
+<td>25.5319</td>
+<td>399.10</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-20</th>
+<td>MEDINICE</td>
+<td>25.5297</td>
+<td>326.98</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div id="c3648fe9" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Nazwa</th>
+<th data-quarto-table-cell-role="th">Zmiana %</th>
+<th data-quarto-table-cell-role="th">Wol do Wol SMA10</th>
+<th data-quarto-table-cell-role="th">Sektor</th>
+<th data-quarto-table-cell-role="th">Indeks</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Data</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-26</th>
+<td>SILVAIR-REGS</td>
+<td>-21.4286</td>
+<td>820.38</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-26</th>
+<td>PURE</td>
+<td>-20.7048</td>
+<td>415.35</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-20</th>
+<td>WOODPCKR</td>
+<td>-12.2807</td>
+<td>88.74</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-28</th>
+<td>URTESTE</td>
+<td>-11.3960</td>
+<td>102.81</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-08</th>
+<td>ANSWEAR</td>
+<td>-11.0280</td>
+<td>556.64</td>
+<td>Handel i usługi</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-30</th>
+<td>KGHM</td>
+<td>-10.7018</td>
+<td>117.79</td>
+<td>Chemia i surowce</td>
+<td>WIG20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-22</th>
+<td>MOJ</td>
+<td>-10.5263</td>
+<td>461.92</td>
+<td>Prod. przem. i bud-montaż.</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-23</th>
+<td>BIOPLANET</td>
+<td>-10.3352</td>
+<td>83.06</td>
+<td>Handel i usługi</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-20</th>
+<td>CEZ</td>
+<td>-10.1604</td>
+<td>511.21</td>
+<td>Paliwa i energia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-26</th>
+<td>MEDINICE</td>
+<td>-10.0996</td>
+<td>35.32</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
+<div id="3811ee5f" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Nazwa</th>
+<th data-quarto-table-cell-role="th">Zmiana %</th>
+<th data-quarto-table-cell-role="th">Średni wolumen M:M</th>
+<th data-quarto-table-cell-role="th">Sektor</th>
+<th data-quarto-table-cell-role="th">Indeks</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Data</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>MEDINICE</td>
+<td>131.1765</td>
+<td>164.860</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>WASKO</td>
+<td>71.7703</td>
+<td>349.962</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>WOODPCKR</td>
+<td>68.7259</td>
+<td>468.341</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>DATAWALK</td>
+<td>64.8885</td>
+<td>103.410</td>
+<td>Technologie</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>CREOTECH</td>
+<td>60.9375</td>
+<td>118.556</td>
+<td>Technologie</td>
+<td>sWIG80</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>URTESTE</td>
+<td>57.9487</td>
+<td>31.957</td>
+<td>Ochrona zdrowia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>CREEPYJAR</td>
+<td>53.5000</td>
+<td>533.011</td>
+<td>Handel i usługi</td>
+<td>sWIG80</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>QNATECHNO</td>
+<td>51.8519</td>
+<td>539.298</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>INC</td>
+<td>48.5149</td>
+<td>80.473</td>
+<td>Finanse</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>PASSUS</td>
+<td>47.3404</td>
+<td>291.814</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
+<div id="1f2ced27" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Nazwa</th>
+<th data-quarto-table-cell-role="th">Zmiana %</th>
+<th data-quarto-table-cell-role="th">Średni wolumen M:M</th>
+<th data-quarto-table-cell-role="th">Sektor</th>
+<th data-quarto-table-cell-role="th">Indeks</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Data</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>SILVAIR-REGS</td>
+<td>-27.6042</td>
+<td>847.485</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>CDRL</td>
+<td>-12.7907</td>
+<td>143.343</td>
+<td>Dobra konsumpcyjne</td>
+<td>WIG rest</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>ANSWEAR</td>
+<td>-12.2605</td>
+<td>112.433</td>
+<td>Handel i usługi</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>SYGNITY</td>
+<td>-12.1076</td>
+<td>96.801</td>
+<td>Technologie</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>MIRBUD</td>
+<td>-11.4035</td>
+<td>4.030</td>
+<td>Prod. przem. i bud-montaż.</td>
+<td>mWIG40</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>CIGAMES</td>
+<td>-11.0266</td>
+<td>5.421</td>
+<td>Handel i usługi</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>STALEXP</td>
+<td>-10.3175</td>
+<td>98.604</td>
+<td>Prod. przem. i bud-montaż.</td>
+<td>sWIG80</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>BORYSZEW</td>
+<td>-9.7179</td>
+<td>21.942</td>
+<td>Chemia i surowce</td>
+<td>sWIG80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>CEZ</td>
+<td>-9.6120</td>
+<td>167.391</td>
+<td>Paliwa i energia</td>
+<td>WIG rest</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-01-01</th>
+<td>SPYROSOFT</td>
+<td>-9.4077</td>
+<td>90.867</td>
+<td>Technologie</td>
+<td>WIG rest</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>W sekcji wzrostów i spadków sesyjnych dominują przede wszystkim spółki małe, spoza trzech głównych indeksów. Dwukrotnie w zestawieniu TOP10 wzrostów sesyjnych znajdują sie Woordpecker i Medinice. Najwyższy jednosesyjny wzrost należy do pierwszej z wymienionych spółek, jest to wartość +37,86% z 15 stycznia.</p>
+<p>Podmioty wymienione w pierwszej sekcji pojawiają się także w najwiekszych spadkach jednosesyjnych. I tak przykładowo Woodpecker zaliczył obsunięcie na poziomie 12,28% 20 stycznia. Największy spadek to natomiast -21,43% w przypadku spółki Silvair-regs.</p>
+<p>Uwzględniając cały styczeń, aż dziewięć spółek wzrosła o ponad 50%, zaś zdecydowany rekord należy do spółki Medinice (+131%), co ma swoje korzenie w fundamentalnych wiadomościach związanych ze sprzedażą autorskiego projektu spółki. Jeśli chodzi o styczniowych maruderów, zdecydowanie in minus wyróżnia się Silvair-regs (spadek o 27,60%). Co ważne, drugi w rankingu najmocniej rosnących CDRL osunął się już “tylko” o 12,79%.</p>
+</section>
+<section id="wskaźniki-techniczne" class="level1">
+<h1>Wskaźniki techniczne</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Średnie kroczące</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">ATH200 dist.</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Supertrend</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div id="40321b7d" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-13-output-1.png" width="585" height="222" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div id="7dee36fa" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Indeks</th>
+<th data-quarto-table-cell-role="th">WIG20</th>
+<th data-quarto-table-cell-role="th">mWIG40</th>
+<th data-quarto-table-cell-role="th">sWIG80</th>
+<th data-quarto-table-cell-role="th">WIG rest</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Odległość % od ATH200</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75-100%</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.00</td>
+<td>0.54</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50-75%</th>
+<td>5.0</td>
+<td>0.0</td>
+<td>1.27</td>
+<td>4.89</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">50-25%</th>
+<td>5.0</td>
+<td>20.0</td>
+<td>16.46</td>
+<td>20.65</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25-15%</th>
+<td>10.0</td>
+<td>10.0</td>
+<td>25.32</td>
+<td>21.20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15-5%</th>
+<td>30.0</td>
+<td>12.5</td>
+<td>31.65</td>
+<td>28.26</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5-0%</th>
+<td>50.0</td>
+<td>57.5</td>
+<td>25.32</td>
+<td>24.46</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
+<div id="1956ead3" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Indeks</th>
+<th data-quarto-table-cell-role="th">WIG20</th>
+<th data-quarto-table-cell-role="th">mWIG40</th>
+<th data-quarto-table-cell-role="th">sWIG80</th>
+<th data-quarto-table-cell-role="th">WIG rest</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">supertrend</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">lowerband</th>
+<td>65.0</td>
+<td>75.0</td>
+<td>70.0</td>
+<td>68.11</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">upperband</th>
+<td>35.0</td>
+<td>25.0</td>
+<td>30.0</td>
+<td>31.89</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>*wartości jako % spółek w danym indeksie będącym na zakończenie badanego okresa w trendzie wzrostowym (lowerband) lub spadkowym (upperband)</p>
+</div>
+</div>
+</div>
+<p>Zaraportowane za styczeń wzrosty z pewnością nie w pełni odzwierciedlają krajobraz, jaki gościł na giełdzie przy okazji końcówki miesiąca. To widać dobrze przy wskaźnikach technicznych. Analiza % spółek w danym indeksie znajdujących powyżej średnich kroczących 200/100/50/20 sesyjnych wskazuje jasno, że lokalnie szczyt wzrostów przypadał na okres grudnia (stąd powyżej SMA50 w każdym z indeksów znajduje się najwięcej spółek). Natomiast średnia krótkoterminowa (20 sesyjna) dostarcza najsłabszych ważności sposórd całej matrycy. Względem SMA50, w przypadku WIG20, mWIG40 i sWIG80 wyniki są o 15 punktów procentowe słabsze. Spółki z WIG-rest natomiast o 11, co może zwiastować zmieniający się układ na kolejne okresy.</p>
+<p>Interesująco na koniec stycznia przedstawiała się także struktura spółek według odległości procentowej od 200-sesyjnego maksimum. W przypadku WIG20 50% jest na poziomie tej wartości, lub maksymalnie 5% niżej. W przypadku mWIG40 ta statystyka to z kolei 57,5%. W przypadku WIG rest i sWIG80 spółki rozkładają się bardziej równomiernie, lecz w obrębie przedziałów do 50% od ATH200.</p>
+</section>
+<section id="perspektywa-sektorowa" class="level1">
+<h1>Perspektywa sektorowa</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">SMA</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
+<div id="9ef838c8" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-16-output-1.png" width="967" height="690" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
+<div id="e43bf6a2" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-17-output-1.png" width="967" height="701" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
+<div id="483acd25" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-18-output-1.png" width="967" height="688" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
+<div id="c2bc6ea2" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post_files/figure-html/cell-19-output-1.png" width="967" height="607" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Wyniki styczniowe z perspektywy indeksów nie dały skutecznej odpowiedzi w której części rynku szukać największej dynamiki. Więcej wiedzy w tym aspekcie daje spojrzenie przez pryzmat sektorów. Widać przede wszystkim siłę spółek chemicznych i surowcowych (aż 63% wzrosło o ponad 10% w styczniu). W drugiej kolejności warto wskazać spółki technologiczne, jednak tu analogiczny wzrost zanotowało 46% podmiotów. Co ciekawe dobre wyniki spółek z pierwszego sektora nie mają odzwierciedlenia w wolumenie (aż 32% sektora odnotowało ponad 20% spadek średniego dziennego wolumenu miesiąc do miesiąca). Inaczej ma się natomiast segment technologiczny, tu największą, bo 38-procentową grupą są spółki z rosnącym wolumenem o 75%. Co również rzuca się w oczy to 47% spółek z sektora paliwowo-energetycznego ze spadającym wolumenem o ponad 20%.</p>
+<p>Jeśli chodzi o matrycę średnich kroczących, tutaj mamy odzwierciedlenie analogicznej, przedstawionej z perspektywy indeksów. W przypadku każdego segmentu zauważalny jest spadek liczby spółek pomiędzy pomiędzy średnią 50 i 20 sesyjną. Obronną ręką wychodzą wspomniane wcześniej chemia i serowce oraz technologie (nieznaczne spadki o 6 punktów procentowych). Po drugiej stronie słabnące spółki z sektorów takich jak handel, ochrona zdrowia, paliwa i energia,a przede wszystkim produkcja przemysłowa i budowlano montażowa (tu w przypadku SMA50 aż 70% spółek jest powyżej, zaś w przypadku SMA 20 już tylko 44%).</p>
+</section>
+<section id="na-zakończenie" class="level1">
+<h1>Na zakończenie</h1>
+<p>Pierwszy miesiąc 2026 roku, podobnie jak poprzednie okresy, zagwarantowały wiele dobrego inwestorom, szczególnie w pierwszej części. Istotne wzrosty zanotowały zarówno blue-chips, jak i spółki o mniejszej kapitalizacji, przy czym na znaczeniu zyskały przede wszystkim konkretne sektory - chemia, surowce i technologie. Forma końcówki stycznia wyrażona matrycą średnich kroczących daje natomiast ostrzeżenie. Co najmniej delikatne schłodzenie nie minęło żadnego sektora, przy czym najwieksza lampka ostrzegawcza zapala się przy spółkach budolwanych, handlowych i związanych z ochroną zdrowia.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Analiza techniczna</category>
+  <category>GPW</category>
+  <category>WIG</category>
+  <category>WIG20</category>
+  <category>mWIG40</category>
+  <category>sWIG80</category>
+  <category>podsumowanie miesięczne</category>
+  <guid>https://tszczerbicki.github.io/quarto-site/posts/20260131_podsumowanie_stycznia_26/post.html</guid>
+  <pubDate>Fri, 30 Jan 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Podsumowanie 2025 roku na GPW</title>
   <dc:creator>Tomasz Szczerbicki</dc:creator>
@@ -22,7 +1102,7 @@
 
 
 <p>Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe.</p>
-<div id="e74ddad0" class="cell" data-execution_count="4">
+<div id="2032d5b1" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -38,8 +1118,8 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="ff6d130c" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="0c53a660" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -85,8 +1165,8 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="20990d38" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="8b257b86" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -151,8 +1231,8 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="bda281de" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div id="3f10d7d1" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -217,8 +1297,8 @@
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
-<div id="aefffaa8" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div id="133d5306" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -297,8 +1377,8 @@
 </div>
 </div>
 <div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
-<div id="20ba6982" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="cb880612" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -370,8 +1450,8 @@
 </div>
 </div>
 <div id="tabset-1-6" class="tab-pane" aria-labelledby="tabset-1-6-tab">
-<div id="f990717a" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="fa86744b" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -419,8 +1499,8 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" aria-controls="tabset-2-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" aria-controls="tabset-2-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="eea5fe7f" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div id="91900ff1" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -476,8 +1556,8 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="ea7b7d4f" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div id="670ff327" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -542,8 +1622,8 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="ded6bb11" class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="416a7083" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -608,8 +1688,8 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="5337fd82" class="cell" data-execution_count="14">
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div id="46ca0fbf" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -706,8 +1786,8 @@
 </div>
 </div>
 <div id="tabset-2-5" class="tab-pane" aria-labelledby="tabset-2-5-tab">
-<div id="49bd1ddf" class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div id="8ee729f1" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -795,8 +1875,8 @@
 </div>
 </div>
 <div id="tabset-2-6" class="tab-pane" aria-labelledby="tabset-2-6-tab">
-<div id="7e052481" class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div id="36fe5df4" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
@@ -851,8 +1931,8 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" aria-controls="tabset-3-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" aria-controls="tabset-3-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="edfa7ddc" class="cell" data-execution_count="17">
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div id="45587cf4" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -908,8 +1988,8 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="9b7a5850" class="cell" data-execution_count="18">
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div id="5662bb07" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -974,8 +2054,8 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="96f5aaf6" class="cell" data-execution_count="19">
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div id="2382c2b0" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
@@ -1040,8 +2120,8 @@
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
-<div id="8195d9ce" class="cell" data-execution_count="20">
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div id="3d2cdffd" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
 
@@ -1138,8 +2218,8 @@
 </div>
 </div>
 <div id="tabset-3-5" class="tab-pane" aria-labelledby="tabset-3-5-tab">
-<div id="ce700188" class="cell" data-execution_count="21">
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div id="a4222ebc" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -1227,8 +2307,8 @@
 </div>
 </div>
 <div id="tabset-3-6" class="tab-pane" aria-labelledby="tabset-3-6-tab">
-<div id="57cce0c1" class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div id="e7a08362" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -1282,8 +2362,8 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" aria-controls="tabset-4-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" aria-controls="tabset-4-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="2ea9ba5b" class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div id="da7a763a" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 
@@ -1339,8 +2419,8 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="90871906" class="cell" data-execution_count="24">
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div id="27b85f2d" class="cell" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -1405,8 +2485,8 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="23eb755c" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div id="8db0ec0b" class="cell" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -1471,8 +2551,8 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="ad987f24" class="cell" data-execution_count="26">
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div id="4f4890af" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -1569,8 +2649,8 @@
 </div>
 </div>
 <div id="tabset-4-5" class="tab-pane" aria-labelledby="tabset-4-5-tab">
-<div id="5c1b383c" class="cell" data-execution_count="27">
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div id="5285b841" class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -1658,8 +2738,8 @@
 </div>
 </div>
 <div id="tabset-4-6" class="tab-pane" aria-labelledby="tabset-4-6-tab">
-<div id="d44881d7" class="cell" data-execution_count="28">
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div id="8ab430ab" class="cell" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -1725,7 +2805,7 @@
 <h1>Na zakończenie</h1>
 <p>Imponujące wzrosty w 2025, jakimi indeksy WIG20 (+45%), mWIG40 (+33%) i sWIG80 (+25%) prowadzą z łatwością do wizji gigantycznych wzrostów dostępnych na wyciągnięcie ręki, choć finalnie okazuje się, że chociażby w przypadku spółek sWIG80 czy WIG rest aż 40% podmiotów zakończyła rok ze spadkiem kursu. W przypadku indeksów GPW za tę magię odpowiadają wagi poszczególnych spółek. Przykładowo w WIG20 drugą i trzecią spółką względem wagi są PKN Orlen (13,131 udziału w portfelu) i KGHM (10,665), a więc walory które w całym WIG20 rosły w ubiegłym roku najmocniej. Z drugiej strony, jedyny outsider - CCC, którego kurs stracił 35%, ma w tym portfelu wagę 1,445%.</p>
 <p>Przyjmując zatem strategię selektywnego doboru spółek kosztem inwestycji w cały indeks, kluczem do osiągnięcia sukcesu było przede wszystkim zaangażowanie w spółki o jak największej skali działalności. Wydawać by się zatem mogło, że kwestia doboru branży w przypadku GPW zeszła nieco na drugi plan, jednak jest to błędne założenie, co wyjaśnia poniższy wykres:</p>
-<div id="08ab6835" class="cell" data-fig-height="19" data-execution_count="29">
+<div id="dd442b24" class="cell" data-fig-height="19" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

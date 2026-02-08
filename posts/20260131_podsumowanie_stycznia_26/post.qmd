@@ -1,0 +1,844 @@
+---
+title: "Techniczne podsumowanie stycznia"
+subtitle: "Udany początek roku, choć końcówka miesiąca studzi nastroje"
+author: "Tomasz Szczerbicki"
+date: 2026-01-31
+categories: [Analiza techniczna, GPW, WIG, WIG20, mWIG40, sWIG80, podsumowanie miesięczne]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+toc: True
+---
+
+Rok 2025 rozbudził apetyty inwestorów na GPW. Za nami pierwszy miesiąc nowego roku, a w nim wciąż spora dynamika niezależnie od segmentu, giełdowi ulubieńcy spoza głównych indeksów, ale jednocześnie osłabione wskaźniki wolumenu i trendu.
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import talib
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+analyzed_month = '2026-01-01'
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+
+# funkcje
+def wtd(df: pd.DataFrame):
+    d1 = df.copy()
+    weekly_close = d1['Close'].resample('W-FRI').last().shift()
+    d1['weekly_close'] = weekly_close.reindex(d1.index, method = 'bfill')
+    d1['WTD_%'] = (d1['Close'] / d1['weekly_close'] - 1) * 100
+    return d1['WTD_%'].astype(float).round(4)
+
+def mtd(df: pd.DataFrame):
+    d1 = df.copy()
+    month_map = dict(d1['Close'].groupby([d1.index.year, d1.index.month]).last())
+    d1['prev_month_close'] = [month_map.get((d.year if d.month > 1 else d.year - 1,12 if d.month == 1 else d.month - 1), np.nan) for d in d1.index]
+    d1['MTD_%'] = (d1['Close'] / d1['prev_month_close'] - 1) * 100
+    return d1['MTD_%'].astype(float).round(4)
+
+def ytd(df: pd.DataFrame):
+    d1 = df.copy()
+    year_map = dict(d1['Close'].groupby([d1.index.year]).last())
+    d1['prev_year_close'] = [year_map.get(d.year -1 , np.nan) for d in d1.index]
+    d1['YTD_%'] = (d1['Close'] / d1['prev_year_close'] - 1) * 100
+    return d1['YTD_%'].astype(float).round(4)
+
+def ATR(df: pd.DataFrame, n = 14):
+    d1 = df.copy()
+    d1['H-L'] = d1['High'] - d1['Low']
+    d1['H-PC'] = d1['High'] - d1['Close'].shift(1)
+    d1['L-PC'] = d1['Low'] - d1['Close'].shift(1)
+    d1['TR'] = d1[['H-L', 'H-PC', 'L-PC']].max(axis = 1)
+    d1['ATR'] = d1['TR'].ewm(span = n, min_periods = n).mean()
+    return d1['ATR']
+
+def supertrend(df: pd.DataFrame, atr_multiplier=3, atr_length = 15):
+    d1 = df.copy()
+    current_average_high_low = (d1['High']+d1['Low'])/2
+    d1['atr'] = talib.ATR(d1['High'], d1['Low'], d1['Close'], timeperiod= atr_length)
+    d1.dropna(inplace=True)
+
+    d1['basicUpperband'] = current_average_high_low + (atr_multiplier * d1['atr'])
+    d1['basicLowerband'] = current_average_high_low - (atr_multiplier * d1['atr'])
+    first_upperBand_value = d1['basicUpperband'].iloc[0]
+    first_lowerBand_value = d1['basicLowerband'].iloc[0]
+    upperBand = [first_upperBand_value]
+    lowerBand = [first_lowerBand_value]
+
+    for i in range(1, len(d1)):
+        if d1['basicUpperband'].iloc[i] < upperBand[i-1] or d1['Close'].iloc[i-1] > upperBand[i-1]:
+            upperBand.append(d1['basicUpperband'].iloc[i])
+        else:
+            upperBand.append(upperBand[i-1])
+
+        if d1['basicLowerband'].iloc[i] > lowerBand[i-1] or d1['Close'].iloc[i-1] < lowerBand[i-1]:
+            lowerBand.append(d1['basicLowerband'].iloc[i])
+        else:
+            lowerBand.append(lowerBand[i-1])
+
+    d1['upperband'] = upperBand
+    d1['lowerband'] = lowerBand
+
+    d1['has_crossed_upper'] = np.where((d1['Close'].shift(1) < d1['upperband'].shift(1)) & (d1['Close'] >= d1['upperband']), 1,0)
+    d1['has_crossed_lower'] = np.where((d1['Close'].shift(1) > d1['lowerband'].shift(1)) & (d1['Close'] <= d1['lowerband']), 1,0)
+    
+    supertrend = ['upperband']
+    for i in range(1, len(d1)):
+        if d1['has_crossed_upper'].iloc[i] == 1:
+            supertrend.append('lowerband')
+        elif d1['has_crossed_lower'].iloc[i] == 1:
+            supertrend.append('upperband')
+        else:
+            supertrend.append(supertrend[i-1])  # poprzednia wartość
+
+    d1['supertrend_label'] = supertrend
+    d1['supertrend'] = np.where(d1['supertrend_label'] == 'upperband', d1['upperband'], d1['lowerband'])
+    d1.drop(['basicUpperband', 'basicLowerband'], axis=1, inplace=True)
+    return d1[['supertrend_label', 'supertrend']]
+
+def drawdown(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_max'] = d1['cum_return'].groupby(d1.index.year).cummax()
+    d1['drawdown'] = d1['cum_roll_max'] - d1['cum_return']
+    d1['drawdown_pct'] = d1['drawdown'] / d1['cum_roll_max'] * 100
+    return d1['drawdown_pct'].astype(float).round(4)
+
+def run_up(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_min'] = d1['cum_return'].groupby(d1.index.year).cummin()
+    d1['run_up'] = d1['cum_return'] - d1['cum_roll_min']
+    d1['run_up_pct'] = d1['run_up'] / d1['cum_roll_min'] * 100
+    return d1['run_up_pct'].astype(float).round(4)
+
+# wgranie słownika
+
+dictionary_stocks = pd.read_excel('spolki.xlsx', index_col = 0)
+
+dictionary_stocks['L1_nazwa'] = dictionary_stocks.L1_nazwa.replace('Produkcja przemysłowa i budowlano-montażowa', 'Prod. przem. i bud-montaż.')
+```
+
+```{python}
+# starter code
+stocks = dictionary_stocks[dictionary_stocks['in_WIG'] == True].ticker_yf.to_list()
+ohlcv_data = {}
+
+for ticker in stocks:
+    temp = yf.download(ticker, start = '2024-01-01', interval = '1d')
+    temp.dropna(how = 'any', inplace = True)
+
+    ohlcv_data[ticker] = temp
+    ohlcv_data[ticker].columns = ['Close', 'High', 'Low', 'Open', 'Volume']
+    ohlcv_data[ticker]['ticker'] = ticker
+
+    #yahoo finance ma błąd w danych dla MOL za okres 30.12.2024 - 10.06.2025. W to miejsce wstawiam dane stooq
+    if ticker == 'MOL.WA':
+        l1 = pd.read_csv('t1.csv')['Close'].to_list()
+        ohlcv_data['MOL.WA'].loc[ '2024-12-30':'2025-06-10', 'Close'] = l1
+    
+    # podobnie błąd dla Dadelo w jednym dniu
+    if ticker == 'DAD.WA':
+        ohlcv_data['DAD.WA'].loc['2025-04-25', 'Close'] = 28.30
+
+    ohlcv_data[ticker]['pct_change'] = round(ohlcv_data[ticker]['Close'].pct_change() * 100,4)
+    ohlcv_data[ticker]['WTD_pct'] = wtd(ohlcv_data[ticker])
+    ohlcv_data[ticker]['MTD_pct'] = mtd(ohlcv_data[ticker])
+    ohlcv_data[ticker]['YTD_pct'] = ytd(ohlcv_data[ticker])
+
+    ohlcv_data[ticker]['yearly_drawdown_pct'] = drawdown(ohlcv_data[ticker])
+    ohlcv_data[ticker]['yearly_run_up_pct'] = run_up(ohlcv_data[ticker])
+
+    ohlcv_data[ticker]['Volume_to_SMA10'] = ohlcv_data[ticker]['Volume'].rolling(10).mean()
+    ohlcv_data[ticker]['Volume_to_Vol_SMA10_pct'] = round((ohlcv_data[ticker]['Volume'] / ohlcv_data[ticker]['Volume'].rolling(10).mean() - 1) * 100,2)
+
+    for i in [50,100,200,300]:
+        l1 = ohlcv_data[ticker]['Close'].rolling(i).max()
+        ohlcv_data[ticker][f'is_{i}_max'] = ohlcv_data[ticker]['Close'] == l1
+        ohlcv_data[ticker][f'max_{i}_pct_distance'] = (ohlcv_data[ticker]['Close'] /  l1 - 1) * 100
+
+    for i in [10, 20, 50,100,200]:
+        ohlcv_data[ticker][f'SMA_{i}'] = ohlcv_data[ticker]['Close'].rolling(i).mean()
+        ohlcv_data[ticker][f'is_above_SMA_{i}'] = ohlcv_data[ticker]['Close'] > ohlcv_data[ticker][f'SMA_{i}']
+        ohlcv_data[ticker][f'has_crossed_SMA_{i}'] = np.where((ohlcv_data[ticker][f'is_above_SMA_{i}'] == True) & (ohlcv_data[ticker][f'is_above_SMA_{i}'].shift() == False), 'up',
+                                                            np.where((ohlcv_data[ticker][f'is_above_SMA_{i}'] == False) & (ohlcv_data[ticker][f'is_above_SMA_{i}'].shift() == True), 'down', 'no change' ))
+
+    ohlcv_data[ticker][['supertrend_label', 'supertrend']] = supertrend(ohlcv_data[ticker])
+    ohlcv_data[ticker]['supertrend_change'] = np.where((ohlcv_data[ticker]['supertrend'] == 'upperband') & (ohlcv_data[ticker]['supertrend'].shift() == 'lowerband'), 'negative',
+                                np.where((ohlcv_data[ticker]['supertrend'] == 'lowerband') & (ohlcv_data[ticker]['supertrend'].shift() == 'upperband'), 'positive', 'no change'))
+```
+
+```{python}
+stocks_results = pd.DataFrame()
+
+for i in (stocks):
+
+    aggs = ohlcv_data[i].groupby(pd.Grouper(freq = 'MS')).agg(Close_std = ('Close', 'std'),
+                                                                  Close_mean = ('Close', 'mean'),
+                                                                  Close_last = ('Close', 'last'),
+                                                                  YTD_pct = ('YTD_pct', 'last'),
+                                                                  MTD_pct = ('MTD_pct', 'last'),
+                                                                  max_drawdown = ('yearly_drawdown_pct', 'max'),
+                                                                  max_run_up = ('yearly_run_up_pct', 'max'),
+                                                                  mean_volume = ('Volume', 'mean'),
+                                                                  above_sma20 = ('is_above_SMA_20', 'last'),
+                                                                  above_sma50 = ('is_above_SMA_50', 'last'),
+                                                                  above_sma100 = ('is_above_SMA_100', 'last'),
+                                                                  above_sma200 = ('is_above_SMA_200', 'last'),
+                                                                  supertrend = ('supertrend_label', 'last'),
+                                                                  max_200_pct_distance = ('max_200_pct_distance', 'last')
+
+                                                                  )
+
+    aggs['ticker_yf'] = i
+
+    aggs['variability'] = (aggs['Close_std'] / aggs['Close_mean']).round(4) * 100
+
+    aggs['volume_mom_pct_change'] = ((aggs['mean_volume'] / aggs['mean_volume'].shift(1) - 1) * 100).round(3)
+
+    aggs_filtered = aggs#.loc[[2025]]
+
+    stocks_results = pd.concat([stocks_results, aggs_filtered])
+
+
+# stworzenie końcowej tabeli (dołączam parametry ze słownika)
+stocks_results.reset_index(inplace = True)
+df = stocks_results.merge(dictionary_stocks, how = 'left', on = 'ticker_yf')
+
+df['index_name'] = np.where(df['in_WIG20'], 'WIG20',
+                            np.where(df['in_mWIG40'], 'mWIG40',
+                                     np.where(df['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+df['market_cap_mln'] = round(df.stocks_number * df.Close_last / 1000000,4)
+
+
+# dodatkowe kolumny potrzebne w dalszych kalkulacjach
+# kosztyki dla stóp zwrotu YTD
+
+bins = [-np.inf,-30,-15,0,20,60,np.inf]
+
+labels = [
+    'Bardzo duży spadek (<= 30%)',
+    'Duży spadek (-30% - -15%)',
+    'Spadek (-15% - 0%)',
+    'Neutralnie / lekki wzrost (0% - 20%)',
+    'Duży wzrost (20% - 60%)',
+    'Ekstremalny wzrost (> 60%)'
+]
+
+df['YTD_group'] = pd.cut(
+    df['YTD_pct'],
+    bins=bins,
+    labels=labels,
+    right=True,        
+    include_lowest=True)
+
+# kosztyki dla stóp zwrotu MTD
+
+bins = [-np.inf,-10,-5,0,5,10,np.inf]
+
+labels = [
+    'Duży spadek (<= 10%)',
+    'Spadek (-10% - -5%)',
+    'Lekki spadek (-5% - 0%)',
+    'Lekki wzrost (0% - 5%)',
+    'Wzrost (5% - 10%)',
+    'Duży wzrost (> 10%)'
+]
+
+df['MTD_group'] = pd.cut(
+    df['MTD_pct'],
+    bins=bins,
+    labels=labels,
+    right=True,        
+    include_lowest=True)
+
+# obsunięcia: Niewielkie (<= 20%); Umiarkowane (20% - 25%); Duże (25% - 40%); Bardzo duże (> 40%)
+
+bins = [-np.inf,20,25,40,np.inf]
+
+labels = [
+    'Niewielkie (<= 20%)',
+    'Umiarkowane (20% - 25%)',
+    'Duże (25% - 40%)',
+    'Bardzo duże (> 40%)',]
+
+df['Drawdown_group'] = pd.cut(
+    df['max_drawdown'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True
+)
+
+# volume: Znaczny spadek (< -20%); # Umiarkowany spadek (-20% - 0%) # Umiarkowany wzrost (0% - 20%); Znaczny wzrost (20% - 75%); #Ekstremalny wzrost (> 75%)
+
+bins = [-np.inf,-20,0,20,75,np.inf]
+
+labels = ['Znaczny spadek (<= -20%)','Umiarkowany spadek (-20% - 0%)','Umiarkowany wzrost (0% - 20%)',
+    'Znaczny wzrost (20% - 75%)','Ekstremalny wzrost (> 75%)']
+
+df['Volume_change_group'] = pd.cut(
+    df['volume_mom_pct_change'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True)
+
+# market cap
+bins = [-np.inf,30,70,300,1500,10000, np.inf]
+
+labels = ['Bardzo małe (<= 30 mln PLN)', 'Małe (30-70 mln PLN)', 'Średnie (70-300 mln PLN)', 'Duże (300 mln - 1.5 mld PLN)',
+          'Bardzo duże (1.5 - 10 mld PLN)', 'Największe (> 10 mld PLN)']
+
+df['Market_cap_group'] = pd.cut(
+    df['market_cap_mln'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True)
+
+# ATH200 distance
+bins = [-np.inf,-75,-50,-25,-15,-5, 0]
+
+labels = ['75-100%', '50-75%', '50-25%', '25-15%','15-5%', '5-0%']
+
+df['ATH200_distance_group'] = pd.cut(
+    df['max_200_pct_distance'],
+    bins=bins,
+    labels=labels,
+    right=True,        # przedziały domknięte z prawej
+    include_lowest=True)
+
+df_to_analyze = df[df['Date'] == analyzed_month].copy()
+
+df_to_analyze = df[df['Date'] == analyzed_month].copy()
+
+
+```
+
+```{python}
+to_chart = pd.concat([df_to_analyze[['name', 'YTD_pct', 'MTD_pct', 'index_name']].sort_values(by = 'MTD_pct', ascending = False).head(5),
+            df_to_analyze[['name', 'YTD_pct', 'MTD_pct', 'index_name']].sort_values(by = 'MTD_pct', ascending = True).head(5)])
+
+to_chart.sort_values(by = 'MTD_pct', ascending = False, inplace= True)            
+
+# mapowanie kolorów na index_name
+unique_indexes = to_chart["index_name"].unique()
+colors = ['#4A6FA5','#5C677D', '#F2A541'] #plt.cm.Set2(range(len(unique_indexes)))
+color_map = dict(zip(unique_indexes, colors))
+
+# przypisanie kolorów
+bar_colors = to_chart["index_name"].map(color_map)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+
+ax.barh(
+    to_chart["name"],
+    to_chart["MTD_pct"],
+    color=bar_colors)
+
+# labelki
+ax.set_xlabel("Stopa zwrotu (%)")
+ax.set_ylabel(None)
+ax.set_title("Najwyższe i najniższe stopy zwrotu na GPW - styczeń 2026")
+
+# legenda
+handles = [
+    plt.Line2D([0], [0], color=color_map[idx], lw=6, label=idx)
+    for idx in unique_indexes]
+ax.legend(handles=handles, title="Indeks", loc = 'lower right')
+
+# wartości na słupkach
+for i, v in enumerate(to_chart["MTD_pct"]):
+    ax.text(
+        v,
+        i,
+        f"{v:.2f}%",
+        va="center",
+        ha="left"
+    )
+
+#plt.tight_layout()
+ax.invert_yaxis() 
+
+plt.axvline(x=0, color="black", linestyle="--", linewidth=1)
+plt.axhline(y=4.5,color="red", linestyle = '--', linewidth=1)
+plt.show()
+```
+
+
+# Stopy zwrotu i wolumen
+
+::: panel-tabset
+
+## MTD
+
+```{python}
+result = (
+    df_to_analyze.groupby(['MTD_group', 'index_name']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('index_name')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='MTD_group',
+    columns='index_name',
+    values=['count', 'percent'],
+    aggfunc='sum',
+    fill_value=0,
+    margins=True,
+    margins_name='Razem'
+)
+
+order = ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest', 'Razem']
+
+pivot = (
+    pivot
+        .swaplevel(0, 1, axis=1)
+        .sort_index(
+            axis=1,
+            level=0,
+            key=lambda x: pd.Categorical(x, categories=order, ordered=True)))
+
+del pivot[('Razem', 'percent')]
+
+pivot.index.name = 'Stopa zwrotu'
+pivot.columns.names = ['Indeks', None]
+
+pivot = pivot.rename(
+    columns={'count': 'liczba', 'percent': '%'},
+    level=1
+)
+
+pivot
+```
+
+## YTD
+
+```{python}
+result = (
+    df_to_analyze.groupby(['YTD_group', 'index_name']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('index_name')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='YTD_group',
+    columns='index_name',
+    values=['count', 'percent'],
+    aggfunc='sum',
+    fill_value=0,
+    margins=True,
+    margins_name='Razem'
+)
+
+order = ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest', 'Razem']
+
+pivot = (
+    pivot
+        .swaplevel(0, 1, axis=1)
+        .sort_index(
+            axis=1,
+            level=0,
+            key=lambda x: pd.Categorical(x, categories=order, ordered=True)))
+
+del pivot[('Razem', 'percent')]
+
+pivot.index.name = 'Stopa zwrotu'
+pivot.columns.names = ['Indeks', None]
+
+pivot = pivot.rename(
+    columns={'count': 'liczba', 'percent': '%'},
+    level=1
+)
+
+pivot
+```
+
+## Wolumeny
+
+```{python}
+result = (
+    df_to_analyze.groupby(['Volume_change_group', 'index_name']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('index_name')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='Volume_change_group',
+    columns='index_name',
+    values=['count', 'percent'],
+    aggfunc='sum',
+    fill_value=0,
+    margins=True,
+    margins_name='Razem'
+)
+
+order = ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest', 'Razem']
+
+pivot = (
+    pivot
+        .swaplevel(0, 1, axis=1)
+        .sort_index(
+            axis=1,
+            level=0,
+            key=lambda x: pd.Categorical(x, categories=order, ordered=True)))
+
+del pivot[('Razem', 'percent')]
+
+pivot.index.name = 'Zmiana % wolumenu M:M'
+pivot.columns.names = ['Indeks', None]
+
+pivot = pivot.rename(
+    columns={'count': 'liczba', 'percent': '%'},
+    level=1)
+
+pivot
+```
+
+:::
+
+Z 325 analizowanych spółek 78 zakończyło styczeń ze spadkiem, z czego tylko 7 z wynikiem niższym niż -10%. Spośród indeksów najlepiej wypadają spółki z mWIG40 - aż 42,5% wzrosło o ponad 10%. Na drugim miejscu w tej materii znajdują się spółki WIG spoza trzech głównych indeksów. Tutaj nieco ponad 30% podmiotów znalazło się w grupie najwiekszych wzrostów. 
+
+Nieco inaczej, niekiedy niejednoznacznie prezentują się rozkłady wolumenów w ujęciu miesiąc do miesiąca. W przypadku WIG20, obroty na połowie spółek rosły, a połowie spadały. Spółki mid-cap to z kolei dużo bardziej przekonujący wynik: aż 87,5% z wyższym średnim dziennym wolumenem (a 42,5% ze wzrostem powyżej 10%). Nieco słabiej miała się sytuacja w sWIG80 i WIG rest, przy czym wciaż wolumen rósł w przypadku ponad 70% spółek. 
+
+# Najlepsze i najgorsze spółki i sesje
+
+::: panel-tabset
+## Wzrosty sesyjne
+
+```{python}
+changes = pd.DataFrame(())
+
+for i in stocks:
+    x = ohlcv_data[i].loc['2026-01-01':'2026-01-31', ['ticker', 'pct_change', 'Volume_to_Vol_SMA10_pct']].reset_index()
+    changes = pd.concat([x, changes])
+
+
+changes_full_df = changes.merge(dictionary_stocks, how = 'left', left_on = 'ticker', right_on = 'ticker_yf')
+
+changes_full_df['index_name'] = np.where(changes_full_df['in_WIG20'], 'WIG20',
+                            np.where(changes_full_df['in_mWIG40'], 'mWIG40',
+                                     np.where(changes_full_df['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+changes_full_df[['Date', 'name', 'pct_change', 'Volume_to_Vol_SMA10_pct', 'L1_nazwa', 'index_name']].sort_values(by = 'pct_change', ascending = False).head(10).rename(columns={
+        'Date': 'Data',
+        'name': 'Nazwa',
+        'pct_change': 'Zmiana %',
+        'Volume_to_Vol_SMA10_pct': 'Wol do Wol SMA10',
+        'L1_nazwa': 'Sektor',
+        'index_name': 'Indeks'
+    }).set_index('Data')
+
+```
+
+## Spadki sesyjne
+
+```{python}
+changes = pd.DataFrame(())
+
+for i in stocks:
+    x = ohlcv_data[i].loc['2026-01-01':'2026-01-31', ['ticker', 'pct_change', 'Volume_to_Vol_SMA10_pct']].reset_index()
+    changes = pd.concat([x, changes])
+
+
+changes_full_df = changes.merge(dictionary_stocks, how = 'left', left_on = 'ticker', right_on = 'ticker_yf')
+
+changes_full_df['index_name'] = np.where(changes_full_df['in_WIG20'], 'WIG20',
+                            np.where(changes_full_df['in_mWIG40'], 'mWIG40',
+                                     np.where(changes_full_df['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+changes_full_df[['Date', 'name', 'pct_change', 'Volume_to_Vol_SMA10_pct', 'L1_nazwa', 'index_name']].sort_values(by = 'pct_change', ascending = True).head(10).rename(columns={
+        'Date': 'Data',
+        'name': 'Nazwa',
+        'pct_change': 'Zmiana %',
+        'Volume_to_Vol_SMA10_pct': 'Wol do Wol SMA10',
+        'L1_nazwa': 'Sektor',
+        'index_name': 'Indeks'
+    }).set_index('Data')
+```
+
+## Wzrosty miesięczne
+```{python}
+df_to_analyze[['Date', 'name', 'MTD_pct', 'volume_mom_pct_change', 'L1_nazwa', 'index_name']].sort_values(by = 'MTD_pct', ascending = False).head(10).rename(columns={
+        'Date': 'Data',
+        'name': 'Nazwa',
+        'MTD_pct': 'Zmiana %',
+        'volume_mom_pct_change': 'Średni wolumen M:M',
+        'L1_nazwa': 'Sektor',
+        'index_name': 'Indeks'
+    }).set_index('Data')
+```
+
+
+## Spadki miesięczne
+```{python}
+df_to_analyze[['Date', 'name', 'MTD_pct', 'volume_mom_pct_change', 'L1_nazwa', 'index_name']].sort_values(by = 'MTD_pct', ascending = True).head(10).rename(columns={
+        'Date': 'Data',
+        'name': 'Nazwa',
+        'MTD_pct': 'Zmiana %',
+        'volume_mom_pct_change': 'Średni wolumen M:M',
+        'L1_nazwa': 'Sektor',
+        'index_name': 'Indeks'
+    }).set_index('Data')
+```
+:::
+
+W sekcji wzrostów i spadków sesyjnych dominują przede wszystkim spółki małe, spoza trzech głównych indeksów. Dwukrotnie w zestawieniu TOP10 wzrostów sesyjnych znajdują sie Woordpecker i Medinice. Najwyższy jednosesyjny wzrost należy do pierwszej z wymienionych spółek, jest to wartość +37,86% z 15 stycznia.
+
+Podmioty wymienione w pierwszej sekcji pojawiają się także w najwiekszych spadkach jednosesyjnych. I tak przykładowo Woodpecker zaliczył obsunięcie na poziomie 12,28% 20 stycznia. Największy spadek to natomiast -21,43% w przypadku spółki Silvair-regs. 
+
+Uwzględniając cały styczeń, aż dziewięć spółek wzrosła o ponad 50%, zaś zdecydowany rekord należy do spółki Medinice (+131%), co ma swoje korzenie w fundamentalnych wiadomościach związanych ze sprzedażą autorskiego projektu spółki. Jeśli chodzi o styczniowych maruderów, zdecydowanie in minus wyróżnia się Silvair-regs (spadek o 27,60%). Co ważne, drugi w rankingu najmocniej rosnących CDRL osunął się już "tylko" o 12,79%. 
+
+# Wskaźniki techniczne 
+
+::: panel-tabset
+## Średnie kroczące
+
+```{python}
+smas_df = pd.DataFrame()
+smas = [200, 100, 50, 20]
+
+for i in smas:
+    col = f"above_sma{i}"
+
+    above = (
+        df_to_analyze
+        .groupby('index_name')[col]
+        .sum()
+        .reset_index(name='above_count')
+    )
+
+    total = (
+        df_to_analyze
+        .groupby('index_name')['ticker']
+        .count()
+        .reset_index(name='total_count')
+    )
+
+    result = above.merge(total, on='index_name')
+    result['count'] = round(result['above_count'] / result['total_count'] * 100,2)
+    result['dim_name'] = f"powyżej SMA {i}"
+
+    smas_df = pd.concat([smas_df, result[['index_name', 'dim_name', 'count']]])
+
+pivoted = smas_df.pivot_table(
+    index='dim_name',
+    columns='index_name',
+    values='count'
+)
+
+row_order = ['powyżej SMA 200','powyżej SMA 100','powyżej SMA 50','powyżej SMA 20']
+
+col_order = ['WIG20','mWIG40','sWIG80','WIG rest']
+
+pt = pivoted.reindex(index=row_order, columns=col_order)
+
+ax = sns.heatmap(pt, fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
+
+plt.title('Procent spółek powyżej średnich kroczących', loc = 'center')
+plt.ylabel(None)
+plt.xlabel(None)
+ax.xaxis.tick_top()
+```
+
+## ATH200 dist.
+
+```{python}
+st = df_to_analyze.groupby(['index_name','ATH200_distance_group'], as_index = False).ticker.count()
+
+st['value'] = round(st.ticker / st.groupby('index_name').ticker.transform('sum') * 100,2)
+
+st1 = st.pivot_table(index = 'ATH200_distance_group', columns = 'index_name', values = 'value', fill_value=0).reindex(columns=['WIG20','mWIG40','sWIG80','WIG rest'])
+
+st1.index.name = 'Odległość % od ATH200'
+st1.columns.names = ['Indeks']
+
+st1
+```
+
+
+## Supertrend
+
+```{python}
+st = df_to_analyze.groupby(['index_name','supertrend'], as_index = False).ticker.count()
+
+st['value'] = round(st.ticker / st.groupby('index_name').ticker.transform('sum') * 100,2)
+
+st1 = st.pivot_table(index = 'supertrend', columns = 'index_name', values = 'value').reindex(columns=['WIG20','mWIG40','sWIG80','WIG rest'])
+
+st1.columns.names = ['Indeks']
+
+st1
+
+```
+*wartości jako % spółek w danym indeksie będącym na zakończenie badanego okresa w trendzie wzrostowym (lowerband) lub spadkowym (upperband)
+
+:::
+
+Zaraportowane za styczeń wzrosty z pewnością nie w pełni odzwierciedlają krajobraz, jaki gościł na giełdzie przy okazji końcówki miesiąca. To widać dobrze przy wskaźnikach technicznych. Analiza % spółek w danym indeksie znajdujących powyżej średnich kroczących 200/100/50/20 sesyjnych wskazuje jasno, że lokalnie szczyt wzrostów przypadał na okres grudnia (stąd powyżej SMA50 w każdym z indeksów znajduje się najwięcej spółek). Natomiast średnia krótkoterminowa (20 sesyjna) dostarcza najsłabszych ważności sposórd całej matrycy. Względem SMA50, w przypadku WIG20, mWIG40 i sWIG80 wyniki są o 15 punktów procentowe słabsze. Spółki z WIG-rest natomiast o 11, co może zwiastować zmieniający się układ na kolejne okresy.
+
+Interesująco na koniec stycznia przedstawiała się także struktura spółek według odległości procentowej od 200-sesyjnego maksimum. W przypadku WIG20 50% jest na poziomie tej wartości, lub maksymalnie 5% niżej. W przypadku mWIG40 ta statystyka to z kolei 57,5%. W przypadku WIG rest i sWIG80 spółki rozkładają się bardziej równomiernie, lecz w obrębie przedziałów do 50% od ATH200. 
+
+# Perspektywa sektorowa
+
+
+::: panel-tabset
+
+## MTD
+
+```{python}
+result = (
+    df_to_analyze.groupby(['MTD_group', 'L1_nazwa']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('L1_nazwa')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='L1_nazwa',
+    columns='MTD_group',
+    values=['percent'],
+    aggfunc='sum',
+    fill_value=0
+)
+
+
+pivot.columns = pivot.columns.droplevel(0)
+pivot.index.name = 'Sektor'
+
+plt.figure(figsize=(9, 7))  
+ax = sns.heatmap(pivot, fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
+
+plt.title('Rozkład stóp zwrotu według sektora (styczeń \'26, %)', loc = 'center')
+plt.ylabel(None)
+plt.xlabel(None)
+ax.xaxis.tick_top()
+#ax.set_xticklabels(labels = ['<= -30%', '-30% - -15%', '-15% - 0', '0% - 20%', '20% - 60%', '>60%'], rotation=90, ha='right');
+ax.set_xticklabels(labels = ['<= -10%', '-10% - -5%', '-5% - 0', '0% - 5%', '5% - 10%', '>10%'], rotation=90, ha='right');
+```
+
+## YTD
+
+```{python}
+result = (
+    df_to_analyze.groupby(['YTD_group', 'L1_nazwa']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('L1_nazwa')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='L1_nazwa',
+    columns='YTD_group',
+    values=['percent'],
+    aggfunc='sum',
+    fill_value=0
+)
+
+
+pivot.columns = pivot.columns.droplevel(0)
+pivot.index.name = 'Sektor'
+
+cols = ['Bardzo duży spadek (<= 30%)', 'Duży spadek (-30% - -15%)', 'Spadek (-15% - 0%)', 'Neutralnie / lekki wzrost (0% - 20%)', 'Duży wzrost (20% - 60%)', 'Ekstremalny wzrost (> 60%)']
+pivot = pivot.reindex(fill_value=0, columns = cols)
+
+plt.figure(figsize=(9, 7))
+ax = sns.heatmap(pivot, fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
+
+plt.title('Rozkład stóp zwrotu według sektora (od początku 2026, %)', loc = 'center')
+plt.ylabel(None)
+plt.xlabel(None)
+ax.xaxis.tick_top()
+ax.set_xticklabels(labels = ['<= -30%', '-30% - -15%', '-15% - 0', '0% - 20%', '20% - 60%', '>60%'], rotation=90, ha='right');
+
+```
+
+## Wolumeny
+
+```{python}
+result = (
+    df_to_analyze.groupby(['Volume_change_group', 'L1_nazwa']).ticker.value_counts().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby('L1_nazwa')['count'].transform('sum')* 100,2))
+
+pivot = result.pivot_table(
+    index='L1_nazwa',
+    columns='Volume_change_group',
+    values=['percent'],
+    aggfunc='sum',
+    fill_value=0
+)
+
+
+pivot.columns = pivot.columns.droplevel(0)
+pivot.index.name = 'Sektor'
+
+plt.figure(figsize=(9, 7))
+ax = sns.heatmap(pivot, fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
+
+plt.title('Rozkład zmiany wolumenu M:M (styczeń \'26, %)', loc = 'center')
+plt.ylabel(None)
+plt.xlabel(None)
+ax.xaxis.tick_top()
+ax.set_xticklabels(labels = ['<= -20%', '-20% - 0%', '0% - 20%', '20% - 75%', '>75%'], rotation=90, ha='right');
+```
+
+
+## SMA
+
+```{python}
+smas_df = pd.DataFrame()
+smas = [200, 100, 50, 20]
+
+for i in smas:
+    col = f"above_sma{i}"
+
+    above = (
+        df_to_analyze
+        .groupby('L1_nazwa')[col]
+        .sum()
+        .reset_index(name='above_count')
+    )
+
+    total = (
+        df_to_analyze
+        .groupby('L1_nazwa')['ticker']
+        .count()
+        .reset_index(name='total_count')
+    )
+
+    result = above.merge(total, on='L1_nazwa')
+    result['count'] = round(result['above_count'] / result['total_count'] * 100,2)
+    result['dim_name'] = f">SMA {i}"
+
+    smas_df = pd.concat([smas_df, result[['L1_nazwa', 'dim_name', 'count']]])
+
+pivoted = smas_df.pivot_table(
+    index='L1_nazwa',
+    columns='dim_name',
+    values='count'
+)
+
+col_order = ['>SMA 200','>SMA 100','>SMA 50','>SMA 20']
+
+pt = pivoted.reindex(columns=col_order)
+
+plt.figure(figsize=(9, 7))
+ax = sns.heatmap(pt, fmt=".0f", annot=True, linewidths=0, cmap="YlGn", cbar = False)
+
+plt.title('Procent spółek powyżej średnich kroczących według sektora', loc = 'center')
+plt.ylabel(None)
+plt.xlabel(None)
+ax.xaxis.tick_top()
+```
+:::
+
+Wyniki styczniowe z perspektywy indeksów nie dały skutecznej odpowiedzi w której części rynku szukać największej dynamiki. Więcej wiedzy w tym aspekcie daje spojrzenie przez pryzmat sektorów. Widać przede wszystkim siłę spółek chemicznych i surowcowych (aż 63% wzrosło o ponad 10% w styczniu). W drugiej kolejności warto wskazać spółki technologiczne, jednak tu analogiczny wzrost zanotowało 46% podmiotów. Co ciekawe dobre wyniki spółek z pierwszego sektora nie mają odzwierciedlenia w wolumenie (aż 32% sektora odnotowało ponad 20% spadek średniego dziennego wolumenu miesiąc do miesiąca). Inaczej ma się natomiast segment technologiczny, tu największą, bo 38-procentową grupą są spółki z rosnącym wolumenem o 75%. Co również rzuca się w oczy to 47% spółek z sektora paliwowo-energetycznego ze spadającym wolumenem o ponad 20%. 
+
+Jeśli chodzi o matrycę średnich kroczących, tutaj mamy odzwierciedlenie analogicznej, przedstawionej z perspektywy indeksów. W przypadku każdego segmentu zauważalny jest spadek liczby spółek pomiędzy pomiędzy średnią 50 i 20 sesyjną. Obronną ręką wychodzą wspomniane wcześniej chemia i serowce oraz technologie (nieznaczne spadki o 6 punktów procentowych). Po drugiej stronie słabnące spółki z sektorów takich jak handel, ochrona zdrowia, paliwa i energia,a przede wszystkim produkcja przemysłowa i budowlano montażowa (tu w przypadku SMA50 aż 70% spółek jest powyżej, zaś w przypadku SMA 20 już tylko 44%).
+
+# Na zakończenie 
+
+Pierwszy miesiąc 2026 roku, podobnie jak poprzednie okresy, zagwarantowały wiele dobrego inwestorom, szczególnie w pierwszej części. Istotne wzrosty zanotowały zarówno blue-chips, jak i spółki o mniejszej kapitalizacji, przy czym na znaczeniu zyskały przede wszystkim konkretne sektory - chemia, surowce i technologie. Forma końcówki stycznia wyrażona matrycą średnich kroczących daje natomiast ostrzeżenie. Co najmniej delikatne schłodzenie nie minęło żadnego sektora, przy czym najwieksza lampka ostrzegawcza zapala się przy spółkach budolwanych, handlowych i związanych z ochroną zdrowia. 
