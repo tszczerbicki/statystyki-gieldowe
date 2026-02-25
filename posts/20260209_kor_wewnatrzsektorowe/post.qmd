@@ -1,0 +1,751 @@
+---
+title: "Korelacje wewnątrzsektorowe na GPW"
+subtitle: "Kiedy inwestujemy w wartość organizacji, a kiedy w trendy makro?"
+author: "Tomasz Szczerbicki"
+date: 2026-02-10
+image: "g1.png"
+categories: [Analiza przekrojowa, WIG]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+toc: True
+---
+
+Dobór spółek do portfela najczęściej wiąże się z szeregiem analiz poprzedzających zakupy. Prowadząc tego typu badania warto pamiętać o występujących na rynku korelacjach. Uwzględnienie w swoich rozważaniach tego współczynnika pozwoli nam odfiltrować grupę podmiotów, których wyniki notowań są w dużej mierze sterowane czynnikami makro, a to co dzieje się wewnątrz organizacji stanowi jedynie dodatek. Dodatkowo możemy również uniknąć zaangażowania w spółkę, której kurs zachowuje się bliźniaczo podobnie do ceny waloru, który posiadamy już w portfelu.
+
+W niniejszym wpisie prześledzę zestawienia korelacji sektorowych oraz wewnątrzsektorowych. Punktem wyjścia będą indeksy sektorowe prowadzone przez GPW, a moim celem będzie wypunktowanie wszystkich kluczowych zjawisk - największych korelacji (dodatnich oraz ujemnych) pomiędzy sektorami oraz wewnątrz nich. Pod uwagę wezmę także zmiany w czasie w okresie lat 2023 - 2025.
+
+Analiza prowadzona będzie na danych dziennych, z wykorzystaniem korelacji Pearsona. Skład subindeksów sektorowych GPW aktualny na dzień 11 lutego 2026 roku, a źródłem danych rynkowych jest yahoo finance.
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+import datetime
+import seaborn as sns
+import networkx as nx
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+
+dictionary_stocks = pd.read_excel('/Users/tomasz/Desktop/quarto2/shared_files/spolki.xlsx', index_col = 0)
+```
+
+Na wstępie prezentuję wykres kwartalnych stóp zwrotu indeksu WIG. Kształt linii będzie niezwykle istotny na kolejnych etapach analizy.
+
+Istnieje wiele podejść do wskaźnika Pearsona. Na potrzeby niniejszego wpisu zakładam natępującą interpretację wskaźnika korelacji:
+
+-   poniżej 0,30 -\> słaba
+-   0,31 - 0,50 -\> umiarkowana
+-   0,51 - 0,70 -\> umiarkowanie silna
+-   0,71 - 0,90 -\> silna
+-   0,91 - 1 -\> bardzo silna
+
+```{python}
+wig = pd.read_csv(f'/Users/tomasz/Desktop/quarto2/shared_files/wse_indices/wig.txt')
+wig['date'] = pd.to_datetime(wig['<DATE>'], format='%Y%m%d')
+wig.set_index(wig['date'], drop = True, inplace = True)
+wig = wig['<CLOSE>'].rename('close')
+wig_filtered = wig.loc['2023':'2025'].copy()
+wig_filtered.resample('QE').last().pct_change().multiply(100).plot(figsize = (10,5))
+plt.title('Kwartalne stopy zwrotu indeksu WIG')
+plt.ylabel('Kwartalna zwrotu (%)')
+plt.xlabel(None);
+```
+
+```{python}
+loi = [
+ 'wig_budow.txt','wig_paliwa.txt','wig_odziez.txt','wig_gornic.txt','wig_info.txt',
+ 'wig_nrchom.txt','wig_banki.txt','wig_media.txt','wig_chemia.txt','wig_moto.txt','wig_energ.txt',
+ 'wig_leki.txt','wig_spozyw.txt','wig_gry.txt']
+
+df = pd.DataFrame(index=pd.date_range(start="2023-01-01", end="2025-12-31", freq="D"))
+
+for i in loi:
+    d1 = pd.read_csv(f'/Users/tomasz/Desktop/quarto2/shared_files/wse_indices/{i}')
+    d1['date'] = pd.to_datetime(d1['<DATE>'], format='%Y%m%d')
+    d1.set_index(d1['date'], drop = True, inplace = True)
+    d2 = d1['<CLOSE>'].rename(d1.iloc[0,0])
+    df = df.join(d2)
+
+final_df = df.dropna().pct_change()
+
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = final_df.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+
+loi = [
+ 'wig_budow.txt','wig_paliwa.txt','wig_odziez.txt','wig_gornic.txt','wig_info.txt',
+ 'wig_nrchom.txt','wig_banki.txt','wig_media.txt','wig_chemia.txt','wig_moto.txt','wig_energ.txt',
+ 'wig_leki.txt','wig_spozyw.txt','wig_gry.txt']
+
+df = pd.DataFrame(index=pd.date_range(start="2023-01-01", end="2025-12-31", freq="D"))
+
+for i in loi:
+    d1 = pd.read_csv(f'/Users/tomasz/Desktop/quarto2/shared_files/wse_indices/{i}')
+    d1['date'] = pd.to_datetime(d1['<DATE>'], format='%Y%m%d')
+    d1.set_index(d1['date'], drop = True, inplace = True)
+    d2 = d1['<CLOSE>'].rename(d1.iloc[0,0])
+    df = df.join(d2)
+
+final_df = df.dropna().pct_change()
+```
+
+# Korelacje międzysektorowe
+
+W przypadku korelacji pomiędzy sektorami, w oczy rzucają się rosnące w czasie współczynniki. Swoje odzwierciedlenie ta statystyka ma przede wszystkim w udanym 2025 roku, gdzie względnie spora część spółek rosła. Poza tym zdecydowanie wyróżniają się powiązania sektora bankowego z niemal wszystkimi pozostałymi, a szczególnie ze stroną strategiczną (górnictwo/paliwa) oraz konsumencką (odzież). Co ważne, w tym przypadku korelacja okazuje się stabilna w czasie; najczęściej mieści się w przedziale korelacji umiarkowanej, z okresowymi odstępstwami na umiarkowanie silną i jeszcze rzadszymi przypadkami korelacji słabej (np. z WIG Gry w 2025 roku).
+
+Wyróżniająco wysoka i stała w czasie jest także korelacja między indeksem spółek paliwowych i energetycznych. Oscyluje ona w przedziale 0,37 - 0,45.
+
+W analizowanych okresach, powyżej wartości 0.50 znajduje się również korelacje między: - WIG Odzież a WIG Budownictwo w 2025 roku (co ciekawe w 2023 współczynnik wynosił jedynie 0,15) - WIG Górnictwo a WIG Paliwa w 2024 roku
+
+Wspomniane wyżej odczyty nie mają swojej kontynuacji w czasie. Ogólnie rzecz biorąc, zaprezentowane wartości prowadzą do wniosku o dobrej dywersyfikacji sektorowej na GPW.
+
+::: panel-tabset
+## 2023
+
+```{python}
+fig, ax = plt.subplots(figsize = (8,5), constrained_layout=True)
+
+corr_matrix = final_df.loc['2023'].corr()
+lower_triangles = corr_matrix.where(np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool))
+
+sns.heatmap(lower_triangles, annot=True, cmap="YlGn", fmt='.2f', cbar=True, ax=ax, vmin = vmin, vmax = vmax)
+ax.set_title(None)
+ax.set_ylabel(None)
+ax.set_xlabel(None)
+
+plt.suptitle('Korelacje między indeksami sektorowymi (rok 2023)');
+```
+
+## 2024
+
+```{python}
+fig, ax = plt.subplots(figsize = (8,5), constrained_layout=True)
+
+corr_matrix = final_df.loc['2024'].corr()
+lower_triangles = corr_matrix.where(np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool))
+
+sns.heatmap(lower_triangles, annot=True, cmap="YlGn", fmt='.2f', cbar=True, ax=ax, vmin = vmin, vmax = vmax)
+ax.set_title(None)
+ax.set_ylabel(None)
+ax.set_xlabel(None)
+
+plt.suptitle('Korelacje między indeksami sektorowymi (rok 2024)');
+```
+
+## 2025
+
+```{python}
+fig, ax = plt.subplots(figsize = (8,5), constrained_layout=True)
+
+corr_matrix = final_df.loc['2025'].corr()
+lower_triangles = corr_matrix.where(np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool))
+
+sns.heatmap(lower_triangles, annot=True, cmap="YlGn", fmt='.2f', cbar=True, ax=ax, vmin = vmin, vmax = vmax)
+ax.set_title(None)
+ax.set_ylabel(None)
+ax.set_xlabel(None)
+
+plt.suptitle('Korelacje między indeksami sektorowymi (rok 2025)');
+```
+:::
+
+# Korelacje sektorowe
+
+Rozważania na temat korelacji w obrębie sektorów rozpocznę od analizy w czasie istniejących trendów.
+
+```{python}
+pairs = [
+    ("in_WIG_spozywczy", "WIG spozywczy"),
+    ("in_WIG_banki", "WIG banki"),
+    ("in_WIG_budownictwo", "WIG budownictwo"),
+    ("in_WIG_informatyka", "WIG informatyka"),
+    ("in_WIG_media", "WIG media"),
+    ("in_WIG_paliwa", "WIG paliwa"),
+    ("in_WIG_nieruchomosci", "WIG nieruchomosci"),
+    ("in_WIG_chemia", "WIG chemia"),
+    ("in_WIG_energia", "WIG energia"),
+    ("in_WIG_gornictwo", "WIG gornictwo"),
+    ("in_WIG_gry", "WIG gry"),
+    ("in_WIG_odziez", "WIG odziez"),
+    ("in_WIG_leki", "WIG leki"),
+    ("in_WIG_motoryzacja", "WIG motoryzacja")]
+
+quarters = pd.period_range(start='2023Q1', end='2025Q4', freq='Q')
+
+correlations = pd.DataFrame(index=quarters)
+
+for x, y in pairs:
+    stocks = dictionary_stocks[dictionary_stocks[x] == True].ticker_yf.to_list()
+    data = yf.download(stocks, start= '2023-01-01', end = '2025-12-31')['Close'].pct_change()
+
+    for i in correlations.index.astype(str):
+        data_1 = data.loc[i].corr()
+        lower_triangle = data_1.where(np.tril(np.ones(data_1.shape), k=-1).astype(bool))
+
+        correlations.loc[i, y] = lower_triangle.reset_index().melt(id_vars=lower_triangle.index.name or "index").value.dropna().mean()
+
+
+correlations.plot(subplots= True, layout= (7,2), figsize = (9,10))
+
+plt.suptitle('Przeciętny współczynnik korelacji w podziale na indeksy sektorowe')
+plt.tight_layout()
+plt.show()
+```
+
+Na wykresie powyżej przedstawione zostały przeciętne korelacje pomiędzy spółkami wchodzącymi w wylistowane indeksy. Kalkulacji dokonałem na danych dziennych, zgrupowanych w kwartały. Przyjmowanie w takim przypadku uśrednień nie jest rozwiązaniem idealnym, jednak powinno skutecznie pomóc w przedstawieniu zmian w czasie.
+
+I tak jedyny sektor, w obrębie którego przeciętna korelacja utrzymuje się regularnie co najmniej jako umiarkowana to WIG-banki. Bazując na ostatnich trzech latach, w drugim kwartale 2025 roku wskaźnik ten przekroczył nawet 0.60. W tym miejscu warto jeszcze wspomnieć o WIG górnictwo, wewnątrz którego przeciętna korelacja regularnie osiąga poziomy 0.25. W przypadku pozostałych, rzadko kiedy odczyty wykraczają poza współczynnik na poziomie 0.2.
+
+Nakładając na siebie całośc dotychczasowych rozważań, zauważalnym jest, że względnie duże skorelowanie wewnątrz sektora przekłada się później na wyższe współczynnika korelacji międzysektorowej. Stwierdzenie to tyczy się oczywiści bankowości oraz górnictwa.
+
+Bardziej wprawione oko zauważy również, że kształty krzywych, z drobnymi odstępstwami pokrywają się ze sobą. W przypadku dużej cześci indeksów, zauważalny jest pierwszy wzrost przeciętnej korelacji w okolicach Q3 2024, następnie spadek w Q4 i kolejny lokalny peak przypadający na Q1 2025. Ta sekwencja pokrywa się ze stopami zwrotu szerokiego rynku: trzeci kwartał 2024 to spora przecena na poziomie ponad 5%, kolejny okres to wciąż spadek (lecz łagodniejszy), zaś pierwszy kwartał kolejnego roku zakończył się imponującym, 20% wzrostem. Oczywiście wciąż należy pamiętać o skali i tym, że większa część zaprezentowanych wykresów ma oś Y wyskalowaną do 0.2, jednakże analogiczne trendy widoczne w różnych sektorach udowadniają, że notowania podlegają ruchom wynikającym również z kwestii makro.
+
+::: panel-tabset
+## Banki
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_banki'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+####
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 16))
+
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar= False, cmap="YlGn", ax=axes[x], vmin = vmin, vmax = vmax)
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Spożywczy
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_spozywczy'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmin = vmin, vmax = vmax, cmap="YlGn")
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Budownictwo
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_budownictwo'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(25, 35))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, cbar=True, annot=True, fmt='.2f', ax=axes[x], vmin = vmin,
+    vmax = vmax, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Informatyka
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_informatyka'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(18, 30))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=True, ax=axes[x],
+    vmin = vmin, vmax = vmax, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Media
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_media'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x], 
+    vmin = vmin, vmax = vmax, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Paliwa
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_paliwa'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Nieruchomości
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_nieruchomosci'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(15, 20))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmin = vmin, vmax = vmax, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Chemia
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_chemia'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Energia
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_energia'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Górnictwo
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_gornictwo'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Gry
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_gry'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(15, 20))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+
+## Odzież
+
+```{python}
+stocks = dictionary_stocks[dictionary_stocks['in_WIG_odziez'] == True].ticker_yf.to_list()
+
+start = '2023-01-01'
+end = '2025-12-31'
+
+data = yf.download(stocks, start= start, end = end)['Close'].pct_change()
+
+## fragment kodu na liczenie zakresu skali kolorów
+vmin = 1
+vmax = -1
+
+for i in ['2023', '2024', '2025']:
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+    
+    vmin = min(vmin, np.nanmin(lower_triangles.values))
+    vmax = max(vmax, np.nanmax(lower_triangles.values))
+
+#lower_triangles = {}
+fig, axes = plt.subplots(3, 1, figsize=(8, 15))
+
+for x, i in zip([0,1,2], ['2023', '2024', '2025']):
+    corr_matrix = data.loc[i].corr()
+    lower_triangles = corr_matrix.where(
+        np.tril(np.ones(corr_matrix.shape), k=-1).astype(bool)
+    )
+
+    sns.heatmap(lower_triangles, annot=True, fmt='.2f', cbar=False, ax=axes[x],
+    vmax = vmax, vmin = vmin, cmap = 'YlGn')
+    axes[x].set_title(None)
+    axes[x].set_ylabel(i)
+    axes[x].set_xlabel(None)
+```
+:::
+
+Co zatem słychać w obrębie poszczególnych indeksów? Jeżeli chodzi o bankowość, tutaj zdecydowanymi outsiderami są Getin, Grupo Santandar (nie mylić z Santander Bank Polska) oraz Unicredit. Pozostała grupa reprezentantów, znana głównie z WIG20 i mWIG40 potwierdza wysoką korelację, sięgająca nawet 0,92 jak w przypadku PKO i Pekao w 2023 roku.
+
+Sektor spożywczy, po dwóch latach braku większych silnych korelacji, w 2025 w końcu takowe odnotował. W oczy rzucają się przede wszystkim połączenia przedstawione na wykresie:
+
+```{python}
+G = nx.Graph()
+
+# Krawędzie z wagami
+edges = [
+    ("AST", "AGT", 0.54),
+    ("AST", "IMC", 0.55),
+    ("AST", "KSG", 0.56),
+    ("AST", "MLK", 0.52),
+    ("IMC", "AGT", 0.52),
+    ("KSG", "AGT", 0.74),
+    ("KSG", "IMC", 0.51),
+    ("KSG", "MLK", 0.83),
+    ("MLK", "AGT", 0.75),
+    ("MLK", "IMC", 0.53),
+]
+
+G.add_weighted_edges_from(edges)
+
+pos = nx.spring_layout(G, seed=42)
+
+plt.figure(figsize = (8,5))
+
+# Rysowanie grafu
+nx.draw(G,pos,with_labels=True,node_size=3000,font_size=16)
+
+# Pobranie wag do wyświetlenia
+edge_labels = nx.get_edge_attributes(G, 'weight')
+
+# Rysowanie etykiet na liniach
+nx.draw_networkx_edge_labels(G,pos,edge_labels=edge_labels,font_size=16)
+
+plt.title("Korelacje pomiędzy wybranymi spółkami z sektora WIG-spożywczy w 2025 roku")
+plt.show()
+```
+
+*Ważne: dane dla kolejnych dwóch indeksów, WIG Budownictwa i Informatyki mogą być niewidoczne w standardowym podglądzie. Wykresy w tych dwóch przypadkach sugeruję oglądać w powiększeniu, po otwarciu ich w nowych kartach.*
+
+Cztery z wymienionych spółek - AGROTON (AGT), ASTARTA (AST), IMCOMPANY (IMC) oraz KSGGAGRO łączy wspólny sektor "Produkcja rolna i rybołówstwo". W przypadki MILKILAND (MLK), sytuacja jest nieco inna ponieważ firma sklasyfikowana jest jako podmiot z sektora żywnościowego.
+
+W kolejnym z rozpatrywanych indeksów, w WIG-budownictwie na próżno szukać istotnych korelacji. W okresie analizowanych trzech lat dominują wskaźniki w granicach 0.10, co sugerowałoby bardzo duże zdywersyfikowanie indeksu. Dopiero dane za 2025 rok dostarczają nam pojedynczych silnych korelacji, na czele z parami Mostostal Zabrze i Mostostal Warszawa (współczynnik 0.48) oraz Mirbud i Budimiex (wsp. 0.45).
+
+```{python}
+bud = pd.DataFrame(dictionary_stocks[dictionary_stocks['in_WIG_budownictwo'] == True].groupby('L3_nazwa').size())
+
+bud.columns = ['Liczba spółek']
+
+bud.index.name = 'Sektor'
+
+bud.sort_values(by = 'Liczba spółek', ascending = False)
+```
+
+Warto dodać, iż względnemu brakowi korelacji pomiędzy spółkami zaliczanymi do WIG Budownictwo towarzyszy szeroki zakres indeksu - składa się on z aż 36 spółek, które według klasyfikacji sektorowej wg GPW Benchmark przynależą do 6 różnych sektorów.
+
+Podobnie ma się sytuacja w drugim największym Indeksie - WIG Informatyka. Pomimo tego, że 18 z 28 spółek indeksu znajduje się oprogramowaniem, w badanym okresie najwyższą korelację odnotowano przy parze XPlus i OPTeam, jednak wyniosła ona jedynie 0.31. 
+
+Kolejne opisane heatmapami indeksy zdecydowanie nie przynoszą rewolucyjnych wiadomości, a współczynniki korelacji tam wymienione oscylują w niskich zakresach. Wspomnieć jednak warto tutaj o sektorze paliwowym i o malejącej korelacji pomiędzy PKN Orlen a Unimot. Choć już w 2023 roku współczynnik wynosił tylko 0.26, kolejne odczyty to już kolejno 0.18 i 0.12. 
+
+Dodatkowo uwagę przyciąga z pewnością nietypowe zachowanie Murapolu w indeksie WIG Nieruchomości za 2023 rok, jednak wynik ten należy zignorować - spółka na giełdzie zadebiutowała dopiero 15 grudnia 2023. 
+
+Następnie przeskakujemy do WIG Energia. Tutaj całościowo indeks nie jest mocno skorelowany ze sobą, obejmuje bowiem przedstawicieli różnych obszarów tej branży - od operatorów, przez spółki dystrybucyjne aż do producentów infrastruktury. Co jednak ważne, trzech największych graczy pozostaje w silnej korelacji - mowa tu o PGE, Tauronie i Enei. W zależności od okresu oraz pary, współczynnik oscyluje pomiędzy 0.60 a 0.84, co oczywiście jest efektem analogicznej charakterystyki działalności oraz istotnego udziału Skarbu Państwa w akcjonariacie. Tyczy to się także połączenia pomiędzy JSW a Lubelskim Węglem Bogdanką (i w nieco mniejszy stopniu relacji KGHM z wymienionymi). Na zakończenie rozważać warto także wspomnieć o relacji pomiędzy spółkami Lubawa i Protektor. Obie należą do indeksu WIG-odzież, jednak zajmują się przede wszystkim sektorem odzieży ochronnej/militarnej. Z pominięciem roku 2024, współczynnik korelacji wynosi 0.44-0.48. 

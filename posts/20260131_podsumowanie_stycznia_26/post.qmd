@@ -121,7 +121,7 @@ def run_up(df: pd.DataFrame):
 
 # wgranie słownika
 
-dictionary_stocks = pd.read_excel('spolki.xlsx', index_col = 0)
+dictionary_stocks = pd.read_excel('/Users/tomasz/Desktop/quarto2/shared_files/spolki.xlsx', index_col = 0)
 
 dictionary_stocks['L1_nazwa'] = dictionary_stocks.L1_nazwa.replace('Produkcja przemysłowa i budowlano-montażowa', 'Prod. przem. i bud-montaż.')
 ```
@@ -141,7 +141,7 @@ for ticker in stocks:
 
     #yahoo finance ma błąd w danych dla MOL za okres 30.12.2024 - 10.06.2025. W to miejsce wstawiam dane stooq
     if ticker == 'MOL.WA':
-        l1 = pd.read_csv('t1.csv')['Close'].to_list()
+        l1 = pd.read_csv('/Users/tomasz/Desktop/quarto2/shared_files/t1.csv')['Close'].to_list()
         ohlcv_data['MOL.WA'].loc[ '2024-12-30':'2025-06-10', 'Close'] = l1
     
     # podobnie błąd dla Dadelo w jednym dniu
