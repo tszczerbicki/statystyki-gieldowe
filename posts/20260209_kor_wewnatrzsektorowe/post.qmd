@@ -1,10 +1,10 @@
 ---
-title: "Korelacje wewnątrzsektorowe na GPW"
-subtitle: "Kiedy inwestujemy w wartość organizacji, a kiedy w trendy makro?"
+title: "Korelacje sektorowe na GPW"
+subtitle: "Czy oczywiste powiązania są zbyt oczywiste, a nieoczywiste w ogóle istnieją?"
 author: "Tomasz Szczerbicki"
 date: 2026-02-10
 image: "g1.png"
-categories: [Analiza przekrojowa, WIG]
+categories: [Analiza przekrojowa, WIG, GPW]
 execute:
   echo: false
   warning: false
@@ -13,7 +13,7 @@ execute:
 toc: True
 ---
 
-Dobór spółek do portfela najczęściej wiąże się z szeregiem analiz poprzedzających zakupy. Prowadząc tego typu badania warto pamiętać o występujących na rynku korelacjach. Uwzględnienie w swoich rozważaniach tego współczynnika pozwoli nam odfiltrować grupę podmiotów, których wyniki notowań są w dużej mierze sterowane czynnikami makro, a to co dzieje się wewnątrz organizacji stanowi jedynie dodatek. Dodatkowo możemy również uniknąć zaangażowania w spółkę, której kurs zachowuje się bliźniaczo podobnie do ceny waloru, który posiadamy już w portfelu.
+Dobór spółek do portfela inwestycyjnego zazwyczaj poprzedzony jest szeregiem analiz mających na celu ocenę ich potencjału wzrostu oraz poziomu ryzyka. W procesie tym istotne jest uwzględnienie korelacji pomiędzy instrumentami finansowymi. Analiza tego współczynnika pozwala wyodrębnić podmioty, których notowania w znacznym stopniu determinowane są czynnikami makroekonomicznymi, podczas gdy czynniki wewnętrzne odgrywają rolę drugorzędną. Ponadto umożliwia ograniczenie ryzyka nadmiernej koncentracji poprzez eliminację spółek, których kurs wykazuje wysokie podobieństwo do walorów już znajdujących się w portfelu.
 
 W niniejszym wpisie prześledzę zestawienia korelacji sektorowych oraz wewnątrzsektorowych. Punktem wyjścia będą indeksy sektorowe prowadzone przez GPW, a moim celem będzie wypunktowanie wszystkich kluczowych zjawisk - największych korelacji (dodatnich oraz ujemnych) pomiędzy sektorami oraz wewnątrz nich. Pod uwagę wezmę także zmiany w czasie w okresie lat 2023 - 2025.
 
@@ -749,3 +749,12 @@ Kolejne opisane heatmapami indeksy zdecydowanie nie przynoszą rewolucyjnych wia
 Dodatkowo uwagę przyciąga z pewnością nietypowe zachowanie Murapolu w indeksie WIG Nieruchomości za 2023 rok, jednak wynik ten należy zignorować - spółka na giełdzie zadebiutowała dopiero 15 grudnia 2023. 
 
 Następnie przeskakujemy do WIG Energia. Tutaj całościowo indeks nie jest mocno skorelowany ze sobą, obejmuje bowiem przedstawicieli różnych obszarów tej branży - od operatorów, przez spółki dystrybucyjne aż do producentów infrastruktury. Co jednak ważne, trzech największych graczy pozostaje w silnej korelacji - mowa tu o PGE, Tauronie i Enei. W zależności od okresu oraz pary, współczynnik oscyluje pomiędzy 0.60 a 0.84, co oczywiście jest efektem analogicznej charakterystyki działalności oraz istotnego udziału Skarbu Państwa w akcjonariacie. Tyczy to się także połączenia pomiędzy JSW a Lubelskim Węglem Bogdanką (i w nieco mniejszy stopniu relacji KGHM z wymienionymi). Na zakończenie rozważać warto także wspomnieć o relacji pomiędzy spółkami Lubawa i Protektor. Obie należą do indeksu WIG-odzież, jednak zajmują się przede wszystkim sektorem odzieży ochronnej/militarnej. Z pominięciem roku 2024, współczynnik korelacji wynosi 0.44-0.48. 
+
+# Podsumowanie 
+
+Przytoczone w trakcie tego krótkiego przeglądu dane skłaniają do refleksji, iż GPW oferuje pełen wachlarz spółek jeśli chodzi o dywersyfikację sektorową. O istotnych poziomach korelacji można mówić przede wszystkim w przypadku banków (względem pozostałych sektorach) oraz pomiędzy strategicznymi gałęziami jak górnictwo, energetyka i paliwa. 
+
+Przeprowadzone analizy pokazują, że indeksy jednorodne - cechujące się wysoką korelacją wewnątrz, korelują następnie z innymi indeksami branżowymi. Ponad to, niemal każdy sektor odnotowuje kondycję szerokiego rynku. 
+
+Przeprowadzona analiza nie dostarczyła jednak nieoczywistych połączeń między spółkami. Wykazała pojedyncze klastry wewnątrz sektorów, jak w przypadku Banków, Energetyki czy sektora Spożywczego. To co również jest warte zapamiętania, to fakt że korelacja nie jest stała w czasie. Na przykładzie heatmap za lata 2023-2025 można z łatwością zauwazyć połączenia, które wraz z upływem czasu zmieniały swoją siłę - czasem w górę, a czasem w dół. Z tego też powodu, pomijając sektory strategiczne, w dzisiejszych realiach niezwykle trudno o silne korelacje nawet pomiędzy podobnymi spółkami, a o ostatecznym rezultacie decyduje szczegół gdzieś z wnętrza organizacji.
+
