@@ -10,7 +10,265 @@
 <atom:link href="https://tszczerbicki.github.io/quarto-site/index.xml" rel="self" type="application/rss+xml"/>
 <description>O giełdzie i danych w przystępny sposób</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 09 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 24 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Ekstremalna sesja – początek trendu czy pułapka?</title>
+  <dc:creator>Tomasz Szczerbicki</dc:creator>
+  <link>https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Ekstremalne sesje, niezależnie w którą stronę, wywołują gigantyczne emocje wśród inwestorów. Oglądając dynamiczny wzrost w trakcie jednej sesji w głowie mogą pojawiać się myśli o zrealizowaniu zysków, zaś mając przed sobą znaczne obsunięcie kapitału, zaczynamy się zastanawiać jak zapobiec dalszym stratom. Tego typu rozważania w niniejszym wpisie przełożę na liczby i zweryfikuję jak w perspektywie krótoterminowej (1,5,10 i 50 sesji od wystąpienia obserwacji ekstremalnej) radzą sobie kursy spółek.</p>
+<section id="dzienne-stopy-zwrotu---przegląd-danych-historycznych" class="level1">
+<h1>Dzienne stopy zwrotu - przegląd danych historycznych</h1>
+<p>Analizę rozpoczyna krótka eksploracja dotychczasowych sesji za lata 2023-2025. W tej części dokonam weryfikacji jak rozkładały się stopy zwrotu z perspektywy indeksu oraz okresu, a także zbadam jaką częścią wszystkich obserwacji (czyt. dziennych stóp zwrotu wszystkich spółek indeksu WIG) były obserwacje ekstremalne - przekraczające plus/minus 5%.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">WIG20</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">mWIG40</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">sWIG80</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">WIG rest</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">WIG</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div id="12757cb3" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-5-output-1.png" width="1190" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div id="c968d152" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-6-output-1.png" width="1190" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
+<div id="5d66e3bf" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-7-output-1.png" width="1191" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
+<div id="9472a162" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-8-output-1.png" width="1190" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
+<div id="4b2c36b8" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-9-output-1.png" width="1191" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Jak można łatwo zauważyć, niezależnie od indeksu i okresu, około 95% procent obserwacji to wartości oscylujące wokół -5% a +5%. Swoją drogą interesującym jest fakt, że niemal w każdym przypadku więcej jest sesji ujemnych, a jedynym wyjątkiem jest WIG20 w 2023 i 2025 roku.</p>
+<p>Obserwacje brane pod uwagę w dalszej analizie:</p>
+<div id="21dda0ec" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Liczba</th>
+<th data-quarto-table-cell-role="th">Procent</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Rok</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023</th>
+<td>4514</td>
+<td>5.68</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2024</th>
+<td>3945</td>
+<td>4.94</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2025</th>
+<td>4258</td>
+<td>5.28</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Na kolejnych etapach analizie poddawane będą tylko te obserwacje ze zmianą o co najmniej 5% (in plus lub in minus). Zbiorowość ta stanowi około 5% wszystkich w skali każdego roku.</p>
+<div id="66bf3693" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">strona</th>
+<th data-quarto-table-cell-role="th">zmiana in minus</th>
+<th data-quarto-table-cell-role="th">zmiana in plus</th>
+<th data-quarto-table-cell-role="th">Razem</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Rok</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023</th>
+<td>1704</td>
+<td>2810</td>
+<td>4514</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2024</th>
+<td>1681</td>
+<td>2264</td>
+<td>3945</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2025</th>
+<td>1631</td>
+<td>2627</td>
+<td>4258</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Razem</th>
+<td>5016</td>
+<td>7701</td>
+<td>12717</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>W tym miejscu warto zauważyć, iż historycznie, jeżeli wartość ekstremalna jest odnotowywana, to częściej jest to zmiana pozytywna. Proporcje w tej statystyce wynoszą 60:40 i tak z 12 718 obserwacji rozpatrywanych, 7703 to będą zmiany pozytywne, a 5015 to zmiany negatywne.</p>
+</section>
+<section id="zmiany-pozytywne" class="level1">
+<h1>Zmiany pozytywne</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Rozkład (jako % grupy)</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Rozkład (liczbowo)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div id="50fab7a0" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-12-output-1.png" width="1456" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div id="b6fa1157" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Text(0.5, 0.98, 'Rozkład obserwacji według zmiany % w sesji 0 (oś X) oraz zmiany procentowej po X sesjach (oś Y)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-13-output-2.png" width="1456" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Już na pierwszy rzut oka widać, że istnieje spora dysproporcja w liczbie obserwacji ze wzrostem 5-10%, a pozostałymi. Dodatkowo, co można zauważyć na rozkładzie procentowym, wraz z upływem czasu (od X = 1 aż do X = 50), obserwacje zaczynają rozkładać się równomiernie. W pierwszej sesji od sesji wzrostowej 5-10%, stopy zwrotu w ponad 86% koncentrują się w przedziale od -5% do +5. Wraz z upływem czasu obserwacje ‘przepływają’ w kierunku bardziej skrajnych grup (zarówno in plus, jak i in minus), w taki sposób że po 50 sesjach po 25% całości rośnie/spada o 10% względem sesji 0. Podobnie zachowują się odczyty z kolejnej grupy, 5-10%.</p>
+<p>Zdecydowanie ciekawiej wygląda zachowanie obserwacji z wyższych grup, choć od razu należy zaznaczyć że nominalnie jest ich istotnie mało. W przypadku odczytów powyżej +20% w trakcie jednej sesji, w przypadku aż 65.66% obserwacji, po 50 sesjach cena znajdowała się poniżej ceny z sesji zero (i co ważne w aż 51.65% przypadków ta cena spadała o ponad 10%).</p>
+<p>Drugą istotną obserwacją jest fakt, że w przypadku wzrostów o ponad 20%, wielkość grupy spółek, które następnie rosną o ponad 10% jest mniej więcej stała w czasie - niezależnie czy mówimy o 1., 5., 10. czy 50. sesji, stanowi ona około 23% tej zbiorowości. Zweryfikowałem jednak, że skład tej grupy podlega dość sporym rotacjom. Istnieje 87 obserwacji, które odnotowały wzrost o ponad 20%, a po kolejnej sesji były o co najmniej 10% wyżej. Z tej grupy, jeśli chodzi o perspektywę 50-sesyjną, utrzymały sie tylko 33 obserwacje.</p>
+</section>
+<section id="zmiany-negatywne" class="level1">
+<h1>Zmiany negatywne</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Rozkład (jako % grupy)</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Rozkład (liczbowo)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div id="329717ba" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-14-output-1.png" width="1550" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div id="65e7d9d9" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>Text(0.5, 0.98, 'Rozkład obserwacji według zmiany % w sesji 0 (oś XY) oraz zmiany procentowej po X sesjach (oś X)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post_files/figure-html/cell-15-output-2.png" width="1550" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Jeżeli chodzi o zmiany negatywne, kwestia rozkładów wygląda analogicznie jak w poprzedniej sekcji. Nominalnie dominują bardzo wyraźnie sesje spadkowe w przedziale -5 do -10% i z czasem obserwacje w tej grupie przepływają na dwie strony rozkładu w podobnych proporcjach. Sytuacja powtarza się także w przypadku obserwacji spadkowych zaklasyfikowanych do grup -10 - -15% oraz -15 - -20%.</p>
+<p>Co do spadków powyżej 20%, w aż 57% przypadków po 50 sesjach spółki są niżej o kolejne (co najmniej) 10% od ceny zamknięcia z sesji 0. Statystyka wygląda jak alarmująco, jednak musimy pamiętać o niewielkiej skali występowania tego typu sytuacji. Na wspomniane 57% składa się jedynie 28 obserwacji z lat 2023-2025.</p>
+</section>
+<section id="na-zakończenie" class="level1">
+<h1>Na zakończenie</h1>
+<p>Dane historyczne jasno wskazują, że poza zakres +/- 5% w skali sesji wykracza jedynie 5% przypadków jeśli mowa o spółkach indeksu WIG w ostatnich 3 latach. W przypadku wyodrębnionych w toku analizy zmian o 10/15/20% widać, że wraz z upływem czasu wyniki równomiernie przepływają do skrajnych stron rozkładu i ma to miejsce zarówno przy wzrostach, jak i spadkach tej skali, co sugeruje że tego typu anomalie nie są decydujące dla trendu w kolejnych sesjach.</p>
+<p>Wyjątkiem okazały się zmiany o ponad 20% (in plus oraz in minus). W przypadku wzrostów, upływający czas najczęściej działał niekorzystnie i ponad połowa takich pozycji po 50 sesjach traciła ponad 10%. Podobnie wygląda sprawa sesji spadkowych - spadki o ponad 20%, w 57,14% po kolejnych 50 sesjach kończyły się dalszym spadkiem ceny o co najmniej 10%.</p>
+<p>Historia notowań z ostatnich nie przygotowała jednoznacznej odpowiedzi na to jak zachować się w przypadku ekstremalnych sesji. Nawet przy wspomnianych 57% spółek spadających po 50 sesjach o co najmniej 10% należy pamiętać o grupie spółek rosnących o 10% lub więcej (14,29%). Zaprezentowane podsumowanie notowań prowadzi jednak do przemyślenia, że kwestia anomalii nie powinna być czynnikiem decydującym o ruchach na rynku, a te powinny być rozważane przez pryzmat zmian w fundamentalnych założeniach.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Analiza przekrojowa</category>
+  <category>WIG</category>
+  <category>GPW</category>
+  <guid>https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/post.html</guid>
+  <pubDate>Tue, 24 Feb 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/g1.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Korelacje sektorowe na GPW</title>
   <dc:creator>Tomasz Szczerbicki</dc:creator>
@@ -33,7 +291,7 @@
 <li>0,71 - 0,90 -&gt; silna</li>
 <li>0,91 - 1 -&gt; bardzo silna</li>
 </ul>
-<div id="0908bb77" class="cell" data-execution_count="2">
+<div id="e64646bd" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -52,7 +310,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">2023</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">2024</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">2025</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="4494d5ad" class="cell" data-execution_count="4">
+<div id="03d5bbf3" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -63,7 +321,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="b293203c" class="cell" data-execution_count="5">
+<div id="735e5898" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -74,7 +332,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="de7f000e" class="cell" data-execution_count="6">
+<div id="66472de3" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -90,7 +348,7 @@
 <section id="korelacje-sektorowe" class="level1">
 <h1>Korelacje sektorowe</h1>
 <p>Rozważania na temat korelacji w obrębie sektorów rozpocznę od analizy w czasie istniejących trendów.</p>
-<div id="8846aea2" class="cell" data-execution_count="7">
+<div id="964e5bd4" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -107,7 +365,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Banki</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Spożywczy</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Budownictwo</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Informatyka</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" aria-controls="tabset-2-5" aria-selected="false" href="">Media</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" aria-controls="tabset-2-6" aria-selected="false" href="">Paliwa</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" aria-controls="tabset-2-7" aria-selected="false" href="">Nieruchomości</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" aria-controls="tabset-2-8" aria-selected="false" href="">Chemia</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" aria-controls="tabset-2-9" aria-selected="false" href="">Energia</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" aria-controls="tabset-2-10" aria-selected="false" href="">Górnictwo</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" aria-controls="tabset-2-11" aria-selected="false" href="">Gry</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" aria-controls="tabset-2-12" aria-selected="false" href="">Odzież</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="528df255" class="cell" data-execution_count="8">
+<div id="deab6a99" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -118,7 +376,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="86860031" class="cell" data-execution_count="9">
+<div id="09ccf733" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -129,7 +387,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="69abc8a4" class="cell" data-execution_count="10">
+<div id="80848857" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -140,7 +398,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="b6cf731e" class="cell" data-execution_count="11">
+<div id="f2554a6a" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -151,7 +409,7 @@
 </div>
 </div>
 <div id="tabset-2-5" class="tab-pane" aria-labelledby="tabset-2-5-tab">
-<div id="c9fd3ae5" class="cell" data-execution_count="12">
+<div id="0a987bd9" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -162,7 +420,7 @@
 </div>
 </div>
 <div id="tabset-2-6" class="tab-pane" aria-labelledby="tabset-2-6-tab">
-<div id="b4a25d14" class="cell" data-execution_count="13">
+<div id="1547d56e" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -173,7 +431,7 @@
 </div>
 </div>
 <div id="tabset-2-7" class="tab-pane" aria-labelledby="tabset-2-7-tab">
-<div id="5363ed31" class="cell" data-execution_count="14">
+<div id="5793c75e" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -184,7 +442,7 @@
 </div>
 </div>
 <div id="tabset-2-8" class="tab-pane" aria-labelledby="tabset-2-8-tab">
-<div id="ac1b0930" class="cell" data-execution_count="15">
+<div id="5697d162" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -195,7 +453,7 @@
 </div>
 </div>
 <div id="tabset-2-9" class="tab-pane" aria-labelledby="tabset-2-9-tab">
-<div id="1f67e01d" class="cell" data-execution_count="16">
+<div id="41e02907" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -206,7 +464,7 @@
 </div>
 </div>
 <div id="tabset-2-10" class="tab-pane" aria-labelledby="tabset-2-10-tab">
-<div id="37ea23eb" class="cell" data-execution_count="17">
+<div id="7b13c3c6" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -217,7 +475,7 @@
 </div>
 </div>
 <div id="tabset-2-11" class="tab-pane" aria-labelledby="tabset-2-11-tab">
-<div id="b0ae59ac" class="cell" data-execution_count="18">
+<div id="5754e701" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -228,7 +486,7 @@
 </div>
 </div>
 <div id="tabset-2-12" class="tab-pane" aria-labelledby="tabset-2-12-tab">
-<div id="372ade80" class="cell" data-execution_count="19">
+<div id="1bb3ec80" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -242,7 +500,7 @@
 </div>
 <p>Co zatem słychać w obrębie poszczególnych indeksów? Jeżeli chodzi o bankowość, tutaj zdecydowanymi outsiderami są Getin, Grupo Santandar (nie mylić z Santander Bank Polska) oraz Unicredit. Pozostała grupa reprezentantów, znana głównie z WIG20 i mWIG40 potwierdza wysoką korelację, sięgająca nawet 0,92 jak w przypadku PKO i Pekao w 2023 roku.</p>
 <p>Sektor spożywczy, po dwóch latach braku większych silnych korelacji, w 2025 w końcu takowe odnotował. W oczy rzucają się przede wszystkim połączenia przedstawione na wykresie:</p>
-<div id="e27c5bd2" class="cell" data-execution_count="20">
+<div id="af2a6516" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -254,7 +512,7 @@
 <p><em>Ważne: dane dla kolejnych dwóch indeksów, WIG Budownictwa i Informatyki mogą być niewidoczne w standardowym podglądzie. Wykresy w tych dwóch przypadkach sugeruję oglądać w powiększeniu, po otwarciu ich w nowych kartach.</em></p>
 <p>Cztery z wymienionych spółek - AGROTON (AGT), ASTARTA (AST), IMCOMPANY (IMC) oraz KSGGAGRO łączy wspólny sektor “Produkcja rolna i rybołówstwo”. W przypadki MILKILAND (MLK), sytuacja jest nieco inna ponieważ firma sklasyfikowana jest jako podmiot z sektora żywnościowego.</p>
 <p>W kolejnym z rozpatrywanych indeksów, w WIG-budownictwie na próżno szukać istotnych korelacji. W okresie analizowanych trzech lat dominują wskaźniki w granicach 0.10, co sugerowałoby bardzo duże zdywersyfikowanie indeksu. Dopiero dane za 2025 rok dostarczają nam pojedynczych silnych korelacji, na czele z parami Mostostal Zabrze i Mostostal Warszawa (współczynnik 0.48) oraz Mirbud i Budimiex (wsp. 0.45).</p>
-<div id="89043f8b" class="cell" data-execution_count="21">
+<div id="2fbfe0f2" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
@@ -335,7 +593,7 @@
 
 
 <p>Rok 2025 rozbudził apetyty inwestorów na GPW. Za nami pierwszy miesiąc nowego roku, a w nim wciąż spora dynamika niezależnie od segmentu, giełdowi ulubieńcy spoza głównych indeksów, ale jednocześnie osłabione wskaźniki wolumenu i trendu.</p>
-<div id="18e4190a" class="cell" data-execution_count="4">
+<div id="d19fb331" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -350,7 +608,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Wolumeny</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="a4ed89de" class="cell" data-execution_count="5">
+<div id="5dccaaca" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -483,7 +741,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="b07840a3" class="cell" data-execution_count="6">
+<div id="e0b54016" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -604,7 +862,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="f8d1e18a" class="cell" data-execution_count="7">
+<div id="1f550b32" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -735,7 +993,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Wzrosty sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Spadki sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Wzrosty miesięczne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Spadki miesięczne</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="2edf8e65" class="cell" data-execution_count="8">
+<div id="15f44f59" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -848,7 +1106,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="a2d5ef8e" class="cell" data-execution_count="9">
+<div id="bf42376f" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -961,7 +1219,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="8dac2ca8" class="cell" data-execution_count="10">
+<div id="c1ac3309" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1074,7 +1332,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="d2846e15" class="cell" data-execution_count="11">
+<div id="14e0c93c" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1198,7 +1456,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Średnie kroczące</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">ATH200 dist.</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Supertrend</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="dfadcd6d" class="cell" data-execution_count="12">
+<div id="f01bc585" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1209,7 +1467,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="f6e4dbc2" class="cell" data-execution_count="13">
+<div id="26baa21a" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -1282,7 +1540,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="4b677aec" class="cell" data-execution_count="14">
+<div id="6f86e3e1" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -1338,7 +1596,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">SMA</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="ce2d6150" class="cell" data-execution_count="15">
+<div id="92151ef5" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1349,7 +1607,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="2889565c" class="cell" data-execution_count="16">
+<div id="126370dc" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1360,7 +1618,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="7ab0121a" class="cell" data-execution_count="17">
+<div id="8e2eeb7b" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1371,7 +1629,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="a3a5e557" class="cell" data-execution_count="18">
+<div id="0fccf984" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1415,7 +1673,7 @@
 
 
 <p>Za nami rok 2025, który na Giełdzie Papierów Wartościowych obfitował w imponujące wzrosty. W tym wpisie podsumuję kto skorzystał, a kto stracił najbardziej; jak duże ryzyka pojawiły się w trakcie roku i jak wygląda krajobraz na polskiej giełdzie po tak intensywnym okresie. Przegląd ten zostanie przeprowadzony w podziale na cztery części: WIG20, mWIG40, sWIG80 oraz WIG pozostałe.</p>
-<div id="17ad247a" class="cell" data-execution_count="4">
+<div id="8f64a27d" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1431,7 +1689,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" aria-controls="tabset-1-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" aria-controls="tabset-1-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="051ebc19" class="cell" data-execution_count="5">
+<div id="f80ca3a6" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -1478,7 +1736,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="2c0de96a" class="cell" data-execution_count="6">
+<div id="1b4ac2ab" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -1544,7 +1802,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="1aecae4e" class="cell" data-execution_count="7">
+<div id="26f376a8" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -1610,7 +1868,7 @@
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
-<div id="01e24e69" class="cell" data-execution_count="8">
+<div id="0625db42" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -1690,7 +1948,7 @@
 </div>
 </div>
 <div id="tabset-1-5" class="tab-pane" aria-labelledby="tabset-1-5-tab">
-<div id="c6c18cc5" class="cell" data-execution_count="9">
+<div id="9da64ab0" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -1763,7 +2021,7 @@
 </div>
 </div>
 <div id="tabset-1-6" class="tab-pane" aria-labelledby="tabset-1-6-tab">
-<div id="af7b930f" class="cell" data-execution_count="10">
+<div id="ddd9a404" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1812,7 +2070,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" aria-controls="tabset-2-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" aria-controls="tabset-2-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="0634a8c1" class="cell" data-execution_count="11">
+<div id="b5dedf4c" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1869,7 +2127,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="10233061" class="cell" data-execution_count="12">
+<div id="90d74029" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -1935,7 +2193,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="99f31122" class="cell" data-execution_count="13">
+<div id="56bea9fc" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -2001,7 +2259,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="bd022567" class="cell" data-execution_count="14">
+<div id="742de9d9" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -2099,7 +2357,7 @@
 </div>
 </div>
 <div id="tabset-2-5" class="tab-pane" aria-labelledby="tabset-2-5-tab">
-<div id="b0cf9c18" class="cell" data-execution_count="15">
+<div id="80613ae2" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
@@ -2188,7 +2446,7 @@
 </div>
 </div>
 <div id="tabset-2-6" class="tab-pane" aria-labelledby="tabset-2-6-tab">
-<div id="0a440a83" class="cell" data-execution_count="16">
+<div id="9c18b9bd" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -2244,7 +2502,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" aria-controls="tabset-3-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" aria-controls="tabset-3-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="dc628c01" class="cell" data-execution_count="17">
+<div id="70b344d0" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
@@ -2301,7 +2559,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="2079107c" class="cell" data-execution_count="18">
+<div id="a86a2641" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
@@ -2367,7 +2625,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="6793852e" class="cell" data-execution_count="19">
+<div id="ac0eeef7" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
@@ -2433,7 +2691,7 @@
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
-<div id="296ed7f9" class="cell" data-execution_count="20">
+<div id="113abe4d" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
@@ -2531,7 +2789,7 @@
 </div>
 </div>
 <div id="tabset-3-5" class="tab-pane" aria-labelledby="tabset-3-5-tab">
-<div id="4e44cef7" class="cell" data-execution_count="21">
+<div id="e4e9587c" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
@@ -2620,7 +2878,7 @@
 </div>
 </div>
 <div id="tabset-3-6" class="tab-pane" aria-labelledby="tabset-3-6-tab">
-<div id="ab863ec3" class="cell" data-execution_count="22">
+<div id="e8faee11" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
@@ -2675,7 +2933,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Stopy zwrotu</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">Top 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Flop 5</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" aria-controls="tabset-4-5" aria-selected="false" href="">Maks Obsunięcie</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" aria-controls="tabset-4-6" aria-selected="false" href="">Kapitalizacje</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="36f2235f" class="cell" data-execution_count="23">
+<div id="86518bdd" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
@@ -2732,7 +2990,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="a0759d25" class="cell" data-execution_count="24">
+<div id="5304666d" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
@@ -2798,7 +3056,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="bc4f13e5" class="cell" data-execution_count="25">
+<div id="55eaa7ca" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
@@ -2864,7 +3122,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="97d00e4a" class="cell" data-execution_count="26">
+<div id="239c3281" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
@@ -2962,7 +3220,7 @@
 </div>
 </div>
 <div id="tabset-4-5" class="tab-pane" aria-labelledby="tabset-4-5-tab">
-<div id="7e77c164" class="cell" data-execution_count="27">
+<div id="866975d9" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
@@ -3051,7 +3309,7 @@
 </div>
 </div>
 <div id="tabset-4-6" class="tab-pane" aria-labelledby="tabset-4-6-tab">
-<div id="e76c14ce" class="cell" data-execution_count="28">
+<div id="f81c19bb" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
@@ -3118,7 +3376,7 @@
 <h1>Na zakończenie</h1>
 <p>Imponujące wzrosty w 2025, jakimi indeksy WIG20 (+45%), mWIG40 (+33%) i sWIG80 (+25%) prowadzą z łatwością do wizji gigantycznych wzrostów dostępnych na wyciągnięcie ręki, choć finalnie okazuje się, że chociażby w przypadku spółek sWIG80 czy WIG rest aż 40% podmiotów zakończyła rok ze spadkiem kursu. W przypadku indeksów GPW za tę magię odpowiadają wagi poszczególnych spółek. Przykładowo w WIG20 drugą i trzecią spółką względem wagi są PKN Orlen (13,131 udziału w portfelu) i KGHM (10,665), a więc walory które w całym WIG20 rosły w ubiegłym roku najmocniej. Z drugiej strony, jedyny outsider - CCC, którego kurs stracił 35%, ma w tym portfelu wagę 1,445%.</p>
 <p>Przyjmując zatem strategię selektywnego doboru spółek kosztem inwestycji w cały indeks, kluczem do osiągnięcia sukcesu było przede wszystkim zaangażowanie w spółki o jak największej skali działalności. Wydawać by się zatem mogło, że kwestia doboru branży w przypadku GPW zeszła nieco na drugi plan, jednak jest to błędne założenie, co wyjaśnia poniższy wykres:</p>
-<div id="5f941555" class="cell" data-fig-height="19" data-execution_count="29">
+<div id="075488e1" class="cell" data-fig-height="19" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Tomasz Szczerbicki">
 
-<title>Korelacje sektorowe na GPW – Tomasz Szczerbicki - analizy giełdowe</title>
+<title>Ekstremalna sesja – początek trendu czy pułapka? – Tomasz Szczerbicki - analizy giełdowe</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,9 +89,9 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta name="twitter:title" content="Korelacje sektorowe na GPW – Tomasz Szczerbicki - analizy giełdowe">
-<meta name="twitter:description" content="Czy oczywiste powiązania są zbyt oczywiste, a nieoczywiste w ogóle istnieją?">
-<meta name="twitter:image" content="https://tszczerbicki.github.io/quarto-site/posts/20260209_kor_wewnatrzsektorowe/g1.png">
+<meta name="twitter:title" content="Ekstremalna sesja – początek trendu czy pułapka? – Tomasz Szczerbicki - analizy giełdowe">
+<meta name="twitter:description" content="Czy znaczne zmiany sesyjne to ostatni moment na transakcję? Sprawdzam statystykę.">
+<meta name="twitter:image" content="https://tszczerbicki.github.io/quarto-site/posts/20260225_sesje_ekstremalne/g1.png">
 <meta name="twitter:creator" content="@Shcherbytsky">
 <meta name="twitter:site" content="@Shcherbytsky">
 <meta name="twitter:card" content="summary">
@@ -148,8 +148,8 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Korelacje sektorowe na GPW</h1>
-            <p class="subtitle lead">Czy oczywiste powiązania są zbyt oczywiste, a nieoczywiste w ogóle istnieją?</p>
+      <h1 class="title">Ekstremalna sesja – początek trendu czy pułapka?</h1>
+            <p class="subtitle lead">Czy znaczne zmiany sesyjne to ostatni moment na transakcję? Sprawdzam statystykę.</p>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Analiza przekrojowa</div>
                 <div class="quarto-category">WIG</div>
@@ -171,7 +171,7 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Opublikowano</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">10 lutego 2026</p>
+        <p class="date">25 lutego 2026</p>
       </div>
     </div>
     
@@ -187,9 +187,10 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
     <h2 id="toc-title">Na tej stronie</h2>
    
   <ul>
-  <li><a href="#korelacje-międzysektorowe" id="toc-korelacje-międzysektorowe" class="nav-link active" data-scroll-target="#korelacje-międzysektorowe">Korelacje międzysektorowe</a></li>
-  <li><a href="#korelacje-sektorowe" id="toc-korelacje-sektorowe" class="nav-link" data-scroll-target="#korelacje-sektorowe">Korelacje sektorowe</a></li>
-  <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie">Podsumowanie</a></li>
+  <li><a href="#dzienne-stopy-zwrotu---przegląd-danych-historycznych" id="toc-dzienne-stopy-zwrotu---przegląd-danych-historycznych" class="nav-link active" data-scroll-target="#dzienne-stopy-zwrotu---przegląd-danych-historycznych">Dzienne stopy zwrotu - przegląd danych historycznych</a></li>
+  <li><a href="#zmiany-pozytywne" id="toc-zmiany-pozytywne" class="nav-link" data-scroll-target="#zmiany-pozytywne">Zmiany pozytywne</a></li>
+  <li><a href="#zmiany-negatywne" id="toc-zmiany-negatywne" class="nav-link" data-scroll-target="#zmiany-negatywne">Zmiany negatywne</a></li>
+  <li><a href="#na-zakończenie" id="toc-na-zakończenie" class="nav-link" data-scroll-target="#na-zakończenie">Na zakończenie</a></li>
   </ul>
 </nav>
     </div>
@@ -200,64 +201,63 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 
 
 
-<p>Dobór spółek do portfela inwestycyjnego zazwyczaj poprzedzony jest szeregiem analiz mających na celu ocenę ich potencjału wzrostu oraz poziomu ryzyka. W procesie tym istotne jest uwzględnienie korelacji pomiędzy instrumentami finansowymi. Analiza tego współczynnika pozwala wyodrębnić podmioty, których notowania w znacznym stopniu determinowane są czynnikami makroekonomicznymi, podczas gdy czynniki wewnętrzne odgrywają rolę drugorzędną. Ponadto umożliwia ograniczenie ryzyka nadmiernej koncentracji poprzez eliminację spółek, których kurs wykazuje wysokie podobieństwo do walorów już znajdujących się w portfelu.</p>
-<p>W niniejszym wpisie prześledzę zestawienia korelacji sektorowych oraz wewnątrzsektorowych. Punktem wyjścia będą indeksy sektorowe prowadzone przez GPW, a moim celem będzie wypunktowanie wszystkich kluczowych zjawisk - największych korelacji (dodatnich oraz ujemnych) pomiędzy sektorami oraz wewnątrz nich. Pod uwagę wezmę także zmiany w czasie w okresie lat 2023 - 2025.</p>
-<p>Analiza prowadzona będzie na danych dziennych, z wykorzystaniem korelacji Pearsona. Skład subindeksów sektorowych GPW aktualny na dzień 11 lutego 2026 roku, a źródłem danych rynkowych jest yahoo finance.</p>
-<p>Na wstępie prezentuję wykres kwartalnych stóp zwrotu indeksu WIG. Kształt linii będzie niezwykle istotny na kolejnych etapach analizy.</p>
-<p>Istnieje wiele podejść do wskaźnika Pearsona. Na potrzeby niniejszego wpisu zakładam natępującą interpretację wskaźnika korelacji:</p>
-<ul>
-<li>poniżej 0,30 -&gt; słaba</li>
-<li>0,31 - 0,50 -&gt; umiarkowana</li>
-<li>0,51 - 0,70 -&gt; umiarkowanie silna</li>
-<li>0,71 - 0,90 -&gt; silna</li>
-<li>0,91 - 1 -&gt; bardzo silna</li>
-</ul>
-<div id="e64646bd" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-3-output-1.png" width="863" height="471" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="korelacje-międzysektorowe" class="level1">
-<h1>Korelacje międzysektorowe</h1>
-<p>W przypadku korelacji pomiędzy sektorami, w oczy rzucają się rosnące w czasie współczynniki. Swoje odzwierciedlenie ta statystyka ma przede wszystkim w udanym 2025 roku, gdzie względnie spora część spółek rosła. Poza tym zdecydowanie wyróżniają się powiązania sektora bankowego z niemal wszystkimi pozostałymi, a szczególnie ze stroną strategiczną (górnictwo/paliwa) oraz konsumencką (odzież). Co ważne, w tym przypadku korelacja okazuje się stabilna w czasie; najczęściej mieści się w przedziale korelacji umiarkowanej, z okresowymi odstępstwami na umiarkowanie silną i jeszcze rzadszymi przypadkami korelacji słabej (np. z WIG Gry w 2025 roku).</p>
-<p>Wyróżniająco wysoka i stała w czasie jest także korelacja między indeksem spółek paliwowych i energetycznych. Oscyluje ona w przedziale 0,37 - 0,45.</p>
-<p>W analizowanych okresach, powyżej wartości 0.50 znajduje się również korelacje między: - WIG Odzież a WIG Budownictwo w 2025 roku (co ciekawe w 2023 współczynnik wynosił jedynie 0,15) - WIG Górnictwo a WIG Paliwa w 2024 roku</p>
-<p>Wspomniane wyżej odczyty nie mają swojej kontynuacji w czasie. Ogólnie rzecz biorąc, zaprezentowane wartości prowadzą do wniosku o dobrej dywersyfikacji sektorowej na GPW.</p>
+<p>Ekstremalne sesje, niezależnie w którą stronę, wywołują gigantyczne emocje wśród inwestorów. Oglądając dynamiczny wzrost w trakcie jednej sesji w głowie mogą pojawiać się myśli o zrealizowaniu zysków, zaś mając przed sobą znaczne obsunięcie kapitału, zaczynamy się zastanawiać jak zapobiec dalszym stratom. Tego typu rozważania w niniejszym wpisie przełożę na liczby i zweryfikuję jak w perspektywie krótoterminowej (1,5,10 i 50 sesji od wystąpienia obserwacji ekstremalnej) radzą sobie kursy spółek.</p>
+<section id="dzienne-stopy-zwrotu---przegląd-danych-historycznych" class="level1">
+<h1>Dzienne stopy zwrotu - przegląd danych historycznych</h1>
+<p>Analizę rozpoczyna krótka eksploracja dotychczasowych sesji za lata 2023-2025. W tej części dokonam weryfikacji jak rozkładały się stopy zwrotu z perspektywy indeksu oraz okresu, a także zbadam jaką częścią wszystkich obserwacji (czyt. dziennych stóp zwrotu wszystkich spółek indeksu WIG) były obserwacje ekstremalne - przekraczające plus/minus 5%.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">2023</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">2024</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">2025</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">WIG20</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">mWIG40</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">sWIG80</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">WIG rest</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">WIG</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="03d5bbf3" class="cell" data-execution_count="4">
+<div id="12757cb3" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="post_files/figure-html/cell-5-output-1.png" width="810" height="511" class="figure-img"></p>
+<p><img src="post_files/figure-html/cell-5-output-1.png" width="1190" height="1490" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="735e5898" class="cell" data-execution_count="5">
+<div id="c968d152" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="post_files/figure-html/cell-6-output-1.png" width="810" height="511" class="figure-img"></p>
+<p><img src="post_files/figure-html/cell-6-output-1.png" width="1190" height="1490" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="66472de3" class="cell" data-execution_count="6">
+<div id="5d66e3bf" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="post_files/figure-html/cell-7-output-1.png" width="810" height="511" class="figure-img"></p>
+<p><img src="post_files/figure-html/cell-7-output-1.png" width="1191" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div id="9472a162" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-8-output-1.png" width="1190" height="1490" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div id="4b2c36b8" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-9-output-1.png" width="1191" height="1490" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -265,176 +265,10 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</section>
-<section id="korelacje-sektorowe" class="level1">
-<h1>Korelacje sektorowe</h1>
-<p>Rozważania na temat korelacji w obrębie sektorów rozpocznę od analizy w czasie istniejących trendów.</p>
-<div id="964e5bd4" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-8-output-1.png" width="890" height="982" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Na wykresie powyżej przedstawione zostały przeciętne korelacje pomiędzy spółkami wchodzącymi w wylistowane indeksy. Kalkulacji dokonałem na danych dziennych, zgrupowanych w kwartały. Przyjmowanie w takim przypadku uśrednień nie jest rozwiązaniem idealnym, jednak powinno skutecznie pomóc w przedstawieniu zmian w czasie.</p>
-<p>I tak jedyny sektor, w obrębie którego przeciętna korelacja utrzymuje się regularnie co najmniej jako umiarkowana to WIG-banki. Bazując na ostatnich trzech latach, w drugim kwartale 2025 roku wskaźnik ten przekroczył nawet 0.60. W tym miejscu warto jeszcze wspomnieć o WIG górnictwo, wewnątrz którego przeciętna korelacja regularnie osiąga poziomy 0.25. W przypadku pozostałych, rzadko kiedy odczyty wykraczają poza współczynnik na poziomie 0.2.</p>
-<p>Nakładając na siebie całośc dotychczasowych rozważań, zauważalnym jest, że względnie duże skorelowanie wewnątrz sektora przekłada się później na wyższe współczynnika korelacji międzysektorowej. Stwierdzenie to tyczy się oczywiści bankowości oraz górnictwa.</p>
-<p>Bardziej wprawione oko zauważy również, że kształty krzywych, z drobnymi odstępstwami pokrywają się ze sobą. W przypadku dużej cześci indeksów, zauważalny jest pierwszy wzrost przeciętnej korelacji w okolicach Q3 2024, następnie spadek w Q4 i kolejny lokalny peak przypadający na Q1 2025. Ta sekwencja pokrywa się ze stopami zwrotu szerokiego rynku: trzeci kwartał 2024 to spora przecena na poziomie ponad 5%, kolejny okres to wciąż spadek (lecz łagodniejszy), zaś pierwszy kwartał kolejnego roku zakończył się imponującym, 20% wzrostem. Oczywiście wciąż należy pamiętać o skali i tym, że większa część zaprezentowanych wykresów ma oś Y wyskalowaną do 0.2, jednakże analogiczne trendy widoczne w różnych sektorach udowadniają, że notowania podlegają ruchom wynikającym również z kwestii makro.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Banki</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Spożywczy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Budownictwo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Informatyka</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false" href="">Media</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false" href="">Paliwa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false" href="">Nieruchomości</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false" href="">Chemia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false" href="">Energia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-10" role="tab" aria-controls="tabset-2-10" aria-selected="false" href="">Górnictwo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-11" role="tab" aria-controls="tabset-2-11" aria-selected="false" href="">Gry</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-12" role="tab" aria-controls="tabset-2-12" aria-selected="false" href="">Odzież</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div id="deab6a99" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-9-output-1.png" width="746" height="1333" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div id="09ccf733" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-10-output-1.png" width="750" height="1260" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<div id="80848857" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-11-output-1.png" width="1862" height="2797" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
-<div id="f2554a6a" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-12-output-1.png" width="1400" height="2417" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
-<div id="0a987bd9" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-13-output-1.png" width="744" height="1255" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
-<div id="1547d56e" class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-14-output-1.png" width="686" height="1196" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
-<div id="5793c75e" class="cell" data-execution_count="14">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-15-output-1.png" width="1290" height="1643" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
-<div id="5697d162" class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-16-output-1.png" width="686" height="1196" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-9-tab">
-<div id="41e02907" class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-17-output-1.png" width="745" height="1256" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-10-tab">
-<div id="7b13c3c6" class="cell" data-execution_count="17">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-18-output-1.png" width="743" height="1196" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-11-tab">
-<div id="5754e701" class="cell" data-execution_count="18">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-19-output-1.png" width="1287" height="1640" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-12-tab">
-<div id="1bb3ec80" class="cell" data-execution_count="19">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-20-output-1.png" width="747" height="1258" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Co zatem słychać w obrębie poszczególnych indeksów? Jeżeli chodzi o bankowość, tutaj zdecydowanymi outsiderami są Getin, Grupo Santandar (nie mylić z Santander Bank Polska) oraz Unicredit. Pozostała grupa reprezentantów, znana głównie z WIG20 i mWIG40 potwierdza wysoką korelację, sięgająca nawet 0,92 jak w przypadku PKO i Pekao w 2023 roku.</p>
-<p>Sektor spożywczy, po dwóch latach braku większych silnych korelacji, w 2025 w końcu takowe odnotował. W oczy rzucają się przede wszystkim połączenia przedstawione na wykresie:</p>
-<div id="af2a6516" class="cell" data-execution_count="20">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="post_files/figure-html/cell-21-output-1.png" width="907" height="546" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><em>Ważne: dane dla kolejnych dwóch indeksów, WIG Budownictwa i Informatyki mogą być niewidoczne w standardowym podglądzie. Wykresy w tych dwóch przypadkach sugeruję oglądać w powiększeniu, po otwarciu ich w nowych kartach.</em></p>
-<p>Cztery z wymienionych spółek - AGROTON (AGT), ASTARTA (AST), IMCOMPANY (IMC) oraz KSGGAGRO łączy wspólny sektor “Produkcja rolna i rybołówstwo”. W przypadki MILKILAND (MLK), sytuacja jest nieco inna ponieważ firma sklasyfikowana jest jako podmiot z sektora żywnościowego.</p>
-<p>W kolejnym z rozpatrywanych indeksów, w WIG-budownictwie na próżno szukać istotnych korelacji. W okresie analizowanych trzech lat dominują wskaźniki w granicach 0.10, co sugerowałoby bardzo duże zdywersyfikowanie indeksu. Dopiero dane za 2025 rok dostarczają nam pojedynczych silnych korelacji, na czele z parami Mostostal Zabrze i Mostostal Warszawa (współczynnik 0.48) oraz Mirbud i Budimiex (wsp. 0.45).</p>
-<div id="2fbfe0f2" class="cell" data-execution_count="21">
-<div class="cell-output cell-output-display" data-execution_count="21">
+<p>Jak można łatwo zauważyć, niezależnie od indeksu i okresu, około 95% procent obserwacji to wartości oscylujące wokół -5% a +5%. Swoją drogą interesującym jest fakt, że niemal w każdym przypadku więcej jest sesji ujemnych, a jedynym wyjątkiem jest WIG20 w 2023 i 2025 roku.</p>
+<p>Obserwacje brane pod uwagę w dalszej analizie:</p>
+<div id="21dda0ec" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -442,37 +276,30 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Liczba spółek</th>
+<th data-quarto-table-cell-role="th">Liczba</th>
+<th data-quarto-table-cell-role="th">Procent</th>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">Sektor</th>
+<th data-quarto-table-cell-role="th">Rok</th>
+<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">Materiały budowlane</th>
-<td>12</td>
+<th data-quarto-table-cell-role="th">2023</th>
+<td>4514</td>
+<td>5.68</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">Budownictwo przemysłowe</th>
-<td>9</td>
+<th data-quarto-table-cell-role="th">2024</th>
+<td>3945</td>
+<td>4.94</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">Budownictwo ogólne</th>
-<td>5</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">Instalacje budowlane i telekomunikacyjne</th>
-<td>5</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Inżynieria lądowa i wodna</th>
-<td>3</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">Pozostałe</th>
-<td>2</td>
+<th data-quarto-table-cell-role="th">2025</th>
+<td>4258</td>
+<td>5.28</td>
 </tr>
 </tbody>
 </table>
@@ -480,17 +307,136 @@ gtag('config', 'G-8QZEZDT35R', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<p>Warto dodać, iż względnemu brakowi korelacji pomiędzy spółkami zaliczanymi do WIG Budownictwo towarzyszy szeroki zakres indeksu - składa się on z aż 36 spółek, które według klasyfikacji sektorowej wg GPW Benchmark przynależą do 6 różnych sektorów.</p>
-<p>Podobnie ma się sytuacja w drugim największym Indeksie - WIG Informatyka. Pomimo tego, że 18 z 28 spółek indeksu znajduje się oprogramowaniem, w badanym okresie najwyższą korelację odnotowano przy parze XPlus i OPTeam, jednak wyniosła ona jedynie 0.31.</p>
-<p>Kolejne opisane heatmapami indeksy zdecydowanie nie przynoszą rewolucyjnych wiadomości, a współczynniki korelacji tam wymienione oscylują w niskich zakresach. Wspomnieć jednak warto tutaj o sektorze paliwowym i o malejącej korelacji pomiędzy PKN Orlen a Unimot. Choć już w 2023 roku współczynnik wynosił tylko 0.26, kolejne odczyty to już kolejno 0.18 i 0.12.</p>
-<p>Dodatkowo uwagę przyciąga z pewnością nietypowe zachowanie Murapolu w indeksie WIG Nieruchomości za 2023 rok, jednak wynik ten należy zignorować - spółka na giełdzie zadebiutowała dopiero 15 grudnia 2023.</p>
-<p>Następnie przeskakujemy do WIG Energia. Tutaj całościowo indeks nie jest mocno skorelowany ze sobą, obejmuje bowiem przedstawicieli różnych obszarów tej branży - od operatorów, przez spółki dystrybucyjne aż do producentów infrastruktury. Co jednak ważne, trzech największych graczy pozostaje w silnej korelacji - mowa tu o PGE, Tauronie i Enei. W zależności od okresu oraz pary, współczynnik oscyluje pomiędzy 0.60 a 0.84, co oczywiście jest efektem analogicznej charakterystyki działalności oraz istotnego udziału Skarbu Państwa w akcjonariacie. Tyczy to się także połączenia pomiędzy JSW a Lubelskim Węglem Bogdanką (i w nieco mniejszy stopniu relacji KGHM z wymienionymi). Na zakończenie rozważać warto także wspomnieć o relacji pomiędzy spółkami Lubawa i Protektor. Obie należą do indeksu WIG-odzież, jednak zajmują się przede wszystkim sektorem odzieży ochronnej/militarnej. Z pominięciem roku 2024, współczynnik korelacji wynosi 0.44-0.48.</p>
+<p>Na kolejnych etapach analizie poddawane będą tylko te obserwacje ze zmianą o co najmniej 5% (in plus lub in minus). Zbiorowość ta stanowi około 5% wszystkich w skali każdego roku.</p>
+<div id="66bf3693" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">strona</th>
+<th data-quarto-table-cell-role="th">zmiana in minus</th>
+<th data-quarto-table-cell-role="th">zmiana in plus</th>
+<th data-quarto-table-cell-role="th">Razem</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Rok</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023</th>
+<td>1704</td>
+<td>2810</td>
+<td>4514</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2024</th>
+<td>1681</td>
+<td>2264</td>
+<td>3945</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2025</th>
+<td>1631</td>
+<td>2627</td>
+<td>4258</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Razem</th>
+<td>5016</td>
+<td>7701</td>
+<td>12717</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>W tym miejscu warto zauważyć, iż historycznie, jeżeli wartość ekstremalna jest odnotowywana, to częściej jest to zmiana pozytywna. Proporcje w tej statystyce wynoszą 60:40 i tak z 12 718 obserwacji rozpatrywanych, 7703 to będą zmiany pozytywne, a 5015 to zmiany negatywne.</p>
 </section>
-<section id="podsumowanie" class="level1">
-<h1>Podsumowanie</h1>
-<p>Przytoczone w trakcie tego krótkiego przeglądu dane skłaniają do refleksji, iż GPW oferuje pełen wachlarz spółek jeśli chodzi o dywersyfikację sektorową. O istotnych poziomach korelacji można mówić przede wszystkim w przypadku banków (względem pozostałych sektorach) oraz pomiędzy strategicznymi gałęziami jak górnictwo, energetyka i paliwa.</p>
-<p>Przeprowadzone analizy pokazują, że indeksy jednorodne - cechujące się wysoką korelacją wewnątrz, korelują następnie z innymi indeksami branżowymi. Ponad to, niemal każdy sektor odnotowuje kondycję szerokiego rynku.</p>
-<p>Przeprowadzona analiza nie dostarczyła jednak nieoczywistych połączeń między spółkami. Wykazała pojedyncze klastry wewnątrz sektorów, jak w przypadku Banków, Energetyki czy sektora Spożywczego. To co również jest warte zapamiętania, to fakt że korelacja nie jest stała w czasie. Na przykładzie heatmap za lata 2023-2025 można z łatwością zauwazyć połączenia, które wraz z upływem czasu zmieniały swoją siłę - czasem w górę, a czasem w dół. Z tego też powodu, pomijając sektory strategiczne, w dzisiejszych realiach niezwykle trudno o silne korelacje nawet pomiędzy podobnymi spółkami, a o ostatecznym rezultacie decyduje szczegół gdzieś z wnętrza organizacji.</p>
+<section id="zmiany-pozytywne" class="level1">
+<h1>Zmiany pozytywne</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Rozkład (jako % grupy)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Rozkład (liczbowo)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="50fab7a0" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-12-output-1.png" width="1456" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="b6fa1157" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Text(0.5, 0.98, 'Rozkład obserwacji według zmiany % w sesji 0 (oś X) oraz zmiany procentowej po X sesjach (oś Y)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-13-output-2.png" width="1456" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Już na pierwszy rzut oka widać, że istnieje spora dysproporcja w liczbie obserwacji ze wzrostem 5-10%, a pozostałymi. Dodatkowo, co można zauważyć na rozkładzie procentowym, wraz z upływem czasu (od X = 1 aż do X = 50), obserwacje zaczynają rozkładać się równomiernie. W pierwszej sesji od sesji wzrostowej 5-10%, stopy zwrotu w ponad 86% koncentrują się w przedziale od -5% do +5. Wraz z upływem czasu obserwacje ‘przepływają’ w kierunku bardziej skrajnych grup (zarówno in plus, jak i in minus), w taki sposób że po 50 sesjach po 25% całości rośnie/spada o 10% względem sesji 0. Podobnie zachowują się odczyty z kolejnej grupy, 5-10%.</p>
+<p>Zdecydowanie ciekawiej wygląda zachowanie obserwacji z wyższych grup, choć od razu należy zaznaczyć że nominalnie jest ich istotnie mało. W przypadku odczytów powyżej +20% w trakcie jednej sesji, w przypadku aż 65.66% obserwacji, po 50 sesjach cena znajdowała się poniżej ceny z sesji zero (i co ważne w aż 51.65% przypadków ta cena spadała o ponad 10%).</p>
+<p>Drugą istotną obserwacją jest fakt, że w przypadku wzrostów o ponad 20%, wielkość grupy spółek, które następnie rosną o ponad 10% jest mniej więcej stała w czasie - niezależnie czy mówimy o 1., 5., 10. czy 50. sesji, stanowi ona około 23% tej zbiorowości. Zweryfikowałem jednak, że skład tej grupy podlega dość sporym rotacjom. Istnieje 87 obserwacji, które odnotowały wzrost o ponad 20%, a po kolejnej sesji były o co najmniej 10% wyżej. Z tej grupy, jeśli chodzi o perspektywę 50-sesyjną, utrzymały sie tylko 33 obserwacje.</p>
+</section>
+<section id="zmiany-negatywne" class="level1">
+<h1>Zmiany negatywne</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Rozkład (jako % grupy)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Rozkład (liczbowo)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="329717ba" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-14-output-1.png" width="1550" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="65e7d9d9" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>Text(0.5, 0.98, 'Rozkład obserwacji według zmiany % w sesji 0 (oś XY) oraz zmiany procentowej po X sesjach (oś X)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post_files/figure-html/cell-15-output-2.png" width="1550" height="1105" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Jeżeli chodzi o zmiany negatywne, kwestia rozkładów wygląda analogicznie jak w poprzedniej sekcji. Nominalnie dominują bardzo wyraźnie sesje spadkowe w przedziale -5 do -10% i z czasem obserwacje w tej grupie przepływają na dwie strony rozkładu w podobnych proporcjach. Sytuacja powtarza się także w przypadku obserwacji spadkowych zaklasyfikowanych do grup -10 - -15% oraz -15 - -20%.</p>
+<p>Co do spadków powyżej 20%, w aż 57% przypadków po 50 sesjach spółki są niżej o kolejne (co najmniej) 10% od ceny zamknięcia z sesji 0. Statystyka wygląda jak alarmująco, jednak musimy pamiętać o niewielkiej skali występowania tego typu sytuacji. Na wspomniane 57% składa się jedynie 28 obserwacji z lat 2023-2025.</p>
+</section>
+<section id="na-zakończenie" class="level1">
+<h1>Na zakończenie</h1>
+<p>Dane historyczne jasno wskazują, że poza zakres +/- 5% w skali sesji wykracza jedynie 5% przypadków jeśli mowa o spółkach indeksu WIG w ostatnich 3 latach. W przypadku wyodrębnionych w toku analizy zmian o 10/15/20% widać, że wraz z upływem czasu wyniki równomiernie przepływają do skrajnych stron rozkładu i ma to miejsce zarówno przy wzrostach, jak i spadkach tej skali, co sugeruje że tego typu anomalie nie są decydujące dla trendu w kolejnych sesjach.</p>
+<p>Wyjątkiem okazały się zmiany o ponad 20% (in plus oraz in minus). W przypadku wzrostów, upływający czas najczęściej działał niekorzystnie i ponad połowa takich pozycji po 50 sesjach traciła ponad 10%. Podobnie wygląda sprawa sesji spadkowych - spadki o ponad 20%, w 57,14% po kolejnych 50 sesjach kończyły się dalszym spadkiem ceny o co najmniej 10%.</p>
+<p>Historia notowań z ostatnich nie przygotowała jednoznacznej odpowiedzi na to jak zachować się w przypadku ekstremalnych sesji. Nawet przy wspomnianych 57% spółek spadających po 50 sesjach o co najmniej 10% należy pamiętać o grupie spółek rosnących o 10% lub więcej (14,29%). Zaprezentowane podsumowanie notowań prowadzi jednak do przemyślenia, że kwestia anomalii nie powinna być czynnikiem decydującym o ruchach na rynku, a te powinny być rozważane przez pryzmat zmian w fundamentalnych założeniach.</p>
 
 
 </section>

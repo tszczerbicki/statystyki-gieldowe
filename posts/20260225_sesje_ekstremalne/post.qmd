@@ -1,0 +1,546 @@
+---
+title: "Ekstremalna sesja – początek trendu czy pułapka?"
+subtitle: "Czy znaczne zmiany sesyjne to ostatni moment na transakcję? Sprawdzam statystykę."
+author: "Tomasz Szczerbicki"
+date: 2026-02-25
+image: "g1.png"
+categories: [Analiza przekrojowa, WIG, GPW]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+toc: True
+---
+
+Ekstremalne sesje, niezależnie w którą stronę, wywołują gigantyczne emocje wśród inwestorów. Oglądając dynamiczny wzrost w trakcie jednej sesji w głowie mogą pojawiać się myśli o zrealizowaniu zysków, zaś mając przed sobą znaczne obsunięcie kapitału, zaczynamy się zastanawiać jak zapobiec dalszym stratom. Tego typu rozważania w niniejszym wpisie przełożę na liczby i zweryfikuję jak w perspektywie krótoterminowej (1,5,10 i 50 sesji od wystąpienia obserwacji ekstremalnej) radzą sobie kursy spółek.
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+dictionary_stocks = pd.read_excel('/Users/tomasz/Desktop/quarto2/shared_files/spolki.xlsx')
+
+```
+
+```{python}
+# starter code
+stocks = dictionary_stocks[dictionary_stocks['in_WIG'] == True].ticker_yf.to_list()
+ohlcv_data = {}
+all_obs = pd.DataFrame()
+
+for ticker in stocks:
+    temp = yf.download(ticker, start = '2022-01-01', end = '2026-02-16', interval = '1d')
+    temp.dropna(how = 'any', inplace = True)
+    ohlcv_data[ticker] = temp
+    ohlcv_data[ticker].columns = ['Close', 'High', 'Low', 'Open', 'Volume']
+    ohlcv_data[ticker]['ticker_yf'] = ticker
+    ohlcv_data[ticker]['return'] = ohlcv_data[ticker]['Close'].pct_change()
+
+    ohlcv_data[ticker]['next_1_s'] = ohlcv_data[ticker].Close.shift(-1)
+    ohlcv_data[ticker]['next_5_s'] = ohlcv_data[ticker].Close.shift(-5)
+    ohlcv_data[ticker]['next_10_s'] = ohlcv_data[ticker].Close.shift(-10)
+    ohlcv_data[ticker]['next_50_s'] = ohlcv_data[ticker].Close.shift(-50)
+
+    ohlcv_data[ticker]['pct_change_1_cl'] = ohlcv_data[ticker].next_1_s / ohlcv_data[ticker].Close - 1
+    ohlcv_data[ticker]['pct_change_5_cl'] = ohlcv_data[ticker].next_5_s / ohlcv_data[ticker].Close - 1
+    ohlcv_data[ticker]['pct_change_10_cl'] = ohlcv_data[ticker].next_10_s / ohlcv_data[ticker].Close - 1
+    ohlcv_data[ticker]['pct_change_50_cl'] = ohlcv_data[ticker].next_50_s / ohlcv_data[ticker].Close - 1
+
+    ohlcv_data[ticker]['volume_ratio'] = ohlcv_data[ticker].Volume / ohlcv_data[ticker].Volume.rolling(50).mean()
+
+    ohlcv_data[ticker]['SMA100'] = ohlcv_data[ticker]['Close'].rolling(100).mean()
+    ohlcv_data[ticker]['is_above_SMA100'] = ohlcv_data[ticker]['Close'] > ohlcv_data[ticker]['SMA100']
+    ohlcv_data[ticker]['has_crossed_SMA100'] = np.where((ohlcv_data[ticker]['is_above_SMA100'] == True) & (ohlcv_data[ticker]['is_above_SMA100'].shift() == False), 'up',
+                                                            np.where((ohlcv_data[ticker]['is_above_SMA100'] == False) & (ohlcv_data[ticker]['is_above_SMA100'].shift() == True), 'down', 'no change' ))
+
+    t1 = ohlcv_data[ticker]#[abs(ohlcv_data[ticker]['return']) >= 0.05]
+    t1.reset_index(inplace = True)
+
+    all_obs = pd.concat([all_obs, t1], ignore_index= True)
+```
+
+```{python}
+dictionary_stocks['index_name'] = np.where(dictionary_stocks['in_WIG20'], 'WIG20',
+                            np.where(dictionary_stocks['in_mWIG40'], 'mWIG40',
+                                     np.where(dictionary_stocks['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+all_obs = all_obs.merge(dictionary_stocks[['ticker_yf', 'index_name']], how = 'left', on = 'ticker_yf')
+
+all_obs = all_obs[(all_obs['Date'] >= '2023-01-01') & (all_obs['Date'] < '2026-01-01')].copy()
+
+all_obs['year'] = all_obs.Date.dt.year
+
+# grupa z returns 
+
+bins = [-np.inf,-0.20,-0.15, -0.10,-0.05, 0, 0.05, 0.10, 0.15, 0.20, np.inf]
+
+labels = [
+    '<= -20%','-20% - -15%','-15% - -10%','-10% - -5%','-5% - 0%',
+    '0% - 5%','5% - 10%', '10% - 15%', '15% - 20%', '>= 20%']
+
+all_obs['return_groups'] = pd.cut(all_obs['return'],bins=bins,labels=labels,right=True, include_lowest=True)
+
+# grupa z zmiana next sessions
+bins = [-np.inf,-0.10,-0.05, 0, 0.05, 0.10, np.inf]
+labels = ['<= -10%','-10% - -5%','-5% - 0%','0% - 5%','5% - 10%','>= 10%']
+all_obs['change_1_groups'] = pd.cut(all_obs['pct_change_1_cl'],bins=bins,labels=labels,right=True, include_lowest=True)
+all_obs['change_5_groups'] = pd.cut(all_obs['pct_change_5_cl'],bins=bins,labels=labels,right=True, include_lowest=True)
+all_obs['change_10_groups'] = pd.cut(all_obs['pct_change_10_cl'],bins=bins,labels=labels,right=True, include_lowest=True)
+all_obs['change_50_groups'] = pd.cut(all_obs['pct_change_50_cl'],bins=bins,labels=labels,right=True, include_lowest=True)
+
+# grupa z zmiana volume ratio
+bins = [-np.inf,1,2, 4, np.inf]
+labels = ['<= 1', '1-2', '2-4', '> 4']
+all_obs['volume_ratio_groups'] = pd.cut(all_obs['volume_ratio'],bins=bins,labels=labels,right=True, include_lowest=True)
+
+all_obs['is_1s_greater'] = all_obs['Close'] < all_obs['next_1_s']
+all_obs['is_5s_greater'] = all_obs['Close'] < all_obs['next_5_s']
+all_obs['is_10s_greater'] = all_obs['Close'] < all_obs['next_10_s']
+all_obs['is_50s_greater'] = all_obs['Close'] < all_obs['next_50_s']
+```
+
+# Dzienne stopy zwrotu - przegląd danych historycznych 
+
+Analizę rozpoczyna krótka eksploracja dotychczasowych sesji za lata 2023-2025. W tej części dokonam weryfikacji jak rozkładały się stopy zwrotu z perspektywy indeksu oraz okresu, a także zbadam jaką częścią wszystkich obserwacji (czyt. dziennych stóp zwrotu wszystkich spółek indeksu WIG) były obserwacje ekstremalne - przekraczające plus/minus 5%. 
+
+::: panel-tabset
+
+## WIG20
+
+```{python}
+
+result = (
+    all_obs.groupby(['year', 'index_name', 'return_groups'])['ticker_yf'].count().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby(['year', 'index_name'])['count'].transform('sum')* 100,2))
+
+# pełna lista kategorii (stała kolejność)
+all_categories = ['<= -20%', '-20% - -15%' , '-15% - -10%' , '-10% - -5%', '-5% - 0%', '0% - 5%',  '5% - 10%' , '10% - 15%' , '15% - 20%' , '>= 20%']
+
+fig, axes = plt.subplots(3, 1, figsize=(12, 15), sharex=True)
+
+for idx, g in enumerate([2023, 2024, 2025]):
+    
+    data = result[
+        (result['year'] == g) & 
+        (result['index_name'] == 'WIG20')
+    ].copy()
+    
+    # ustawienie indeksu i reindex do pełnej listy kategorii
+    data = (
+        data.set_index('return_groups')
+            .reindex(all_categories)
+            .reset_index()
+    )
+    
+    # brakujące wartości jako 0
+    data['count'] = data['count'].fillna(0)
+    data['percent'] = data['percent'].fillna(0)
+    
+    graph = axes[idx].bar(all_categories, data['count'])
+    
+    for i, p in enumerate(graph):
+        height = p.get_height()
+        
+        # nie pokazuj etykiety jeśli brak danych
+        if height > 0:
+            axes[idx].text(
+                p.get_x() + p.get_width()/2,
+                height * 1.01,
+                f"{int(data['count'].iloc[i])}\n{data['percent'].iloc[i]}%",
+                ha='center'
+            )
+    
+    axes[idx].tick_params(axis='x', labelsize=10)
+    axes[idx].set_ylabel("Liczba obserwacji", fontsize=10)
+    axes[idx].set_title(g)
+
+plt.tight_layout()
+plt.show()
+```
+
+## mWIG40
+
+```{python}
+# pełna lista kategorii (stała kolejność)
+all_categories = ['<= -20%', '-20% - -15%' , '-15% - -10%' , '-10% - -5%', '-5% - 0%', '0% - 5%',  '5% - 10%' , '10% - 15%' , '15% - 20%' , '>= 20%']
+
+fig, axes = plt.subplots(3, 1, figsize=(12, 15), sharex=True)
+
+for idx, g in enumerate([2023, 2024, 2025]):
+    
+    data = result[
+        (result['year'] == g) & 
+        (result['index_name'] == 'mWIG40')
+    ].copy()
+    
+    # ustawienie indeksu i reindex do pełnej listy kategorii
+    data = (
+        data.set_index('return_groups')
+            .reindex(all_categories)
+            .reset_index()
+    )
+    
+    # brakujące wartości jako 0
+    data['count'] = data['count'].fillna(0)
+    data['percent'] = data['percent'].fillna(0)
+    
+    graph = axes[idx].bar(all_categories, data['count'])
+    
+    for i, p in enumerate(graph):
+        height = p.get_height()
+        
+        # nie pokazuj etykiety jeśli brak danych
+        if height > 0:
+            axes[idx].text(
+                p.get_x() + p.get_width()/2,
+                height * 1.01,
+                f"{int(data['count'].iloc[i])}\n{data['percent'].iloc[i]}%",
+                ha='center'
+            )
+    
+    axes[idx].tick_params(axis='x', labelsize=10)
+    axes[idx].set_ylabel("Liczba obserwacji", fontsize=10)
+    axes[idx].set_title(g)
+
+plt.tight_layout()
+plt.show()
+```
+
+## sWIG80
+
+```{python}
+# pełna lista kategorii (stała kolejność)
+all_categories = ['<= -20%', '-20% - -15%' , '-15% - -10%' , '-10% - -5%', '-5% - 0%', '0% - 5%',  '5% - 10%' , '10% - 15%' , '15% - 20%' , '>= 20%']
+
+fig, axes = plt.subplots(3, 1, figsize=(12, 15), sharex=True)
+
+for idx, g in enumerate([2023, 2024, 2025]):
+    
+    data = result[
+        (result['year'] == g) & 
+        (result['index_name'] == 'sWIG80')
+    ].copy()
+    
+    # ustawienie indeksu i reindex do pełnej listy kategorii
+    data = (
+        data.set_index('return_groups')
+            .reindex(all_categories)
+            .reset_index()
+    )
+    
+    # brakujące wartości jako 0
+    data['count'] = data['count'].fillna(0)
+    data['percent'] = data['percent'].fillna(0)
+    
+    graph = axes[idx].bar(all_categories, data['count'])
+    
+    for i, p in enumerate(graph):
+        height = p.get_height()
+        
+        # nie pokazuj etykiety jeśli brak danych
+        if height > 0:
+            axes[idx].text(
+                p.get_x() + p.get_width()/2,
+                height * 1.01,
+                f"{int(data['count'].iloc[i])}\n{data['percent'].iloc[i]}%",
+                ha='center'
+            )
+    
+    axes[idx].tick_params(axis='x', labelsize=10)
+    axes[idx].set_ylabel("Liczba obserwacji", fontsize=10)
+    axes[idx].set_title(g)
+
+plt.tight_layout()
+plt.show()
+```
+
+## WIG rest
+
+```{python}
+# pełna lista kategorii (stała kolejność)
+all_categories = ['<= -20%', '-20% - -15%' , '-15% - -10%' , '-10% - -5%', '-5% - 0%', '0% - 5%',  '5% - 10%' , '10% - 15%' , '15% - 20%' , '>= 20%']
+
+fig, axes = plt.subplots(3, 1, figsize=(12, 15), sharex=True)
+
+for idx, g in enumerate([2023, 2024, 2025]):
+    
+    data = result[
+        (result['year'] == g) & 
+        (result['index_name'] == 'WIG rest')
+    ].copy()
+    
+    # ustawienie indeksu i reindex do pełnej listy kategorii
+    data = (
+        data.set_index('return_groups')
+            .reindex(all_categories)
+            .reset_index()
+    )
+    
+    # brakujące wartości jako 0
+    data['count'] = data['count'].fillna(0)
+    data['percent'] = data['percent'].fillna(0)
+    
+    graph = axes[idx].bar(all_categories, data['count'])
+    
+    for i, p in enumerate(graph):
+        height = p.get_height()
+        
+        # nie pokazuj etykiety jeśli brak danych
+        if height > 0:
+            axes[idx].text(
+                p.get_x() + p.get_width()/2,
+                height * 1.01,
+                f"{int(data['count'].iloc[i])}\n{data['percent'].iloc[i]}%",
+                ha='center'
+            )
+    
+    axes[idx].tick_params(axis='x', labelsize=10)
+    axes[idx].set_ylabel("Liczba obserwacji", fontsize=10)
+    axes[idx].set_title(g)
+
+plt.tight_layout()
+plt.show()
+```
+
+## WIG
+
+```{python}
+result = (
+    all_obs.groupby(['year', 'return_groups'])['ticker_yf'].count().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby(['year'])['count'].transform('sum')* 100,2))
+
+# pełna lista kategorii (stała kolejność)
+all_categories = ['<= -20%', '-20% - -15%' , '-15% - -10%' , '-10% - -5%', '-5% - 0%', '0% - 5%',  '5% - 10%' , '10% - 15%' , '15% - 20%' , '>= 20%']
+
+fig, axes = plt.subplots(3, 1, figsize=(12, 15), sharex=True)
+
+for idx, g in enumerate([2023, 2024, 2025]):
+    
+    data = result[result['year'] == g].copy()
+    
+    # ustawienie indeksu i reindex do pełnej listy kategorii
+    data = (
+        data.set_index('return_groups')
+            .reindex(all_categories)
+            .reset_index()
+    )
+    
+    # brakujące wartości jako 0
+    data['count'] = data['count'].fillna(0)
+    data['percent'] = data['percent'].fillna(0)
+    
+    graph = axes[idx].bar(all_categories, data['count'])
+    
+    for i, p in enumerate(graph):
+        height = p.get_height()
+        
+        # nie pokazuj etykiety jeśli brak danych
+        if height > 0:
+            axes[idx].text(
+                p.get_x() + p.get_width()/2,
+                height * 1.01,
+                f"{int(data['count'].iloc[i])}\n{data['percent'].iloc[i]}%",
+                ha='center'
+            )
+    
+    axes[idx].tick_params(axis='x', labelsize=10)
+    axes[idx].set_ylabel("Liczba obserwacji", fontsize=10)
+    axes[idx].set_title(g)
+
+plt.tight_layout()
+plt.show()
+```
+:::
+
+Jak można łatwo zauważyć, niezależnie od indeksu i okresu, około 95% procent obserwacji to wartości oscylujące wokół -5% a +5%. Swoją drogą interesującym jest fakt, że niemal w każdym przypadku więcej jest sesji ujemnych, a jedynym wyjątkiem jest WIG20 w 2023 i 2025 roku. 
+
+Obserwacje brane pod uwagę w dalszej analizie: 
+
+```{python}
+result = (
+    all_obs.groupby(['year', 'return_groups'])['ticker_yf'].count().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby(['year'])['count'].transform('sum')* 100,2))
+
+d1 = result[~result['return_groups'].isin(['-5% - 0%', '0% - 5%'])].groupby('year').agg(Liczba = ('count', 'sum'), Procent = ('percent', 'sum'))
+
+d1.index.name = 'Rok'
+
+d1.Procent = round(d1.Procent, 2)
+
+d1
+```
+
+Na kolejnych etapach analizie poddawane będą tylko te obserwacje ze zmianą o co najmniej 5% (in plus lub in minus). Zbiorowość ta stanowi około 5% wszystkich w skali każdego roku. 
+
+```{python}
+result = (
+    all_obs.groupby(['year', 'return_groups'])['ticker_yf'].count().reset_index(name='count'))
+
+result['percent'] = (round(result['count']/ result.groupby(['year'])['count'].transform('sum')* 100,2))
+
+d1 = result[~result['return_groups'].isin(['-5% - 0%', '0% - 5%'])]
+
+d1['strona'] = np.where(d1.return_groups.isin(['<= -20%', '-20% - -15%', '-15% - -10%', '-10% - -5%']) == True, 'zmiana in minus', 'zmiana in plus')
+
+d1 = d1.groupby(['year', 'strona'], as_index = False)['count'].sum().pivot_table(index = 'year', columns = 'strona', aggfunc='sum', values = 'count', margins=True,
+    margins_name='Razem')
+
+d1.index.name = 'Rok'
+
+d1
+```
+
+W tym miejscu warto zauważyć, iż historycznie, jeżeli wartość ekstremalna jest odnotowywana, to częściej jest to zmiana pozytywna. Proporcje w tej statystyce wynoszą 60:40 i tak z 12 718 obserwacji rozpatrywanych, 7703 to będą zmiany pozytywne, a 5015 to zmiany negatywne. 
+
+# Zmiany pozytywne 
+
+::: panel-tabset
+
+## Rozkład (jako % grupy) 
+
+```{python}
+positive = all_obs[all_obs['return'] >= 0.05].copy()
+
+fig, axes = plt.subplots(2, 2, figsize=(18, 12))
+axes = axes.flatten()
+
+criteria = 'return_groups'
+
+for x, q, m in zip(
+    [0,1,2,3], 
+    ['X = 1', 'X = 5', 'X = 10', 'X = 50'],
+    ['change_1_groups', 'change_5_groups', 'change_10_groups', 'change_50_groups'], 
+    ):
+    
+    overall = positive.groupby([criteria, m], as_index=False, observed=True)['ticker_yf'].count()
+    overall['share'] = (round(overall['ticker_yf']/ overall.groupby(criteria)['ticker_yf'].transform('sum')* 100,2))
+
+    df = overall.pivot_table(index = criteria, columns = m, values = 'share')
+    sns.heatmap(df, ax=axes[x], fmt=".2f", annot=True, cbar = False, cmap = 'YlGn')
+
+    axes[x].set_title(q)
+    axes[x].set_ylabel('Zmiana procentowa w sesji 0', size =10)
+    axes[x].set_xlabel('Wzrost/spadek ceny od sesji 0', size = 10)
+
+plt.suptitle('Rozkład obserwacji według zmiany % w sesji 0 (oś X) oraz zmiany procentowej po X sesjach (oś Y)', size = 16);
+```
+
+## Rozkład (liczbowo)
+
+```{python}
+fig, axes = plt.subplots(2, 2, figsize=(18, 12))
+axes = axes.flatten()
+
+criteria = 'return_groups'
+
+for x, q, m in zip(
+    [0,1,2,3], 
+    ['X = 1', 'X = 5', 'X = 10', 'X = 50'],
+    ['change_1_groups', 'change_5_groups', 'change_10_groups', 'change_50_groups'], 
+    ):
+    
+    overall = positive.groupby([criteria, m], as_index=False, observed=True)['ticker_yf'].count()
+    
+
+    df = overall.pivot_table(index = criteria, columns = m, values = 'ticker_yf')
+    sns.heatmap(df, ax=axes[x], fmt=".2f", annot=True, cbar = False, cmap = 'YlGn')
+
+    axes[x].set_title(q)
+    axes[x].set_ylabel('Zmiana procentowa w sesji 0', size =10)
+    axes[x].set_xlabel('Wzrost/spadek ceny od sesji 0', size = 10)
+
+plt.suptitle('Rozkład obserwacji według zmiany % w sesji 0 (oś X) oraz zmiany procentowej po X sesjach (oś Y)', size = 16)
+```
+
+:::
+
+Już na pierwszy rzut oka widać, że istnieje spora dysproporcja w liczbie obserwacji ze wzrostem 5-10%, a pozostałymi. Dodatkowo, co można zauważyć na rozkładzie procentowym, wraz z upływem czasu (od X = 1 aż do X = 50), obserwacje zaczynają rozkładać się równomiernie. W pierwszej sesji od sesji wzrostowej 5-10%, stopy zwrotu w ponad 86% koncentrują się w przedziale od -5% do +5. Wraz z upływem czasu obserwacje 'przepływają' w kierunku bardziej skrajnych grup (zarówno in plus, jak i in minus), w taki sposób że po 50 sesjach po 25% całości rośnie/spada o 10% względem sesji 0. Podobnie zachowują się odczyty z kolejnej grupy, 5-10%. 
+
+Zdecydowanie ciekawiej wygląda zachowanie obserwacji z wyższych grup, choć od razu należy zaznaczyć że nominalnie jest ich istotnie mało. W przypadku odczytów powyżej +20% w trakcie jednej sesji, w przypadku aż 65.66% obserwacji, po 50 sesjach cena znajdowała się poniżej ceny z sesji zero (i co ważne w aż 51.65% przypadków ta cena spadała o ponad 10%). 
+
+Drugą istotną obserwacją jest fakt, że w przypadku wzrostów o ponad 20%, wielkość grupy spółek, które następnie rosną o ponad 10% jest mniej więcej stała w czasie - niezależnie czy mówimy o 1., 5., 10. czy 50. sesji, stanowi ona około 23% tej zbiorowości. Zweryfikowałem jednak, że skład tej grupy podlega dość sporym rotacjom. Istnieje 87 obserwacji, które odnotowały wzrost o ponad 20%, a po kolejnej sesji były o co najmniej 10% wyżej. Z tej grupy, jeśli chodzi o perspektywę 50-sesyjną, utrzymały sie tylko 33 obserwacje. 
+
+
+# Zmiany negatywne 
+
+::: panel-tabset
+
+## Rozkład (jako % grupy) 
+
+```{python}
+positive = all_obs[all_obs['return'] <= -0.05].copy()
+
+fig, axes = plt.subplots(2, 2, figsize=(18, 12))
+axes = axes.flatten()
+
+criteria = 'return_groups'
+
+for x, q, m in zip(
+    [0,1,2,3], 
+    ['X = 1', 'X = 5', 'X = 10', 'X = 50'],
+    ['change_1_groups', 'change_5_groups', 'change_10_groups', 'change_50_groups'], 
+    ):
+    
+    overall = positive.groupby([criteria, m], as_index=False, observed=True)['ticker_yf'].count()
+    overall['share'] = (round(overall['ticker_yf']/ overall.groupby(criteria)['ticker_yf'].transform('sum')* 100,2))
+
+    df = overall.pivot_table(index = criteria, columns = m, values = 'share')
+    sns.heatmap(df, ax=axes[x], fmt=".2f", annot=True, cbar = False, cmap = 'YlGn')
+
+    axes[x].set_title(q)
+    axes[x].set_ylabel('Zmiana procentowa w sesji 0', size =10)
+    axes[x].set_xlabel('Wzrost/spadek ceny od sesji 0', size = 10)
+
+plt.suptitle('Rozkład obserwacji według zmiany % w sesji 0 (oś XY) oraz zmiany procentowej po X sesjach (oś X)', size = 16);
+```
+
+## Rozkład (liczbowo) 
+
+```{python}
+fig, axes = plt.subplots(2, 2, figsize=(18, 12))
+axes = axes.flatten()
+
+criteria = 'return_groups'
+
+for x, q, m in zip(
+    [0,1,2,3], 
+    ['X = 1', 'X = 5', 'X = 10', 'X = 50'],
+    ['change_1_groups', 'change_5_groups', 'change_10_groups', 'change_50_groups'], 
+    ):
+    
+    overall = positive.groupby([criteria, m], as_index=False, observed=True)['ticker_yf'].count()
+    
+
+    df = overall.pivot_table(index = criteria, columns = m, values = 'ticker_yf')
+    sns.heatmap(df, ax=axes[x], fmt=".2f", annot=True, cbar = False, cmap = 'YlGn')
+
+    axes[x].set_title(q)
+    axes[x].set_ylabel('Zmiana procentowa w sesji 0', size =10)
+    axes[x].set_xlabel('Wzrost/spadek ceny od sesji 0', size = 10)
+
+plt.suptitle('Rozkład obserwacji według zmiany % w sesji 0 (oś XY) oraz zmiany procentowej po X sesjach (oś X)', size = 16)
+```
+:::
+
+Jeżeli chodzi o zmiany negatywne, kwestia rozkładów wygląda analogicznie jak w poprzedniej sekcji. Nominalnie dominują bardzo wyraźnie sesje spadkowe w przedziale -5 do -10% i z czasem obserwacje w tej grupie przepływają na dwie strony rozkładu w podobnych proporcjach. Sytuacja powtarza się także w przypadku obserwacji spadkowych zaklasyfikowanych do grup -10 - -15% oraz -15 - -20%. 
+
+Co do spadków powyżej 20%, w aż 57% przypadków po 50 sesjach spółki są niżej o kolejne (co najmniej) 10% od ceny zamknięcia z sesji 0. Statystyka wygląda jak alarmująco, jednak musimy pamiętać o niewielkiej skali występowania tego typu sytuacji. Na wspomniane 57% składa się jedynie 28 obserwacji z lat 2023-2025. 
+
+# Na zakończenie 
+
+Dane historyczne jasno wskazują, że poza zakres +/- 5% w skali sesji wykracza jedynie 5% przypadków jeśli mowa o spółkach indeksu WIG w ostatnich 3 latach. W przypadku wyodrębnionych w toku analizy zmian o 10/15/20% widać, że wraz z upływem czasu wyniki równomiernie przepływają do skrajnych stron rozkładu i ma to miejsce zarówno przy wzrostach, jak i spadkach tej skali, co sugeruje że tego typu anomalie nie są decydujące dla trendu w kolejnych sesjach. 
+
+Wyjątkiem okazały się zmiany o ponad 20% (in plus oraz in minus). W przypadku wzrostów, upływający czas najczęściej działał niekorzystnie i ponad połowa takich pozycji po 50 sesjach traciła ponad 10%. Podobnie wygląda sprawa sesji spadkowych - spadki o ponad 20%, w 57,14% po kolejnych 50 sesjach kończyły się dalszym spadkiem ceny o co najmniej 10%. 
+
+Historia notowań z ostatnich nie przygotowała jednoznacznej odpowiedzi na to jak zachować się w przypadku ekstremalnych sesji. Nawet przy wspomnianych 57% spółek spadających po 50 sesjach o co najmniej 10% należy pamiętać o grupie spółek rosnących o 10% lub więcej (14,29%). Zaprezentowane podsumowanie notowań prowadzi jednak do przemyślenia, że kwestia anomalii nie powinna być czynnikiem decydującym o ruchach na rynku, a te powinny być rozważane przez pryzmat zmian w fundamentalnych założeniach. 
+
+
