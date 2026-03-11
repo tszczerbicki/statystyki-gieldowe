@@ -7,9 +7,6 @@ about:
     - icon: envelope
       text: e-mail
       href: mailto:szczerbicki.tomasz@gmail.com
-    - icon: twitter-x
-      text: X
-      href: https://x.com/Shcherbytsky
     - icon: github
       text: Github
       href: https://github.com/tszczerbicki

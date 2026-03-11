@@ -20,8 +20,6 @@ website:
         href: mailto:szczerbicki.tomasz@gmail.com
       - icon: github
         href: https://github.com/tszczerbicki
-      - icon: twitter-x
-        href: https://x.com/Shcherbytsky
 format:
   html:
     theme:
