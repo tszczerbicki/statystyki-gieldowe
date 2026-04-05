@@ -1,0 +1,44 @@
+---
+title: "Prognozy dla głównych indeksów GPW na kwiecień 2026"
+subtitle: "Wykorzystanie metod statystycznych i ML do predykcji trendów"
+author: "Tomasz Szczerbicki"
+date: 2026-03-31
+categories: [Analiza przekrojowa, WIG, GPW, machine learning]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+toc: True
+---
+
+Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet. 
+
+# Biblioteka Prophet - informacje teoretyczne
+
+Biblioteka została stworzona przez pracowników Facebooka i w ostatnich latach zyskała bardzo mocno na popularności. Prognoza jest efektem dekompozycji szeregu na trend, sezonowość i święta. W trakcie tworzenia modelu możliwe jest dostosowanie odpowiedniej sezonowości (np. tygodniowa, roczna); wskazanie jej wagi, rodzaju trendu (multiplikatywny / addytywny), punktów zwrotnych (automatycznie lub manualnie). W wielu przypadkach przydatne będzie także dodanie regresorów, przy czym muszą one później być podane także za okres prognozowany (np. prognoza tygodni, zaplanowane eventy itd.), co akurat w przypadku prognozy indeksów giełdowych nie do końca znajdzie zastosowanie. 
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+dictionary_stocks = pd.read_excel('/Users/tomasz/Desktop/quarto2/shared_files/spolki.xlsx')
+
+```
+
+# Tuning parametrów - w poszukiwaniu optimum
+
+Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiednią stronę transakcji. 
+
+Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty. 
+
+Elementem, który zweryfikowałem na starcie, lecz nie jest wykazany w tym raporcie, to fakt że Prophet nie potrzebuje bardzo długiej historii, a wręcz może mu ona szkodzić. Przykładowo po wprowadzeniu danych od 2021 roku do dziś, osiągałem gorsze rezultaty niż w przypadku datasetu za lata od 2023 w górę. Ostatecznie, właśnie ten zakres czasu będzie brany pod uwagę przy uczeniu modelu. Co ważne, tuning hiperparametrów będzie wykonywany dla każdego indeksu osobno. 
+
+Jeśli chodzi o parametry, testowane będą: punkty zwrotu (tu przetestuję sygnały płynące z SMA100, wskaźnika supertrend oraz autodetekcję zaszytą w Prophecie) i ich waga, sezonowość roczna/weekendowa oraz ich waga; rodzaj sezonowości (multiplikatywna / addytywna)
+
+
