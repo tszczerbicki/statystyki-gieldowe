@@ -1,0 +1,485 @@
+---
+title: "Prognozy dla głównych indeksów GPW na kwiecień 2026"
+subtitle: "Wykorzystanie metod statystycznych i ML do predykcji trendów"
+author: "Tomasz Szczerbicki"
+date: 2026-04-11
+categories: [Analiza przekrojowa, WIG, GPW, machine learning]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+toc: True
+---
+
+Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet. 
+
+# Biblioteka Prophet - informacje teoretyczne
+
+Biblioteka została stworzona przez pracowników Facebooka i w ostatnich latach zyskała bardzo mocno na popularności. Prognoza jest efektem dekompozycji szeregu na trend, sezonowość i święta. W trakcie tworzenia modelu możliwe jest dostosowanie odpowiedniej sezonowości (np. tygodniowa, roczna); wskazanie jej wagi, rodzaju trendu (multiplikatywny / addytywny), punktów zwrotnych (automatycznie lub manualnie). W wielu przypadkach przydatne będzie także dodanie regresorów, przy czym muszą one później być podane także za okres prognozowany (np. prognoza tygodni, zaplanowane eventy itd.), co akurat w przypadku prognozy indeksów giełdowych nie do końca znajdzie zastosowanie. 
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+import seaborn as sns
+import prophet
+import talib
+from sklearn.model_selection import ParameterGrid
+from prophet.diagnostics import cross_validation
+from sklearn.metrics import mean_absolute_error, mean_squared_error, mean_absolute_percentage_error
+from prophet.serialize import model_to_json, model_from_json
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+
+def supertrend(df: pd.DataFrame, atr_multiplier=3, atr_length = 15):
+    d1 = df.copy()
+    current_average_high_low = (d1['High']+d1['Low'])/2
+    d1['atr'] = talib.ATR(d1['High'], d1['Low'], d1['Close'], timeperiod= atr_length)
+    d1.dropna(inplace=True)
+
+    d1['basicUpperband'] = current_average_high_low + (atr_multiplier * d1['atr'])
+    d1['basicLowerband'] = current_average_high_low - (atr_multiplier * d1['atr'])
+    first_upperBand_value = d1['basicUpperband'].iloc[0]
+    first_lowerBand_value = d1['basicLowerband'].iloc[0]
+    upperBand = [first_upperBand_value]
+    lowerBand = [first_lowerBand_value]
+
+    for i in range(1, len(d1)):
+        if d1['basicUpperband'].iloc[i] < upperBand[i-1] or d1['Close'].iloc[i-1] > upperBand[i-1]:
+            upperBand.append(d1['basicUpperband'].iloc[i])
+        else:
+            upperBand.append(upperBand[i-1])
+
+        if d1['basicLowerband'].iloc[i] > lowerBand[i-1] or d1['Close'].iloc[i-1] < lowerBand[i-1]:
+            lowerBand.append(d1['basicLowerband'].iloc[i])
+        else:
+            lowerBand.append(lowerBand[i-1])
+
+    d1['upperband'] = upperBand
+    d1['lowerband'] = lowerBand
+
+    d1['has_crossed_upper'] = np.where((d1['Close'].shift(1) < d1['upperband'].shift(1)) & (d1['Close'] >= d1['upperband']), 1,0)
+    d1['has_crossed_lower'] = np.where((d1['Close'].shift(1) > d1['lowerband'].shift(1)) & (d1['Close'] <= d1['lowerband']), 1,0)
+    
+    supertrend = ['upperband']
+    for i in range(1, len(d1)):
+        if d1['has_crossed_upper'].iloc[i] == 1:
+            supertrend.append('lowerband')
+        elif d1['has_crossed_lower'].iloc[i] == 1:
+            supertrend.append('upperband')
+        else:
+            supertrend.append(supertrend[i-1])  # poprzednia wartość
+
+    d1['supertrend_label'] = supertrend
+    d1['supertrend'] = np.where(d1['supertrend_label'] == 'upperband', d1['upperband'], d1['lowerband'])
+    d1.drop(['basicUpperband', 'basicLowerband'], axis=1, inplace=True)
+    return d1[['supertrend_label', 'supertrend']]
+
+```
+
+# Tuning parametrów - w poszukiwaniu optymalnych parametrów
+
+Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiednią stronę transakcji. 
+
+Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty. 
+
+Elementem, który zweryfikowałem na starcie, lecz nie jest wykazany w tym raporcie, to fakt że Prophet nie potrzebuje bardzo długiej historii, a wręcz może mu ona szkodzić. Przykładowo po wprowadzeniu danych od 2021 roku do dziś, osiągałem gorsze rezultaty niż w przypadku datasetu za lata od 2023 w górę. Ostatecznie, właśnie ten zakres czasu będzie brany pod uwagę przy uczeniu modelu. Co ważne, tuning hiperparametrów będzie wykonywany dla każdego indeksu osobno. 
+
+Jeśli chodzi o parametry, testowane będą: punkty zwrotu (tu przetestuję sygnały płynące z SMA100, wskaźnika supertrend oraz autodetekcję zaszytą w Prophecie) i ich waga, sezonowość roczna/weekendowa oraz ich waga; rodzaj sezonowości (multiplikatywna / addytywna)
+
+# WIG20
+
+```{python}
+wig20 = pd.read_csv('wig20.txt')
+
+
+wig20['date'] = pd.to_datetime(wig20['<DATE>'], format='%Y%m%d')
+
+wig20 = wig20.drop(columns=['<PER>', '<TIME>', '<TICKER>','<DATE>', '<OPENINT>'])
+
+wig20.columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'Date']
+
+wig20['sma100'] = wig20.Close.rolling(100).mean()
+wig20['is_above_sma100'] = wig20.Close > wig20.sma100
+wig20['has_crossed_sma100'] = np.where((wig20.is_above_sma100 == True) & (wig20.is_above_sma100.shift() == False), 'up',
+                                                            np.where((wig20.is_above_sma100 == False) & (wig20.is_above_sma100.shift() == True), 'down', 'no change' ))
+
+wig20[['supertrend_label', 'supertrend']] = supertrend(wig20)
+
+wig20['supertrend_change'] = np.where((wig20['supertrend_label'] == 'upperband') & (wig20['supertrend_label'].shift() == 'lowerband'), 'negative',
+                                np.where((wig20['supertrend_label'] == 'lowerband') & (wig20['supertrend_label'].shift() == 'upperband'), 'positive', 'no change'))
+
+changepoints_supertrend = wig20[(wig20['supertrend_change'] != 'no change') & (wig20['Date'] >= '2023-01-01') ].Date.to_list()
+changepoints_sma = wig20[(wig20['has_crossed_sma100'] != 'no change') & (wig20['Date'] >= '2023-01-01')].Date.to_list()
+```
+
+```{python}
+wig20_to_forecast = wig20[wig20['Date'] >= '2023-01-01'][['Date', 'Close']]
+wig20_to_forecast.columns = ['ds', 'y']
+wig20_to_forecast
+
+wig20_to_chart = wig20_to_forecast.set_index('ds')
+```
+
+```{python}
+# dataframe zwracający wartośc na koniec kalendarzowy każdego miesiąca. Służy dalej do wykonania left joina
+wig20_to_forecast['eom_data'] = wig20_to_forecast["ds"].dt.to_period("M").dt.to_timestamp("M")
+
+dict_notowania_w20 = wig20_to_forecast.loc[wig20_to_forecast.groupby(pd.Grouper(key='ds', freq='ME'))['ds'].idxmax()][['y', 'eom_data']]
+dict_notowania_w20.columns = ['value_dzien_wyeny', 'date_0']
+
+# lista z ostatnimi dniami sesyjnymi w miesiącach. Służy dalej do odszukania horyzontu prognozy
+ends = wig20_to_forecast.groupby(pd.Grouper(key='ds', freq='ME')).ds.last()
+ends = ends.to_list()
+
+# cutoffs zostanę wykorzystane przy ustalaniu w których momentach w czasie mają być wykonane prognozy walidujące
+cutoffs = pd.date_range(start='2024-05-01', end='2026-03-01',  freq='ME')
+
+
+param_grid = {'changepoints': [changepoints_supertrend, changepoints_sma, None],
+            'yearly_seasonality': [True],
+            'weekly_seasonality': [True],
+            'changepoint_prior_scale': [0.001, 0.01, 0.1, 0.5],
+              'seasonality_prior_scale': [0.01, 0.1, 1.0, 10.0],
+                'holidays_prior_scale': [0],
+                'seasonality_mode': ['additive', 'multiplicative']}
+
+# generate all combinations of parameters
+
+all_params = list(ParameterGrid(param_grid))
+
+len(all_params)
+
+```
+
+
+
+
+```{python}
+with open("mape_wig20.txt", "r") as f:
+    tuning_results_mape = [float(line.strip()) for line in f]
+
+with open("direction_wig20.txt", "r") as f:
+    direction_check = [float(line.strip()) for line in f]
+```
+
+
+
+```{python}
+plt.scatter(y = direction_check, x =tuning_results_mape)
+
+plt.xlabel("MAPE")  # tytuł osi X
+plt.ylabel("Zgodność kierunku")  # tytuł osi Y
+plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
+
+plt.show()
+```
+
+
+
+```{python}
+with open('wig20_model.json', 'r') as fin:
+    m = model_from_json(fin.read())  # Load model
+
+```
+
+```{python}
+
+future = m.make_future_dataframe(periods = 20)
+
+
+import holidays
+pl_holidays = holidays.Poland()
+
+is_weekday = future['ds'].dt.weekday < 5
+is_not_holiday = ~future['ds'].isin(pl_holidays)
+
+future = future[is_weekday & is_not_holiday]
+
+forecast = m.predict(future)
+
+```
+
+
+```{python}
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+
+ax = forecast[['ds', 'yhat']].set_index('ds').loc['2026-02':].plot()
+
+wig20_to_chart.loc['2026-02':].plot(ax=ax)
+
+# Tytuły
+ax.set_title("Prognoza dla WIG20")
+
+# Usunięcie xlabel
+ax.set_xlabel("")
+
+# Ograniczenie liczby ticków na osi X do ~4
+ax.xaxis.set_major_locator(MaxNLocator(4))
+
+plt.show()
+```
+
+# mWIG40
+
+```{python}
+wig40 = pd.read_csv('mwig40.txt')
+
+
+wig40['date'] = pd.to_datetime(wig40['<DATE>'], format='%Y%m%d')
+
+wig40 = wig40.drop(columns=['<PER>', '<TIME>', '<TICKER>','<DATE>', '<OPENINT>'])
+
+wig40.columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'Date']
+
+wig40['sma100'] = wig40.Close.rolling(100).mean()
+wig40['is_above_sma100'] = wig40.Close > wig40.sma100
+wig40['has_crossed_sma100'] = np.where((wig40.is_above_sma100 == True) & (wig40.is_above_sma100.shift() == False), 'up',
+                                                            np.where((wig40.is_above_sma100 == False) & (wig40.is_above_sma100.shift() == True), 'down', 'no change' ))
+
+wig40[['supertrend_label', 'supertrend']] = supertrend(wig40)
+
+wig40['supertrend_change'] = np.where((wig40['supertrend_label'] == 'upperband') & (wig40['supertrend_label'].shift() == 'lowerband'), 'negative',
+                                np.where((wig40['supertrend_label'] == 'lowerband') & (wig40['supertrend_label'].shift() == 'upperband'), 'positive', 'no change'))
+
+changepoints_supertrend = wig40[(wig40['supertrend_change'] != 'no change') & (wig40['Date'] >= '2023-01-01') ].Date.to_list()
+changepoints_sma = wig40[(wig40['has_crossed_sma100'] != 'no change') & (wig40['Date'] >= '2023-01-01')].Date.to_list()
+```
+
+```{python}
+wig40_to_forecast = wig40[wig40['Date'] >= '2023-01-01'][['Date', 'Close']]
+wig40_to_forecast.columns = ['ds', 'y']
+wig40_to_forecast
+
+wig40_to_chart = wig40_to_forecast.set_index('ds')
+```
+
+```{python}
+# dataframe zwracający wartośc na koniec kalendarzowy każdego miesiąca. Służy dalej do wykonania left joina
+wig40_to_forecast['eom_data'] = wig40_to_forecast["ds"].dt.to_period("M").dt.to_timestamp("M")
+
+dict_notowania_w20 = wig40_to_forecast.loc[wig40_to_forecast.groupby(pd.Grouper(key='ds', freq='ME'))['ds'].idxmax()][['y', 'eom_data']]
+dict_notowania_w20.columns = ['value_dzien_wyeny', 'date_0']
+
+# lista z ostatnimi dniami sesyjnymi w miesiącach. Służy dalej do odszukania horyzontu prognozy
+ends = wig40_to_forecast.groupby(pd.Grouper(key='ds', freq='ME')).ds.last()
+ends = ends.to_list()
+
+# cutoffs zostanę wykorzystane przy ustalaniu w których momentach w czasie mają być wykonane prognozy walidujące
+cutoffs = pd.date_range(start='2024-05-01', end='2026-03-01',  freq='ME')
+
+
+param_grid = {'changepoints': [changepoints_supertrend, changepoints_sma, None],
+            'yearly_seasonality': [True],
+            'weekly_seasonality': [True],
+            'changepoint_prior_scale': [0.001, 0.01, 0.1, 0.5],
+              'seasonality_prior_scale': [0.01, 0.1, 1.0, 10.0],
+                'holidays_prior_scale': [0],
+                'seasonality_mode': ['additive', 'multiplicative']}
+
+# generate all combinations of parameters
+
+all_params = list(ParameterGrid(param_grid))
+
+```
+
+```{python}
+with open("mape_mwig40.txt", "r") as f:
+    tuning_results_mape = [float(line.strip()) for line in f]
+
+with open("direction_mwig40.txt", "r") as f:
+    direction_check = [float(line.strip()) for line in f]
+
+```
+
+
+
+
+```{python}
+plt.scatter(y = direction_check, x =tuning_results_mape)
+
+plt.xlabel("MAPE")  # tytuł osi X
+plt.ylabel("Zgodność kierunku")  # tytuł osi Y
+plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
+
+plt.show()
+```
+
+
+```{python}
+with open('wig40_model.json', 'r') as fin:
+    m = model_from_json(fin.read())  # Load model
+
+```
+
+```{python}
+
+future = m.make_future_dataframe(periods = 20)
+
+
+import holidays
+pl_holidays = holidays.Poland()
+
+is_weekday = future['ds'].dt.weekday < 5
+is_not_holiday = ~future['ds'].isin(pl_holidays)
+
+future = future[is_weekday & is_not_holiday]
+
+forecast = m.predict(future)
+
+```
+
+
+```{python}
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+
+ax = forecast[['ds', 'yhat']].set_index('ds').loc['2026-02':].plot()
+
+wig40_to_chart.loc['2026-02':].plot(ax=ax)
+
+# Tytuły
+ax.set_title("Prognoza dla mWIG40")
+
+# Usunięcie xlabel
+ax.set_xlabel("")
+
+# Ograniczenie liczby ticków na osi X do ~4
+ax.xaxis.set_major_locator(MaxNLocator(4))
+
+plt.show()
+```
+
+# sWIG80
+
+```{python}
+wig80 = pd.read_csv('swig80.txt')
+
+
+wig80['date'] = pd.to_datetime(wig80['<DATE>'], format='%Y%m%d')
+
+wig80 = wig80.drop(columns=['<PER>', '<TIME>', '<TICKER>','<DATE>', '<OPENINT>'])
+
+wig80.columns = ['Open', 'High', 'Low', 'Close', 'Volume', 'Date']
+
+wig80['sma100'] = wig80.Close.rolling(100).mean()
+wig80['is_above_sma100'] = wig80.Close > wig80.sma100
+wig80['has_crossed_sma100'] = np.where((wig80.is_above_sma100 == True) & (wig80.is_above_sma100.shift() == False), 'up',
+                                                            np.where((wig80.is_above_sma100 == False) & (wig80.is_above_sma100.shift() == True), 'down', 'no change' ))
+
+wig80[['supertrend_label', 'supertrend']] = supertrend(wig80)
+
+wig80['supertrend_change'] = np.where((wig80['supertrend_label'] == 'upperband') & (wig80['supertrend_label'].shift() == 'lowerband'), 'negative',
+                                np.where((wig80['supertrend_label'] == 'lowerband') & (wig80['supertrend_label'].shift() == 'upperband'), 'positive', 'no change'))
+
+changepoints_supertrend = wig80[(wig80['supertrend_change'] != 'no change') & (wig80['Date'] >= '2023-01-01') ].Date.to_list()
+changepoints_sma = wig80[(wig80['has_crossed_sma100'] != 'no change') & (wig80['Date'] >= '2023-01-01')].Date.to_list()
+```
+
+```{python}
+wig80_to_forecast = wig80[wig80['Date'] >= '2023-01-01'][['Date', 'Close']]
+wig80_to_forecast.columns = ['ds', 'y']
+wig80_to_forecast
+
+wig80_to_chart = wig80_to_forecast.set_index('ds')
+```
+
+```{python}
+# dataframe zwracający wartośc na koniec kalendarzowy każdego miesiąca. Służy dalej do wykonania left joina
+wig80_to_forecast['eom_data'] = wig80_to_forecast["ds"].dt.to_period("M").dt.to_timestamp("M")
+
+dict_notowania_w20 = wig80_to_forecast.loc[wig80_to_forecast.groupby(pd.Grouper(key='ds', freq='ME'))['ds'].idxmax()][['y', 'eom_data']]
+dict_notowania_w20.columns = ['value_dzien_wyeny', 'date_0']
+
+# lista z ostatnimi dniami sesyjnymi w miesiącach. Służy dalej do odszukania horyzontu prognozy
+ends = wig80_to_forecast.groupby(pd.Grouper(key='ds', freq='ME')).ds.last()
+ends = ends.to_list()
+
+# cutoffs zostanę wykorzystane przy ustalaniu w których momentach w czasie mają być wykonane prognozy walidujące
+cutoffs = pd.date_range(start='2024-05-01', end='2026-03-01',  freq='ME')
+
+
+param_grid = {'changepoints': [changepoints_supertrend, changepoints_sma, None],
+            'yearly_seasonality': [True],
+            'weekly_seasonality': [True],
+            'changepoint_prior_scale': [0.001, 0.01, 0.1, 0.5],
+              'seasonality_prior_scale': [0.01, 0.1, 1.0, 10.0],
+                'holidays_prior_scale': [0],
+                'seasonality_mode': ['additive', 'multiplicative']}
+
+# generate all combinations of parameters
+
+all_params = list(ParameterGrid(param_grid))
+
+```
+
+```{python}
+
+with open("mape_swig80.txt", "r") as f:
+    tuning_results_mape = [float(line.strip()) for line in f]
+
+with open("direction_swig80.txt", "r") as f:
+    direction_check = [float(line.strip()) for line in f]
+```
+
+
+```{python}
+plt.scatter(y = direction_check, x =tuning_results_mape)
+
+plt.xlabel("MAPE")  # tytuł osi X
+plt.ylabel("Zgodność kierunku")  # tytuł osi Y
+plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
+
+plt.show()
+```
+
+
+```{python}
+
+with open('wig80_model.json', 'r') as fin:
+    m = model_from_json(fin.read())  # Load model
+```
+
+
+```{python}
+
+future = m.make_future_dataframe(periods = 20)
+
+
+import holidays
+pl_holidays = holidays.Poland()
+
+is_weekday = future['ds'].dt.weekday < 5
+is_not_holiday = ~future['ds'].isin(pl_holidays)
+
+future = future[is_weekday & is_not_holiday]
+
+forecast = m.predict(future)
+
+```
+
+
+
+```{python}
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+
+ax = forecast[['ds', 'yhat']].set_index('ds').loc['2026-02':].plot()
+
+wig80_to_chart.loc['2026-02':].plot(ax=ax)
+
+# Tytuły
+ax.set_title("Prognoza dla sWIG80")
+
+# Usunięcie xlabel
+ax.set_xlabel("")
+
+# Ograniczenie liczby ticków na osi X do ~4
+ax.xaxis.set_major_locator(MaxNLocator(4))
+
+plt.show()
+```

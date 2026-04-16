@@ -8,11 +8,14 @@ execute:
   echo: false
   warning: false
   message: false
-  freeze: false
+  freeze: auto
 toc: True
 ---
 
 Początek roku obfitował kontynuacją trendu wzrostowego z poprzedniego roku, jednak końcówka stycznia charakteryzowała się wytraceniem tempa. W tym wpisie przyglądam sie wynikom osiągniętym przez spółki z GPW w lutym 2026 roku. 
+
+ git config --global user.email "szczerbicki.tomasz@gmail.com"
+git config --global user.name "Tomasz Szczerbicki"
 
 ```{python}
 import pandas as pd
