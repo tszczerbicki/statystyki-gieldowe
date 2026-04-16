@@ -21,26 +21,22 @@
 
 
 
-<p>Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet.</p>
+<p>Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet. Aktualna sytuacja geopolityczna i wynikająca z niej podwyższona zmienność z pewnością będą stanowiły duże wyzwanie dla modelu, o czym przekonamy się przy okazji kolejnego podsumowania.</p>
 <section id="biblioteka-prophet---informacje-teoretyczne" class="level1">
 <h1>Biblioteka Prophet - informacje teoretyczne</h1>
 <p>Biblioteka została stworzona przez pracowników Facebooka i w ostatnich latach zyskała bardzo mocno na popularności. Prognoza jest efektem dekompozycji szeregu na trend, sezonowość i święta. W trakcie tworzenia modelu możliwe jest dostosowanie odpowiedniej sezonowości (np. tygodniowa, roczna); wskazanie jej wagi, rodzaju trendu (multiplikatywny / addytywny), punktów zwrotnych (automatycznie lub manualnie). W wielu przypadkach przydatne będzie także dodanie regresorów, przy czym muszą one później być podane także za okres prognozowany (np. prognoza tygodni, zaplanowane eventy itd.), co akurat w przypadku prognozy indeksów giełdowych nie do końca znajdzie zastosowanie.</p>
 </section>
 <section id="tuning-parametrów---w-poszukiwaniu-optymalnych-parametrów" class="level1">
 <h1>Tuning parametrów - w poszukiwaniu optymalnych parametrów</h1>
-<p>Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiednią stronę transakcji.</p>
-<p>Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty.</p>
+<p>Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiedni kierunek, w którym zmierza kurs.</p>
+<p>Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty. Prognozy na dni w trakcie miesiąca w kolejnych częściach będą wyświetlane, jednak nie podlegały ocenie w ramach tuningu parametrów.</p>
 <p>Elementem, który zweryfikowałem na starcie, lecz nie jest wykazany w tym raporcie, to fakt że Prophet nie potrzebuje bardzo długiej historii, a wręcz może mu ona szkodzić. Przykładowo po wprowadzeniu danych od 2021 roku do dziś, osiągałem gorsze rezultaty niż w przypadku datasetu za lata od 2023 w górę. Ostatecznie, właśnie ten zakres czasu będzie brany pod uwagę przy uczeniu modelu. Co ważne, tuning hiperparametrów będzie wykonywany dla każdego indeksu osobno.</p>
 <p>Jeśli chodzi o parametry, testowane będą: punkty zwrotu (tu przetestuję sygnały płynące z SMA100, wskaźnika supertrend oraz autodetekcję zaszytą w Prophecie) i ich waga, sezonowość roczna/weekendowa oraz ich waga; rodzaj sezonowości (multiplikatywna / addytywna)</p>
 </section>
 <section id="wig20" class="level1">
 <h1>WIG20</h1>
-<div id="823605d7" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>96</code></pre>
-</div>
-</div>
-<div id="519405fd" class="cell" data-execution_count="6">
+<p>Z tuningu parametrów wyłonił się zestaw kombinacji, który historycznie mylił się średnio (absolutnie) o mniej niż 6% i jednocześnie w ponad 70% wyznaczony kurs pokrywał się rzeczywistą realizacją.</p>
+<div id="7bf1276f" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -49,7 +45,8 @@
 </div>
 </div>
 </div>
-<div id="852b88fa" class="cell" data-execution_count="9">
+<p>Zgodnie z prognozą, na kwiecień WIG20 powinien zakończyć na poziomie 3555 pkt., co względem odczytu z 10 kwietnia - 3596.84 pkt, co oznaczałoby około 1-procentowy spadek w porównaniu do ostatniej znanej wartości.</p>
+<div id="ddba7f59" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -61,7 +58,7 @@
 </section>
 <section id="mwig40" class="level1">
 <h1>mWIG40</h1>
-<div id="b1b66cc7" class="cell" data-execution_count="14">
+<div id="335fd084" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -70,7 +67,7 @@
 </div>
 </div>
 </div>
-<div id="68aa4227" class="cell" data-execution_count="17">
+<div id="4da847b6" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -82,7 +79,7 @@
 </section>
 <section id="swig80" class="level1">
 <h1>sWIG80</h1>
-<div id="3c9a75cb" class="cell" data-execution_count="22">
+<div id="7507dc9c" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -91,7 +88,7 @@
 </div>
 </div>
 </div>
-<div id="b39b8107" class="cell" data-execution_count="25">
+<div id="554e3c80" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2699,7 +2696,7 @@
 
 <p>Początek roku obfitował kontynuacją trendu wzrostowego z poprzedniego roku, jednak końcówka stycznia charakteryzowała się wytraceniem tempa. W tym wpisie przyglądam sie wynikom osiągniętym przez spółki z GPW w lutym 2026 roku.</p>
 <p>git config –global user.email “szczerbicki.tomasz@gmail.com” git config –global user.name “Tomasz Szczerbicki”</p>
-<div id="dc270c7f" class="cell" data-execution_count="4">
+<div id="4ad06ea1" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2714,7 +2711,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Wolumeny</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div id="44c42390" class="cell" data-execution_count="5">
+<div id="d3de30fc" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -2847,7 +2844,7 @@
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div id="c06ee309" class="cell" data-execution_count="6">
+<div id="0a831bc2" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -2980,7 +2977,7 @@
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
-<div id="7fb67405" class="cell" data-execution_count="7">
+<div id="bf245b9d" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -3111,7 +3108,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Wzrosty sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Spadki sesyjne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Wzrosty miesięczne</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false" href="">Spadki miesięczne</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div id="7c9edaaf" class="cell" data-execution_count="8">
+<div id="43bfe704" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -3224,7 +3221,7 @@
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div id="1d59926f" class="cell" data-execution_count="9">
+<div id="74dc1a93" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
@@ -3337,7 +3334,7 @@
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
-<div id="9ee3c3b4" class="cell" data-execution_count="10">
+<div id="5ddeef49" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -3450,7 +3447,7 @@
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
-<div id="cddae03d" class="cell" data-execution_count="11">
+<div id="cd8f27c8" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -3575,7 +3572,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Średnie kroczące</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">ATH200 dist.</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Supertrend</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div id="29660f14" class="cell" data-execution_count="12">
+<div id="dac56edb" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3586,7 +3583,7 @@
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div id="b12c74e6" class="cell" data-execution_count="13">
+<div id="efad161b" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -3659,7 +3656,7 @@
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<div id="cf017242" class="cell" data-execution_count="14">
+<div id="142df08a" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -3715,7 +3712,7 @@
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">MTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">YTD</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" aria-controls="tabset-4-3" aria-selected="false" href="">Wolumeny</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" aria-controls="tabset-4-4" aria-selected="false" href="">SMA</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div id="0ad40dc5" class="cell" data-execution_count="15">
+<div id="a68b39b1" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3726,7 +3723,7 @@
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div id="41c17bb0" class="cell" data-execution_count="16">
+<div id="a226c47d" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3737,7 +3734,7 @@
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" aria-labelledby="tabset-4-3-tab">
-<div id="19ec9828" class="cell" data-execution_count="17">
+<div id="4c1ba6b5" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3748,7 +3745,7 @@
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" aria-labelledby="tabset-4-4-tab">
-<div id="52947190" class="cell" data-execution_count="18">
+<div id="2f63e123" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

@@ -12,7 +12,7 @@ execute:
 toc: True
 ---
 
-Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet. 
+Metody statystyczne oraz oparte na uczeniu maszynowym, które w ostatnich latach zyskały na popularności, kuszą swoją łatwością użycia i dobrą skutecznością. Tyczy to się również prognozowania szeregów czasowych, co można udanie wykorzystać w analizach rynków kapitałowych. W tym materiale przyjrzę się prognozom wygenerowanym dla czterech głównych indeksów na GPW - WIG, WIG20, mWIG40 i sWIG80, a prognozy przygotowywane będą przy użyciu biblioteki Prophet. Aktualna sytuacja geopolityczna i wynikająca z niej podwyższona zmienność z pewnością będą stanowiły duże wyzwanie dla modelu, o czym przekonamy się przy okazji kolejnego podsumowania. 
 
 # Biblioteka Prophet - informacje teoretyczne
 
@@ -82,9 +82,9 @@ def supertrend(df: pd.DataFrame, atr_multiplier=3, atr_length = 15):
 
 # Tuning parametrów - w poszukiwaniu optymalnych parametrów
 
-Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiednią stronę transakcji. 
+Pierwszym krokiem do wykonania będzie przetestowanie różnych kombinacji parametrów, jakie przyjmuje Prophet, celem znalezienia zestawu optymalnego. W moim przypadku za metryki sukcesu przyjąłem MAPE (średni absolutny błąd procentowy) oraz część prognoz, która pokrywała się pod względem kierunku z wartością zrealizowaną (czyt. czy prognoza pokazywała wzrost za okres, kiedy rzeczywiście urosło (i odwrotnie)). Uznałem, że to istotne aby nawet jeśli prognoza nie trafi idealnie w punkt, to wskazywała odpowiedni kierunek, w którym zmierza kurs. 
 
-Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty. 
+Tuning parametrów przeprowadziłem wykonując hipotetyczne prognozy na miesiąc do przodu - przykładowo 31 stycznia sprawdzałem jakim wynikiem zamknie się luty. Prognozy na dni w trakcie miesiąca w kolejnych częściach będą wyświetlane, jednak nie podlegały ocenie w ramach tuningu parametrów.  
 
 Elementem, który zweryfikowałem na starcie, lecz nie jest wykazany w tym raporcie, to fakt że Prophet nie potrzebuje bardzo długiej historii, a wręcz może mu ona szkodzić. Przykładowo po wprowadzeniu danych od 2021 roku do dziś, osiągałem gorsze rezultaty niż w przypadku datasetu za lata od 2023 w górę. Ostatecznie, właśnie ten zakres czasu będzie brany pod uwagę przy uczeniu modelu. Co ważne, tuning hiperparametrów będzie wykonywany dla każdego indeksu osobno. 
 
@@ -151,11 +151,9 @@ param_grid = {'changepoints': [changepoints_supertrend, changepoints_sma, None],
 
 all_params = list(ParameterGrid(param_grid))
 
-len(all_params)
-
 ```
 
-
+Z tuningu parametrów wyłonił się zestaw kombinacji, który historycznie mylił się średnio (absolutnie) o mniej niż 6% i jednocześnie w ponad 70% wyznaczony kurs pokrywał się rzeczywistą realizacją. 
 
 
 ```{python}
@@ -178,13 +176,15 @@ plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
 plt.show()
 ```
 
-
+Zgodnie z prognozą, na kwiecień WIG20 powinien zakończyć na poziomie 3555 pkt., co względem odczytu z 10 kwietnia - 3596.84 pkt, co oznaczałoby około 1-procentowy spadek w porównaniu do ostatniej znanej wartości. 
 
 ```{python}
 with open('wig20_model.json', 'r') as fin:
     m = model_from_json(fin.read())  # Load model
 
 ```
+
+
 
 ```{python}
 
