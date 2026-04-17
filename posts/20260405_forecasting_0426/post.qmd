@@ -309,6 +309,10 @@ plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
 plt.show()
 ```
 
+W przypadku pracy na notowaniach mWIG40, wprawdzie nie udało się znaleźć kombinacji, która co do kierunku zmiany pokrywałaby się z rzeczywistością o ponad 70%, jednak wciąż dostępne są warianty mogące dostarczać prognozy z średnim błędem absolutnym w okolicach 5 procent i dość satysfakcjonującym wskaźnikiem zgodności kierunku.
+
+W porównaniu do indeksu WIG20, w mwig40 zastosowany został model multiplikatywny (kosztem addytywnego), zwiększyła się także wrażliwość na punkty zwrotne. 
+
 
 ```{python}
 with open('wig40_model.json', 'r') as fin:
@@ -333,6 +337,9 @@ forecast = m.predict(future)
 
 ```
 
+```{python}
+wig40_to_chart
+```
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -353,6 +360,8 @@ ax.xaxis.set_major_locator(MaxNLocator(4))
 
 plt.show()
 ```
+
+Zgodnie z wykresem, zakończenie kwietnia szacowane jest na poziomie 8909 punktów, co oznaczałoby spadek względem ostatniej znanej wartości, a więc 9036 (odczyt z 10 kwietnia): spadek o ok. 1,4%. 
 
 # sWIG80
 
@@ -437,6 +446,7 @@ plt.title("Tuning parametrów: wyniki ")  # tytuł wykresu
 plt.show()
 ```
 
+W przypadku indeksu sWIG80 również znalazły się kombinacje parametrów, które historycznie dostarczały dość skuteczne prognozy, z MAPE poniżej 4%. Podobnie jak w przypadku prognozy dla mWIG40, również i tutaj wykorzystano model multiplikatywny, lecz z nieco niższą wagą dla punktów przegięcia. 
 
 ```{python}
 
@@ -462,7 +472,9 @@ forecast = m.predict(future)
 
 ```
 
-
+```{python}
+wig80_to_chart
+```
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -483,3 +495,9 @@ ax.xaxis.set_major_locator(MaxNLocator(4))
 
 plt.show()
 ```
+
+Prognoza dla mWIG40 na koniec kwietnia wynosi 30011, a aktualna wartość to 30228, co oznaczałoby niespełna procentową stratę. 
+
+# Podsumowanie
+
+Zaprezentowane trzy prognozy szacują, że trzy główne indeksy GPW zamkną się nieco poniżej bieżących notowań. Zaznaczam jednak, iż zgodnie z wykresami wykazanymi w poprzednich sekcjach, na giełdzie pojawiła się podwyższona zmienność i na początku kwietnia inwestorzy doświadczyli delikatnej korekty, a obecne zauważalne jest gwałtowne odbicie. Taka sytuacja nie pomaga prognozowaniu, zaś o ostatecznym wyniku przekonamy się już niedługo. 

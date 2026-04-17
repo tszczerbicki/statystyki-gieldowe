@@ -36,7 +36,7 @@
 <section id="wig20" class="level1">
 <h1>WIG20</h1>
 <p>Z tuningu parametrów wyłonił się zestaw kombinacji, który historycznie mylił się średnio (absolutnie) o mniej niż 6% i jednocześnie w ponad 70% wyznaczony kurs pokrywał się rzeczywistą realizacją.</p>
-<div id="7bf1276f" class="cell" data-execution_count="6">
+<div id="f1126fc8" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -46,7 +46,7 @@
 </div>
 </div>
 <p>Zgodnie z prognozą, na kwiecień WIG20 powinien zakończyć na poziomie 3555 pkt., co względem odczytu z 10 kwietnia - 3596.84 pkt, co oznaczałoby około 1-procentowy spadek w porównaniu do ostatniej znanej wartości.</p>
-<div id="ddba7f59" class="cell" data-execution_count="9">
+<div id="14a3b8d6" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -58,7 +58,7 @@
 </section>
 <section id="mwig40" class="level1">
 <h1>mWIG40</h1>
-<div id="335fd084" class="cell" data-execution_count="14">
+<div id="b980d432" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -67,36 +67,181 @@
 </div>
 </div>
 </div>
-<div id="4da847b6" class="cell" data-execution_count="17">
+<p>W przypadku pracy na notowaniach mWIG40, wprawdzie nie udało się znaleźć kombinacji, która co do kierunku zmiany pokrywałaby się z rzeczywistością o ponad 70%, jednak wciąż dostępne są warianty mogące dostarczać prognozy z średnim błędem absolutnym w okolicach 5 procent i dość satysfakcjonującym wskaźnikiem zgodności kierunku.</p>
+<p>W porównaniu do indeksu WIG20, w mwig40 zastosowany został model multiplikatywny (kosztem addytywnego), zwiększyła się także wrażliwość na punkty zwrotne.</p>
+<div id="daff20f7" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ds</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-02</th>
+<td>4198.67</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2023-01-03</th>
+<td>4303.33</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-04</th>
+<td>4389.26</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2023-01-05</th>
+<td>4397.18</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-09</th>
+<td>4448.10</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-02</th>
+<td>8652.40</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-04-07</th>
+<td>8632.30</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-08</th>
+<td>8918.69</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-04-09</th>
+<td>8895.59</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-10</th>
+<td>9036.06</td>
+</tr>
+</tbody>
+</table>
+
+<p>816 rows × 1 columns</p>
+</div>
+</div>
+</div>
+<div id="d2608de8" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-18-output-1.png" width="380" height="253" class="figure-img"></p>
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-19-output-1.png" width="380" height="253" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Zgodnie z wykresem, zakończenie kwietnia szacowane jest na poziomie 8909 punktów, co oznaczałoby spadek względem ostatniej znanej wartości, a więc 9036 (odczyt z 10 kwietnia): spadek o ok. 1,4%.</p>
 </section>
 <section id="swig80" class="level1">
 <h1>sWIG80</h1>
-<div id="7507dc9c" class="cell" data-execution_count="22">
+<div id="5c993b74" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-23-output-1.png" width="388" height="246" class="figure-img"></p>
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-24-output-1.png" width="388" height="246" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="554e3c80" class="cell" data-execution_count="25">
+<p>W przypadku indeksu sWIG80 również znalazły się kombinacje parametrów, które historycznie dostarczały dość skuteczne prognozy, z MAPE poniżej 4%. Podobnie jak w przypadku prognozy dla mWIG40, również i tutaj wykorzystano model multiplikatywny, lecz z nieco niższą wagą dla punktów przegięcia.</p>
+<div id="5ee64629" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ds</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-02</th>
+<td>17878.40</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2023-01-03</th>
+<td>18162.08</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-04</th>
+<td>18297.24</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2023-01-05</th>
+<td>18411.53</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2023-01-09</th>
+<td>18658.83</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-02</th>
+<td>29881.32</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-04-07</th>
+<td>29749.20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-08</th>
+<td>30193.93</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2026-04-09</th>
+<td>30152.13</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2026-04-10</th>
+<td>30228.51</td>
+</tr>
+</tbody>
+</table>
+
+<p>816 rows × 1 columns</p>
+</div>
+</div>
+</div>
+<div id="332e8aad" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-26-output-1.png" width="392" height="253" class="figure-img"></p>
+<p><img src="https://tszczerbicki.github.io/quarto-site/posts/20260405_forecasting_0426/post_files/figure-html/cell-28-output-1.png" width="392" height="253" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Prognoza dla mWIG40 na koniec kwietnia wynosi 30011, a aktualna wartość to 30228, co oznaczałoby niespełna procentową stratę.</p>
+</section>
+<section id="podsumowanie" class="level1">
+<h1>Podsumowanie</h1>
+<p>Zaprezentowane trzy prognozy szacują, że trzy główne indeksy GPW zamkną się nieco poniżej bieżących notowań. Zaznaczam jednak, iż zgodnie z wykresami wykazanymi w poprzednich sekcjach, na giełdzie pojawiła się podwyższona zmienność i na początku kwietnia inwestorzy doświadczyli delikatnej korekty, a obecne zauważalne jest gwałtowne odbicie. Taka sytuacja nie pomaga prognozowaniu, zaś o ostatecznym wyniku przekonamy się już niedługo.</p>
 
 
 </section>
