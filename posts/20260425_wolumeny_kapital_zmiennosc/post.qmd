@@ -1,0 +1,283 @@
+---
+title: "Kapitalizacja, zmienność i dzienny obrót – przegląd spółek z GPW"
+subtitle: "Przegląd trzech podstawowych statystyk przydatnych przy selekcji spółek"
+author: "Tomasz Szczerbicki"
+date: 2026-04-25
+categories: [Analiza przekrojowa, WIG, GPW]
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+toc: True
+---
+
+Obecnie na GPW w ramach indeksu WIG notowanych jest nieco ponad 320 spółek. Wygląda to na niezwykle szeroki wybór, a we wstępnej selekcji mogą pomóc bardzo proste (i poniekąd niedoceniane) metryki - kapitalizacja, średni dzienny obrót oraz przeciętna zmienność. 
+
+Wszystkie z wyżej wymienionych odnoszą się do istotnych aspektów - kapitalizacja oczywiście wskazuje skalę przedsiębiorstwa; średnia dzienna wartość obrotu podpowie kto na giełdzie danym walorem obraca (instytucje czy może inwestorzy indywidualni) oraz jak długo zajmie nam nabycie/zbycie oczekiwanego pakietu akcji; zmienność cen dostarczy natomiast informacji jak dużych wahań możemy spodziewać się na danej spółce. 
+
+W kwestiach metodycznych, pierwsza z metryk to oczywiście iloczyn liczby akcji i ceny zamknięcia z danego dnia. Średnia wartość obrotu to pewne uproszczenie z uwagi na zakres dostępnych danych - wolumen obrotu pomnożony przez cenę zamknięcia. Jeśli natomiast chodzi o zmienność, wykorzystam odchylenie standardowe logarytmiczne stopy zwrotu, co pozwoli oczywiścić zmiany z trendu i brać pod uwagę wyłącznie fluktuacje. Przeanalizowane zostaną dane z GPW za pierwszy kwartał 2026 roku przez pryzmat indeksu głównego raz podziału na sektory. 
+
+Dane zostały zwizualizowane za pomocą boxplot z pakietu plotly - każdy z zaprezentowanych poniżej jest interaktywny; umożliwia zaznaczenie interesującego obszaru i przybliżenie, ewentualnie najechanie na dowolny punkt i poznanie szczegółów takich jak sektor spółki, dokładna kapitalizacja czy średni dzienny obrót. Z uwagi na ogromną rozpiętość pomiędzy minimalnymi a maksymalnymi wartościami, szczególnie w przypadku kapitalizacji oraz średniego dziennego obrotu, zastosowana została skala logarytmiczna. 
+
+```{python}
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import talib
+import matplotlib.pyplot as plt
+import plotly.express as px
+
+plt.style.use('/Users/tomasz/Desktop/quarto2/styles/blog_style.mplstyle')
+
+# funkcje
+def wtd(df: pd.DataFrame):
+    d1 = df.copy()
+    weekly_close = d1['Close'].resample('W-FRI').last().shift()
+    d1['weekly_close'] = weekly_close.reindex(d1.index, method = 'bfill')
+    d1['WTD_%'] = (d1['Close'] / d1['weekly_close'] - 1) * 100
+    return d1['WTD_%'].astype(float).round(4)
+
+def mtd(df: pd.DataFrame):
+    d1 = df.copy()
+    month_map = dict(d1['Close'].groupby([d1.index.year, d1.index.month]).last())
+    d1['prev_month_close'] = [month_map.get((d.year if d.month > 1 else d.year - 1,12 if d.month == 1 else d.month - 1), np.nan) for d in d1.index]
+    d1['MTD_%'] = (d1['Close'] / d1['prev_month_close'] - 1) * 100
+    return d1['MTD_%'].astype(float).round(4)
+
+def ytd(df: pd.DataFrame):
+    d1 = df.copy()
+    year_map = dict(d1['Close'].groupby([d1.index.year]).last())
+    d1['prev_year_close'] = [year_map.get(d.year -1 , np.nan) for d in d1.index]
+    d1['YTD_%'] = (d1['Close'] / d1['prev_year_close'] - 1) * 100
+    return d1['YTD_%'].astype(float).round(4)
+
+def ATR(df: pd.DataFrame, n = 14):
+    d1 = df.copy()
+    d1['H-L'] = d1['High'] - d1['Low']
+    d1['H-PC'] = d1['High'] - d1['Close'].shift(1)
+    d1['L-PC'] = d1['Low'] - d1['Close'].shift(1)
+    d1['TR'] = d1[['H-L', 'H-PC', 'L-PC']].max(axis = 1)
+    d1['ATR'] = d1['TR'].ewm(span = n, min_periods = n).mean()
+    return d1['ATR']
+
+def supertrend(df: pd.DataFrame, atr_multiplier=3, atr_length = 15):
+    d1 = df.copy()
+    current_average_high_low = (d1['High']+d1['Low'])/2
+    d1['atr'] = talib.ATR(d1['High'], d1['Low'], d1['Close'], timeperiod= atr_length)
+    d1.dropna(inplace=True)
+
+    d1['basicUpperband'] = current_average_high_low + (atr_multiplier * d1['atr'])
+    d1['basicLowerband'] = current_average_high_low - (atr_multiplier * d1['atr'])
+    first_upperBand_value = d1['basicUpperband'].iloc[0]
+    first_lowerBand_value = d1['basicLowerband'].iloc[0]
+    upperBand = [first_upperBand_value]
+    lowerBand = [first_lowerBand_value]
+
+    for i in range(1, len(d1)):
+        if d1['basicUpperband'].iloc[i] < upperBand[i-1] or d1['Close'].iloc[i-1] > upperBand[i-1]:
+            upperBand.append(d1['basicUpperband'].iloc[i])
+        else:
+            upperBand.append(upperBand[i-1])
+
+        if d1['basicLowerband'].iloc[i] > lowerBand[i-1] or d1['Close'].iloc[i-1] < lowerBand[i-1]:
+            lowerBand.append(d1['basicLowerband'].iloc[i])
+        else:
+            lowerBand.append(lowerBand[i-1])
+
+    d1['upperband'] = upperBand
+    d1['lowerband'] = lowerBand
+
+    d1['has_crossed_upper'] = np.where((d1['Close'].shift(1) < d1['upperband'].shift(1)) & (d1['Close'] >= d1['upperband']), 1,0)
+    d1['has_crossed_lower'] = np.where((d1['Close'].shift(1) > d1['lowerband'].shift(1)) & (d1['Close'] <= d1['lowerband']), 1,0)
+    
+    supertrend = ['upperband']
+    for i in range(1, len(d1)):
+        if d1['has_crossed_upper'].iloc[i] == 1:
+            supertrend.append('lowerband')
+        elif d1['has_crossed_lower'].iloc[i] == 1:
+            supertrend.append('upperband')
+        else:
+            supertrend.append(supertrend[i-1])  # poprzednia wartość
+
+    d1['supertrend_label'] = supertrend
+    d1['supertrend'] = np.where(d1['supertrend_label'] == 'upperband', d1['upperband'], d1['lowerband'])
+    d1.drop(['basicUpperband', 'basicLowerband'], axis=1, inplace=True)
+    return d1[['supertrend_label', 'supertrend']]
+
+def drawdown(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_max'] = d1['cum_return'].groupby(d1.index.year).cummax()
+    d1['drawdown'] = d1['cum_roll_max'] - d1['cum_return']
+    d1['drawdown_pct'] = d1['drawdown'] / d1['cum_roll_max'] * 100
+    return d1['drawdown_pct'].astype(float).round(4)
+
+def run_up(df: pd.DataFrame):
+    d1 = df.copy()
+    d1['return'] = d1['Close'].pct_change()
+    d1['cum_return'] = (1+ d1['return']).groupby(d1.index.year).cumprod()
+    d1['cum_roll_min'] = d1['cum_return'].groupby(d1.index.year).cummin()
+    d1['run_up'] = d1['cum_return'] - d1['cum_roll_min']
+    d1['run_up_pct'] = d1['run_up'] / d1['cum_roll_min'] * 100
+    return d1['run_up_pct'].astype(float).round(4)
+
+# wgranie słownika
+
+dictionary_stocks = pd.read_excel('/Users/tomasz/Desktop/quarto2/shared_files/spolki_20260401.xlsx', index_col = 0)
+```
+
+```{python}
+# starter code
+stocks = dictionary_stocks[dictionary_stocks['in_WIG'] == True].ticker_yf.to_list()
+ohlcv_data = {}
+
+for ticker in stocks:
+    temp = yf.download(ticker, start = '2023-12-20', interval = '1d')
+    temp.dropna(how = 'any', inplace = True)
+
+    ohlcv_data[ticker] = temp
+    ohlcv_data[ticker].columns = ['Close', 'High', 'Low', 'Open', 'Volume']
+    ohlcv_data[ticker]['ticker'] = ticker
+
+    #yahoo finance ma błąd w danych dla MOL za okres 30.12.2024 - 10.06.2025. W to miejsce wstawiam dane stooq
+    if ticker == 'MOL.WA':
+        l1 = pd.read_csv('/Users/tomasz/Desktop/quarto2/shared_files/t1.csv')['Close'].to_list()
+        ohlcv_data['MOL.WA'].loc[ '2024-12-30':'2025-06-10', 'Close'] = l1
+    
+    # podobnie błąd dla Dadelo w jednym dniu
+    if ticker == 'DAD.WA':
+        ohlcv_data['DAD.WA'].loc['2025-04-25', 'Close'] = 28.30
+
+    # błąd dla CPD
+    if ticker == 'CPD.WA':
+        ohlcv_data['CPD.WA'].loc['2026-03-23':'2026-03-27', 'Close'] = [2, 1.885, 1.945, 1.945, 1.82]
+
+    ohlcv_data[ticker]['YTD_pct'] = ytd(ohlcv_data[ticker])
+    ohlcv_data[ticker]['log_return'] = np.log(ohlcv_data[ticker].Close / ohlcv_data[ticker].Close.shift())
+    ohlcv_data[ticker]['yearly_drawdown_pct'] = drawdown(ohlcv_data[ticker])
+    ohlcv_data[ticker]['yearly_run_up_pct'] = run_up(ohlcv_data[ticker])
+    ohlcv_data[ticker]['turnover_in_pln'] = ohlcv_data[ticker].Close * ohlcv_data[ticker].Volume
+
+```
+
+```{python}
+stocks_results = pd.DataFrame()
+
+for i in (stocks):
+
+    aggs = ohlcv_data[i].groupby(pd.Grouper(freq = 'QE')).agg(log_return_std = ('log_return', 'std'),
+                                                            
+                                                                  close_last = ('Close', 'last'),
+                                                                  ytd_pct = ('YTD_pct', 'last'),
+                                                                  max_drawdown = ('yearly_drawdown_pct', 'max'),
+                                                                  max_run_up = ('yearly_run_up_pct', 'max'),
+                                                                  mean_turnover_pln = ('turnover_in_pln', 'mean')
+                                                                  )
+
+    aggs['ticker_yf'] = i
+
+    aggs['return_rate_2025'] = aggs['ytd_pct'].shift()
+
+    aggs_filtered = aggs#.loc[[2025]]
+
+    stocks_results = pd.concat([stocks_results, aggs_filtered])
+
+
+# stworzenie końcowej tabeli (dołączam parametry ze słownika)
+stocks_results.reset_index(inplace = True)
+df = stocks_results.merge(dictionary_stocks, how = 'left', on = 'ticker_yf')
+
+df['index_name'] = np.where(df['in_WIG20'], 'WIG20',
+                            np.where(df['in_mWIG40'], 'mWIG40',
+                                     np.where(df['in_sWIG80'], 'sWIG80', 'WIG rest')) )
+
+df['market_cap'] = round(df.stocks_number * df.close_last,4)
+
+df_to_analyze = df[df['Date'] == '2026-03-31']
+df_to_analyze['L1_nazwa'] = df_to_analyze['L1_nazwa'].replace('Produkcja przemysłowa i budowlano-montażowa', 'Prod. przem. i bud.-m.')
+```
+
+# Kapitalizacje rynkowe
+
+```{python}
+fig = px.box(df_to_analyze, x="index_name", y="market_cap", hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log", title = 'Kapitalizacje - rozkład spółek według indeksu')
+fig.update_traces(marker_color='rgb(7,90,89)')
+fig.update_xaxes(title = None, categoryorder='array', categoryarray= ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest'])
+fig.show()
+```
+
+W przypadku spojrzenia na podział według głównych indeksów, co do zasady zachowana jest kolejność WIG20, mWIG40, sWIG80 i WIG rest. W przypadku pierwszego z wymienionych, mediana to 25 miliardów złotych (okolica Allegro), zaś wartośc maksymalna to 155 miliardów - PKN Orlen. Jedynymi spółkami z indeksu z kapitalizacją poniżej 10 mld PLN są Modivo, Kruk oraz Kety. Jeśli mowa o mWIG40, warto zauważyć, że częśc walorów mogłaby stanowić dość istotną składową indeksu bluechipów - kapitalizacja ING na poziomie 49 mld PLN to okolice 75 percentyla WIG20, zaś BNP, Millenium oraz Orange znalazłyby się nieco powyżej Q1 w analogicznym ujęciu. Jeśli powyższe wartości zestawimy z minimum indeksu, kapitalizacją TS Games na poziomie 640 mln PLN, widocznym będzie duże rozproszenie spółek na poziomie tej miary. Dodam również, że mediana w tym przypadku wypada na poziomie 2,87 mld PLN i w okół tej wartości oscylują kapitalizacje m.in. GPW czy Grupy Pracuj. W przypadku indeksu sWIG80, największe spółki docierają do poziomu mediany indeksu poprzedniego - wyceny w okolicach 2,7 mld PLN dotyczą ASSECO BS i Archicomu. Połowa stawki to poziom 654 milionów, a więc okolice minimów dla zestawienia mid-capów. Dwie najmniejsze spółki w ramach omawianej metryki to Zremb oraz Mabion - market cap obu to wartości nieco mniejsze od 150 mln PLN. 
+
+Jeśli chodzi o różnorodność kapitalizacji, to najwięcej dzieje się wśród pozostałych spółek należących do WIG, określonych na wykresach jako WIG rest. Z uwagi na kryteria wejściowe dla indeksów, tutaj notowane są m.in. Santander oraz Unicredit istotnie przekraczające wyceny spółek WIG20. Jednakże środek ciężkości w tym przypadku przypada dużo niżej - wartość kwartyla 3 znajduje się na poziomie 195 mln, mediany 88 mln, zaś kwartyla pierwszego 38 mln. Zgodnie ze stanem na koniec marca 2026, najmniejsze spółki miały poniżej 10 milionów kapitalizacji - FON oraz NT Capital.
+
+```{python}
+import plotly.express as px
+fig = px.box(df_to_analyze, x="L1_nazwa", y="market_cap", color = 'L1_nazwa',  hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(title_text="Kapitalizacje - rozkład spółek według sektora", showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log")
+fig.update_xaxes(title = None, categoryorder='array', categoryarray= ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest'])
+```
+
+W przypadku podziału spółek względem sektora, na pierwszy rzut oka wyróżniają się przede wszystkim finanse, głównie z uwagi na dużą rozpiętość między wartościami maksymalnymi i minimalnymi. Należy pamiętać, że w przypadku tej sekcji zgromadzone zostały banki, deweloperzy, ale i małe podmioty zaklasyfikowane do działalności inwestycyjnej. Kolejnymi sektorami z istotnie większymi spółkami są Chemia i surowce (mediana na poziomie 1.1 mld PLN) oraz Paliwa i energia (mediana na poziomie 1 mld PLN), natomiast następny w tej kategorii, sektor ochrony zdrowia to już mediana na poziomie 370 mln PLN. W przypadku pozostałych branż, analogiczne wartości nie przekraczają 260 mln PLN. 
+
+# Średni dzienny obrót
+
+
+```{python}
+import plotly.express as px
+fig = px.box(df_to_analyze, x="index_name", y="mean_turnover_pln", hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(title_text="Średnia dzienna wartość obrotu - rozkład spółek według indeksu", showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log", title = 'Średni dzienny wolumen obrotu (PLN)')
+fig.update_traces(marker_color='rgb(7,90,89)')
+fig.update_xaxes(title = None, categoryorder='array', categoryarray= ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest'])
+fig.show()
+```
+
+Struktura wartości obrotu na GPW co do zasady odpowiada rozkładowi kapitalizacji spółek - z uwagi na skalę działalności (czyt. by obrócić dużą spółką potrzeba dużego kapitału), ale i na segmenty inwestorów zainteresowanych walorami (przykładowo skupienie instytucji krajowych i zagranicznych na WIG20). 
+
+W przypadku WIG20, średni dzienny wolumen oscylował w Q1 2026 pomiędzy 15 mln PLN (KRUK) a 391 mln PLN (KGHM). Jeśli chodzi o spółki mid-cap, wprawdzie najpopularniejszy - Asseco Pol to okolice mediany z WIG20, jednakże trzy najsłabsze w tym aspekcie wyniki to obroty poniżej 1 mln PLN - Voxel (664k PLN), Asseco SEE (474k PLN) oraz PEP (224k PLN). Analizując sWIG80 widać, że obroty powyżej 1 miliona złotych dziennie dotyczy jedynie ~25% spółek należących do indeksu, a mediana to 430k PLN. W kwestii najmniejszych obrotów, dla trzech ostatnich spółek średni dzienny obrót to: 61k PLN (Śnieżka), 39k PLN (Tarczyński),36k PLN (AC Autogaz). Oznacza to, że w przypadku najmniej płynnych walorów spośród small-capów, może występować problem z nabyciem / sprzedażą danego pakietu akcji nawet w przypadku inwestorów i mniejszych paczek, w okolicach kilkudziesięciu tysięcy złotych. 
+
+Na koniec pozostałe spółki indeksu WIG - spośród nich, na przykładzie Q1 '26, względnie płynne spółki można wyliczyć na palcach jednej ręki - MOL, CEZ, Virtus, Passus oraz Pure. Każdy z wymienionych pięciu walorów odnotował średni dzienny obrót powyżej 1 mln PLN. Druga strona rozkładu z kolei średnie dzienne obroty oscylujące w okolicach kilku-kilkunastu tysięcy złotych. Zgodnie z zaprezentowanym wykresem mediana to 44k PLN, a Q1 to okolice 16k PLN, co należy rozważać w kategoriach dramatycznie niskiej płynności. Przy wartościach na wymienionych poziomach obrót nawet kilkoma tysiącami złotych może stanowić czynnik kształtujący kurs spółki w danym dniu. 
+
+```{python}
+import plotly.express as px
+fig = px.box(df_to_analyze, x="L1_nazwa", y="mean_turnover_pln", color="L1_nazwa", hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(title_text="Średnia dzienna wartość obrotu - rozkład spółek według sektora", showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log", title = 'Średni dzienny wolumen obrotu (PLN)')
+fig.update_xaxes(title = None)
+```
+
+Jeżeli na omawiane wyżej wartości nałożymy perspektywę sektorową, to utrzymane zostaną analogiczne tendencje jak przy okazji kapitalizacji - zdecydowanie najwięcej jeśli chodzi o obrót dzieje się w przypadku spółek chemicznych i surowcowych oraz paliwych i energetycznych. Jednocześnie najmniejsza płynność statystycznie pojawia sie przy okazji dóbr konsumpcyjnych, finansów oraz produkcji przemysłowej i budowlano-montażowej.
+
+# Zmienność 
+
+```{python}
+import plotly.express as px
+fig = px.box(df_to_analyze, x="index_name", y="log_return_std", hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(title_text="Odchylenie standardowe logarytmicznych stóp zwrotu - rozkład spółek według indeksu", showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log", title = 'Odchylenie standardowe')
+fig.update_traces(marker_color='rgb(7,90,89)')
+fig.update_xaxes(title = None, categoryorder='array', categoryarray= ['WIG20', 'mWIG40', 'sWIG80', 'WIG rest'])
+fig.show()
+```
+
+Zgodnie z informacjami podanymi na wstępie, zmienność została wyrażona odchyleniem standardowym logarytmicznych stóp zwrotu. Dzięki takiemu zabiegowi za zwiększoną zmienność nie będą uznawane jasne trendy - konsekwentne spadki lub wzrosty, lecz bliżej nieskoordynowane ruchy cenowe, w tym skokowe zmiany cen w obie strony. 
+
+W podziale na główne indeksy, największa zmienność odnotowana została przy spółkach WIG Rest. Mediana to 2,4%, zaś w skrajnych przypadkach (Pure oraz Virtus), przekracza 10%. Jeżeli spojrzymy w notowania obu spółek, zauważymy, iż pierwszy kwartał 2026 roku obfitował w wiele sesji kończących się zmianami kilkunasto/kilkudziesięcio procentowymi zarówno in plus, jak i drugą stronę. Spółki WIG Rest stanowią także o najniższych odczytach zmienności. W przypadku walorów takich jak PHN, Esotiq, czy Lena nie działo się nic istotnie odstającego od bieżącego trendu. 
+
+Niespodzianką może być fakt, że po WIG Rest, kolejny w rankingu największej zmienności jest WIG20 (bazując na medianie). W tym przypadku dość sporo działo się na notowaniach KGHM, Tauron, Dino czy PGE, choć oczywiście rezultaty wymienionych nie równaja się wymieionym wcześniej Pure czy Virtus. Z kronikarskiego obowiązku wspomnę także o umiarkowanej zmienności na mWIG40 i sWIG80, choć w przypadku small-capów sporo działo się m.in. na Medinice, Bumechu czy też Creepy Jar. 
+
+```{python}
+import plotly.express as px
+fig = px.box(df_to_analyze, x="L1_nazwa", y="log_return_std", color="L1_nazwa", hover_data = ['name', 'L1_nazwa', 'L2_nazwa', 'index_name', 'ytd_pct', 'max_run_up', 'max_drawdown'], points = 'all')
+fig.update_layout(title_text="Odchylenie standardowe logarytmicznych stóp zwrotu - rozkład spółek według sektora", showlegend = False, paper_bgcolor='white', plot_bgcolor='rgb(233,233,233)')
+fig.update_yaxes(type="log", title = 'Odchylenie standardowe')
+fig.update_xaxes(title = None)
+fig.show()
+```
+
+Perspektywa sektorowa wskazuje, że istotnie sporo w pierwszym kwartale działo się wokół spółek paliwowych i energetycznych - w tym przypadku mediana odchyleń jest najwyższa, a jednoczesnie niemal wszystkie punkty skoncentrowane są na bardzo małym obszarze. Następnie pojawiają się spółki produkcyjno-przemysłowe i budowlano-montażowe z pełnym wahlarzem zmienności - od Bumechu i skokowych fluktuacji, aż do spółki Lena będącej cały czas w trendzie spadkowym. W tym miejscu warto jeszcze wspomnieć o spółkach z ochrony zdrowia, obejmującego również biotechnologię, a także o spółkach technologicznych (w tym m.in. spółki typu SaaS). Po drugiej stronie barykady znajdują się dobra konsumpcyjne oraz finanse, choć pojedyncze przypadki zwiększonej zmienności wybijają się ponad całą zbiorowość,a mowa tutaj m.in. o Protektor (odzież i kosmetyki), czy Capitea (Wierzytelności). W obu przypadkach w trakcie analizowanego okresu pojawiło się kilka jednosesyjnych wzrostów, a po pewnym czasie powrót do dotychczasowych poziomów.
